@@ -1,5 +1,5 @@
-within cdl_models.demand_flexibility;
-model DF_Controller
+within cdl_models.Controls;
+model DF_Controller_ratchet
 
   parameter Real TZonSetNominal(unit="K")=273.15+23
     "Nominal zone air temperature setpoint";
@@ -117,4 +117,4 @@ equation
           {74,-82}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end DF_Controller;
+end DF_Controller_ratchet;
