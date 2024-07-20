@@ -1,11 +1,12 @@
 within cdl_models.Examples;
 model demand_flexibility_ratchet
     extends Modelica.Icons.Example;
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TRat(final k=0.14)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TRat(final k=0.5)
     "Ratchet Amount"
     annotation (Placement(transformation(extent={{-74,18},{-54,38}})));
   Controls.DF_Controller_ratchet dF_Controller(TZonSetNominal(displayUnit=
-          "degC") = 294.15, TMaxSet(displayUnit="degC") = 300.15)
+          "degC") = 294.15, TMaxSet(displayUnit="degC") = 300.15,
+    TRatThreshold=0.2)
     annotation (Placement(transformation(extent={{10,8},{30,28}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant TReb(final k=0.3)
     "Rebound Amount"
@@ -38,5 +39,9 @@ equation
   connect(combiTimeTable1.y[2], dF_Controller.TZon) annotation (Line(points={{
           -95,36},{-80,36},{-80,-12},{8,-12},{8,10}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+        coordinateSystem(preserveAspectRatio=false)),
+    experiment(
+      StopTime=86400,
+      Interval=60,
+      __Dymola_Algorithm="Dassl"));
 end demand_flexibility_ratchet;

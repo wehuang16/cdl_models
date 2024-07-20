@@ -7,13 +7,14 @@ replaceable package MediumAir = Buildings.Media.Air;
     "Zone cooling temperature setpoint";
         parameter Real THeaSet(unit="K")=273.15+18
     "Zone heating temperature setpoint";
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TRat(final k=8)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TRat(final k=0.5)
     "Ratchet Amount"
     annotation (Placement(transformation(extent={{-74,18},{-54,38}})));
-  Controls.DF_Controller_ratchet_simple dF_Controller(TZonSetNominal(
-        displayUnit="degC") = TCooSet,TMaxSet(displayUnit="degC") = 300.15)
+  Controls.DF_Controller_ratchet        dF_Controller(TZonSetNominal(
+        displayUnit="degC") = TCooSet,TMaxSet(displayUnit="degC") = 300.15,
+    TRatThreshold=0.2)
     annotation (Placement(transformation(extent={{10,8},{30,28}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TReb(final k=8)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TReb(final k=0.3)
     "Rebound Amount"
     annotation (Placement(transformation(extent={{-42,-6},{-22,14}})));
   Modelica.Blocks.Sources.CombiTimeTable combiTimeTable(
