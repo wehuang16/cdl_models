@@ -67,14 +67,16 @@ model DF_Controller_ratchet
     annotation (Placement(transformation(extent={{210,-84},{230,-64}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(k=-1)
     annotation (Placement(transformation(extent={{-90,-56},{-70,-36}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=1)
-    annotation (Placement(transformation(extent={{18,-90},{38,-70}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=1)
-    annotation (Placement(transformation(extent={{110,-114},{130,-94}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=150)
+    annotation (Placement(transformation(extent={{42,-94},{62,-74}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=150)
+    annotation (Placement(transformation(extent={{128,-106},{148,-86}})));
   Buildings.Controls.OBC.CDL.Logical.Not not1
-    annotation (Placement(transformation(extent={{56,-104},{76,-84}})));
+    annotation (Placement(transformation(extent={{80,-104},{100,-84}})));
   Buildings.Controls.OBC.CDL.Logical.Not not2
-    annotation (Placement(transformation(extent={{150,-112},{170,-92}})));
+    annotation (Placement(transformation(extent={{164,-104},{184,-84}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueFalseHold truFalHol(trueHoldDuration=
+        125) annotation (Placement(transformation(extent={{0,-88},{20,-68}})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-48,20},{-12,20}},
@@ -116,16 +118,18 @@ equation
   connect(swi1.u1, swi2.y) annotation (Line(points={{-52,-28},{-60,-28},{-60,
           -60},{202,-60},{202,-58},{240,-58},{240,-74},{232,-74}},
                                               color={0,0,127}));
-  connect(lesThr.y, truDel.u) annotation (Line(points={{-10,-78},{6,-78},{6,-80},
-          {16,-80}}, color={255,0,255}));
-  connect(not1.y, truDel1.u) annotation (Line(points={{78,-94},{100,-94},{100,
-          -104},{108,-104}}, color={255,0,255}));
-  connect(truDel1.y, not2.u) annotation (Line(points={{132,-104},{132,-102},{
-          148,-102}}, color={255,0,255}));
-  connect(not2.y, swi2.u2) annotation (Line(points={{172,-102},{194,-102},{194,
+  connect(not1.y, truDel1.u) annotation (Line(points={{102,-94},{118,-94},{118,
+          -96},{126,-96}},   color={255,0,255}));
+  connect(truDel1.y, not2.u) annotation (Line(points={{150,-96},{150,-94},{162,
+          -94}},      color={255,0,255}));
+  connect(not2.y, swi2.u2) annotation (Line(points={{186,-94},{198,-94},{198,
           -74},{208,-74}}, color={255,0,255}));
-  connect(lesThr.y, not1.u) annotation (Line(points={{-10,-78},{-2,-78},{-2,
-          -100},{54,-100},{54,-94}}, color={255,0,255}));
+  connect(truDel.y, not1.u) annotation (Line(points={{64,-84},{72,-84},{72,-94},
+          {78,-94}}, color={255,0,255}));
+  connect(lesThr.y, truFalHol.u)
+    annotation (Line(points={{-10,-78},{-2,-78}}, color={255,0,255}));
+  connect(truFalHol.y, truDel.u) annotation (Line(points={{22,-78},{30,-78},{30,
+          -84},{40,-84}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end DF_Controller_ratchet;

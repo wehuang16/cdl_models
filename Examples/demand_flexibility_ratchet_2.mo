@@ -1,5 +1,5 @@
 within cdl_models.Examples;
-model demand_flexibility_ratchet_simple
+model demand_flexibility_ratchet_2
     extends Modelica.Icons.Example;
 
 replaceable package MediumAir = Buildings.Media.Air;
@@ -125,4 +125,4 @@ equation
       StopTime=86400,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end demand_flexibility_ratchet_simple;
+end demand_flexibility_ratchet_2;
