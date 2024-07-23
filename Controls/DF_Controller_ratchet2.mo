@@ -1,5 +1,5 @@
 within cdl_models.Controls;
-model DF_Controller_ratchet
+model DF_Controller_ratchet2
 
   parameter Real TZonSetNominal(unit="K")=273.15+23
     "Nominal zone air temperature setpoint";
@@ -10,9 +10,10 @@ model DF_Controller_ratchet
     "Sample period of the demand flexibility control";
        parameter Real TRatThreshold=0.5
     "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd";
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TRat "Ratchet Amount"
-    annotation (Placement(transformation(extent={{-140,0},{-100,40}}),
-        iconTransformation(extent={{-140,0},{-100,40}})));
+           parameter Real TRat=0.5
+    "Ratcheting temperature";
+               parameter Real TReb=0.3
+    "rebound temperature";
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput loadShed
     "Load shed event flag" annotation (Placement(transformation(extent={{-140,60},
             {-100,100}}),iconTransformation(extent={{-140,60},{-100,100}})));
@@ -29,8 +30,6 @@ model DF_Controller_ratchet
     final quantity="ThermodynamicTemperature") "Zone temperature setpoint"
     annotation (Placement(transformation(extent={{100,-20},{140,20}}),
         iconTransformation(extent={{100,-20},{140,20}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const(final k=0)
-    annotation (Placement(transformation(extent={{-64,-136},{-44,-116}})));
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel(final samplePeriod=
         samplePeriod, final y_start=TZonSetNominal)
     "Output the input signal with a unit delay"
@@ -41,33 +40,22 @@ model DF_Controller_ratchet
   Buildings.Controls.OBC.CDL.Reals.Switch swi1
     "Switch to zero adjustment when window is open"
     annotation (Placement(transformation(extent={{-50,-46},{-30,-26}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TReb
-    "Rebound Down Ratchet Amount" annotation (Placement(transformation(extent={{
-            -140,-66},{-100,-26}}), iconTransformation(extent={{-140,-48},{-100,
-            -8}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt
     annotation (Placement(transformation(extent={{-70,-82},{-50,-62}})));
-  Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr(t=TRatThreshold, h=0)
+  Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr(t=TRatThreshold, h=1.05*
+        TRat)
     "Check if the real requests is more than ignored requests setting"
-    annotation (Placement(transformation(extent={{-32,-88},{-12,-68}})));
-  Buildings.Controls.OBC.CDL.Reals.Switch swi2
-    "Switch to zero adjustment when window is open"
-    annotation (Placement(transformation(extent={{210,-84},{230,-64}})));
+    annotation (Placement(transformation(extent={{-4,-96},{16,-76}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(k=-1)
     annotation (Placement(transformation(extent={{-90,-56},{-70,-36}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=150)
-    annotation (Placement(transformation(extent={{42,-94},{62,-74}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel1(delayTime=150)
-    annotation (Placement(transformation(extent={{128,-106},{148,-86}})));
-  Buildings.Controls.OBC.CDL.Logical.Not not1
-    annotation (Placement(transformation(extent={{80,-104},{100,-84}})));
-  Buildings.Controls.OBC.CDL.Logical.Not not2
-    annotation (Placement(transformation(extent={{164,-104},{184,-84}})));
-  Buildings.Controls.OBC.CDL.Logical.TrueFalseHold truFalHol(trueHoldDuration=
-        125) annotation (Placement(transformation(extent={{0,-88},{20,-68}})));
   Buildings.Controls.OBC.CDL.Reals.Limiter lim(uMax=TMaxSet, uMin=
         TZonSetNominal)
     annotation (Placement(transformation(extent={{36,-2},{56,18}})));
+  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea(realTrue=TRat,
+      realFalse=0)
+    annotation (Placement(transformation(extent={{90,-84},{110,-64}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const(final k=TReb)
+    annotation (Placement(transformation(extent={{-154,-46},{-134,-26}})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-48,20},{-12,20}},
@@ -80,39 +68,25 @@ equation
                     color={0,0,127}));
   connect(TZon, subt.u2) annotation (Line(points={{-120,-80},{-118,-80},{-118,
           -78},{-72,-78}}, color={0,0,127}));
-  connect(subt.y, lesThr.u) annotation (Line(points={{-48,-72},{-40,-72},{-40,
-          -78},{-34,-78}}, color={0,0,127}));
-  connect(TRat, swi2.u1) annotation (Line(points={{-120,20},{-80,20},{-80,56},{
-          200,56},{200,-66},{208,-66}},        color={0,0,127}));
-  connect(const.y, swi2.u3) annotation (Line(points={{-42,-126},{200,-126},{200,
-          -82},{208,-82}},color={0,0,127}));
-  connect(TReb, gai.u)
-    annotation (Line(points={{-120,-46},{-92,-46}}, color={0,0,127}));
+  connect(subt.y, lesThr.u) annotation (Line(points={{-48,-72},{-14,-72},{-14,
+          -86},{-6,-86}},  color={0,0,127}));
   connect(gai.y, swi1.u3)
     annotation (Line(points={{-68,-46},{-68,-44},{-52,-44}}, color={0,0,127}));
-  connect(swi1.u1, swi2.y) annotation (Line(points={{-52,-28},{-60,-28},{-60,
-          -60},{202,-60},{202,-58},{240,-58},{240,-74},{232,-74}},
-                                              color={0,0,127}));
-  connect(not1.y, truDel1.u) annotation (Line(points={{102,-94},{118,-94},{118,
-          -96},{126,-96}},   color={255,0,255}));
-  connect(truDel1.y, not2.u) annotation (Line(points={{150,-96},{150,-94},{162,
-          -94}},      color={255,0,255}));
-  connect(not2.y, swi2.u2) annotation (Line(points={{186,-94},{198,-94},{198,
-          -74},{208,-74}}, color={255,0,255}));
-  connect(truDel.y, not1.u) annotation (Line(points={{64,-84},{72,-84},{72,-94},
-          {78,-94}}, color={255,0,255}));
-  connect(lesThr.y, truFalHol.u)
-    annotation (Line(points={{-10,-78},{-2,-78}}, color={255,0,255}));
-  connect(truFalHol.y, truDel.u) annotation (Line(points={{22,-78},{30,-78},{30,
-          -84},{40,-84}}, color={255,0,255}));
   connect(add1.y, lim.u)
     annotation (Line(points={{12,14},{24,14},{24,8},{34,8}}, color={0,0,127}));
   connect(lim.y, TZonSet)
     annotation (Line(points={{58,8},{94,8},{94,0},{120,0}}, color={0,0,127}));
-  connect(lim.y, uniDel.u) annotation (Line(points={{58,8},{66,8},{66,46},{-72,
-          46},{-72,20}}, color={0,0,127}));
+  connect(lim.y, uniDel.u) annotation (Line(points={{58,8},{66,8},{66,46},{-72,46},
+          {-72,20}}, color={0,0,127}));
   connect(lim.y, subt.u1)
     annotation (Line(points={{58,8},{58,-66},{-72,-66}}, color={0,0,127}));
+  connect(lesThr.y, booToRea.u) annotation (Line(points={{18,-86},{88,-86},{88,
+          -74}},          color={255,0,255}));
+  connect(booToRea.y, swi1.u1) annotation (Line(points={{112,-74},{120,-74},{
+          120,-60},{-14,-60},{-14,-30},{-20,-30},{-20,-20},{-52,-20},{-52,-28}},
+                                color={0,0,127}));
+  connect(const.y, gai.u) annotation (Line(points={{-132,-36},{-100,-36},{-100,
+          -46},{-92,-46}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end DF_Controller_ratchet;
+end DF_Controller_ratchet2;
