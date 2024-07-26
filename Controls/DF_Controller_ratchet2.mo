@@ -78,8 +78,6 @@ equation
     annotation (Line(points={{58,8},{94,8},{94,0},{120,0}}, color={0,0,127}));
   connect(lim.y, uniDel.u) annotation (Line(points={{58,8},{66,8},{66,46},{-72,46},
           {-72,20}}, color={0,0,127}));
-  connect(lim.y, subt.u1)
-    annotation (Line(points={{58,8},{58,-66},{-72,-66}}, color={0,0,127}));
   connect(lesThr.y, booToRea.u) annotation (Line(points={{18,-86},{88,-86},{88,
           -74}},          color={255,0,255}));
   connect(booToRea.y, swi1.u1) annotation (Line(points={{112,-74},{120,-74},{
@@ -87,6 +85,8 @@ equation
                                 color={0,0,127}));
   connect(const.y, gai.u) annotation (Line(points={{-132,-36},{-100,-36},{-100,
           -46},{-92,-46}}, color={0,0,127}));
+  connect(lim.y, subt.u1) annotation (Line(points={{58,8},{58,-48},{-72,-48},{
+          -72,-66}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end DF_Controller_ratchet2;
