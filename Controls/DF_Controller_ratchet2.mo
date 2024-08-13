@@ -42,8 +42,7 @@ model DF_Controller_ratchet2
     annotation (Placement(transformation(extent={{-50,-46},{-30,-26}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt
     annotation (Placement(transformation(extent={{-70,-82},{-50,-62}})));
-  Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr(t=TRatThreshold, h=1.05*
-        TRat)
+  Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr(t=TRatThreshold, h=0)
     "Check if the real requests is more than ignored requests setting"
     annotation (Placement(transformation(extent={{-4,-96},{16,-76}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(k=-1)
@@ -56,6 +55,17 @@ model DF_Controller_ratchet2
     annotation (Placement(transformation(extent={{90,-84},{110,-64}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant const(final k=TReb)
     annotation (Placement(transformation(extent={{-154,-46},{-134,-26}})));
+  Buildings.Controls.OBC.CDL.Discrete.Sampler   sam(final samplePeriod=
+        samplePeriod)
+    "Output the input signal with a unit delay"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={-34,-2})));
+  Buildings.Controls.OBC.CDL.Logical.Pre pre annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={44,-88})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-48,20},{-12,20}},
@@ -63,9 +73,6 @@ equation
   connect(loadShed, swi1.u2) annotation (Line(points={{-120,80},{-90,80},{-90,
           -6},{-74,-6},{-74,-36},{-52,-36}},
         color={255,0,255}));
-  connect(swi1.y, add1.u2) annotation (Line(points={{-28,-36},{-18,-36},{-18,0},
-          {-20,0},{-20,8},{-12,8}},
-                    color={0,0,127}));
   connect(TZon, subt.u2) annotation (Line(points={{-120,-80},{-118,-80},{-118,
           -78},{-72,-78}}, color={0,0,127}));
   connect(subt.y, lesThr.u) annotation (Line(points={{-48,-72},{-14,-72},{-14,
@@ -78,8 +85,6 @@ equation
     annotation (Line(points={{58,8},{94,8},{94,0},{120,0}}, color={0,0,127}));
   connect(lim.y, uniDel.u) annotation (Line(points={{58,8},{66,8},{66,46},{-72,46},
           {-72,20}}, color={0,0,127}));
-  connect(lesThr.y, booToRea.u) annotation (Line(points={{18,-86},{88,-86},{88,
-          -74}},          color={255,0,255}));
   connect(booToRea.y, swi1.u1) annotation (Line(points={{112,-74},{120,-74},{
           120,-60},{-14,-60},{-14,-30},{-20,-30},{-20,-20},{-52,-20},{-52,-28}},
                                 color={0,0,127}));
@@ -87,6 +92,14 @@ equation
           -46},{-92,-46}}, color={0,0,127}));
   connect(lim.y, subt.u1) annotation (Line(points={{58,8},{58,-48},{-72,-48},{
           -72,-66}}, color={0,0,127}));
+  connect(sam.y, add1.u2) annotation (Line(points={{-34,10},{-34,18},{-20,18},{
+          -20,8},{-12,8}}, color={0,0,127}));
+  connect(sam.u, swi1.y) annotation (Line(points={{-34,-14},{-34,-22},{-22,-22},
+          {-22,-32},{-20,-32},{-20,-36},{-28,-36}}, color={0,0,127}));
+  connect(lesThr.y, pre.u) annotation (Line(points={{18,-86},{25,-86},{25,-88},
+          {32,-88}}, color={255,0,255}));
+  connect(pre.y, booToRea.u)
+    annotation (Line(points={{56,-88},{88,-88},{88,-74}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end DF_Controller_ratchet2;
