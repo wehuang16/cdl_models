@@ -18,8 +18,9 @@ model ModelicaRoom
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={142,210})));
-  Modelica.Blocks.Interfaces.RealOutput ZoneTAir2
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+  Modelica.Blocks.Interfaces.RealOutput TZon annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
         rotation=90,
         origin={296,210})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a2(redeclare package Medium =
@@ -35,7 +36,7 @@ model ModelicaRoom
     absSol_b=0.7,
     roughness_a=Buildings.HeatTransfer.Types.SurfaceRoughness.Smooth)
     "Exterior construction"
-    annotation (Placement(transformation(extent={{394,206},{414,226}})));
+    annotation (Placement(transformation(extent={{392,176},{412,196}})));
   Buildings.ThermalZones.Detailed.MixedAir roo(
     datConExt(
       layers={conRoof,conExtWal,conExtWal,conExtWal,conExtWal},
@@ -76,7 +77,7 @@ model ModelicaRoom
     c=2343.04,
     d=37.4832042950667,
     nStaRef=1) "Wood for exterior construction"
-    annotation (Placement(transformation(extent={{430,212},{450,232}})));
+    annotation (Placement(transformation(extent={{434,176},{454,196}})));
   parameter Buildings.HeatTransfer.Data.Solids.Plywood matBergRoof(
     x=0.0762,
     k=0.0253792,
@@ -163,8 +164,8 @@ equation
           410,-14},{293,-14},{293,13}}, color={0,127,255}));
   connect(roo.heaPorAir, temperatureSensor.port) annotation (Line(points={{307,
           22},{310,22},{310,50},{286,50},{286,156}}, color={191,0,0}));
-  connect(ZoneTAir2, temperatureSensor.T) annotation (Line(points={{296,210},{
-          296,172},{312,172},{312,156},{307,156}}, color={0,0,127}));
+  connect(TZon, temperatureSensor.T) annotation (Line(points={{296,210},{296,
+          172},{312,172},{312,156},{307,156}}, color={0,0,127}));
   connect(preHeaFlo.port, roo.heaPorAir) annotation (Line(points={{230,-56},{
           274,-56},{274,50},{307,50},{307,22}}, color={191,0,0}));
   connect(preHeaFlo.Q_flow, CustomHeatFlow) annotation (Line(points={{210,-56},
