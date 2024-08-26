@@ -42,7 +42,7 @@ model custom_air_conditioner
     annotation (Placement(transformation(extent={{-10,56},{10,76}})));
   Modelica.Blocks.Math.Add add(k1=-1)
     annotation (Placement(transformation(extent={{24,-2},{44,18}})));
-  CCC.Controls.SeparateHeatingCoolingThermalEnergy separateHeatingCoolingThermalEnergy
+  Controls.SeparateHeatingCoolingThermalEnergy     separateHeatingCoolingThermalEnergy
     annotation (Placement(transformation(extent={{16,-38},{36,-18}})));
   Modelica.Blocks.Continuous.Integrator coolingEnergy0(k=1/3600000)
     annotation (Placement(transformation(extent={{68,-56},{88,-36}})));

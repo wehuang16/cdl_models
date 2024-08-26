@@ -83,6 +83,13 @@ model DF_Controller_ratchet_cooling
         iconTransformation(extent={{-140,-2},{-100,38}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant const1(final k=0)
     annotation (Placement(transformation(extent={{-188,-82},{-168,-62}})));
+  Buildings.Controls.OBC.CDL.Reals.LessThreshold lesThr1(t=TZonCooSetMax)
+    annotation (Placement(transformation(extent={{88,6},{108,26}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch swi4
+    "Switch to zero adjustment when window is open"
+    annotation (Placement(transformation(extent={{70,-52},{90,-32}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const2(final k=100)
+    annotation (Placement(transformation(extent={{8,-36},{28,-16}})));
 equation
   connect(uniDel.y,add1. u1)
     annotation (Line(points={{-48,20},{-12,20}},
@@ -113,8 +120,6 @@ equation
           {32,-88}}, color={255,0,255}));
   connect(pre.y, booToRea.u)
     annotation (Line(points={{56,-88},{88,-88},{88,-74}}, color={255,0,255}));
-  connect(subt.y, TZonTempDiff) annotation (Line(points={{-48,-72},{78,-72},{78,
-          -24},{120,-24}}, color={0,0,127}));
   connect(swi3.y, swi1.u3)
     annotation (Line(points={{-94,-44},{-52,-44}}, color={0,0,127}));
   connect(gai.y, swi3.u1) annotation (Line(points={{-142,-34},{-140,-34},{-140,
@@ -131,6 +136,16 @@ equation
           -158,-48},{-196,-48},{-196,16},{-162,16}}, color={0,0,127}));
   connect(swi2.y, swi1.u1) annotation (Line(points={{-138,24},{-84,24},{-84,-28},
           {-52,-28}}, color={0,0,127}));
+  connect(subt.y, swi4.u1) annotation (Line(points={{-48,-72},{60,-72},{60,-34},
+          {68,-34}}, color={0,0,127}));
+  connect(swi4.y, TZonTempDiff) annotation (Line(points={{92,-42},{92,-50},{120,
+          -50},{120,-24}}, color={0,0,127}));
+  connect(const2.y, swi4.u3) annotation (Line(points={{30,-26},{38,-26},{38,-56},
+          {62,-56},{62,-58},{68,-58},{68,-50}}, color={0,0,127}));
+  connect(lim.y, lesThr1.u)
+    annotation (Line(points={{58,8},{66,8},{66,16},{86,16}}, color={0,0,127}));
+  connect(lesThr1.y, swi4.u2) annotation (Line(points={{110,16},{118,16},{118,0},
+          {62,0},{62,-6},{56,-6},{56,-42},{68,-42}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end DF_Controller_ratchet_cooling;

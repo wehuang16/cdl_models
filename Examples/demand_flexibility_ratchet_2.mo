@@ -98,8 +98,8 @@ equation
           102,-82},{102,-45.6},{111.4,-45.6}}, color={0,127,255}));
   connect(const2.y, mov.m_flow_in)
     annotation (Line(points={{64,-52},{76,-52},{76,-70}}, color={0,0,127}));
-  connect(dF_Controller.TZonSet, conLoo.TCooSet) annotation (Line(points={{32,
-          18},{40,18},{40,-18},{-92,-18},{-92,-54},{-70,-54}}, color={0,0,127}));
+  connect(dF_Controller.TZonSet, conLoo.TCooSet) annotation (Line(points={{32,22.8},
+          {40,22.8},{40,-18},{-92,-18},{-92,-54},{-70,-54}},   color={0,0,127}));
   connect(hea.Q_flow,ThermalLoad)  annotation (Line(points={{49,-78},{58,-78},{
           58,-68},{68,-68},{68,-60},{96,-60},{96,-58},{100,-58},{100,44},{126,
           44}}, color={0,0,127}));
