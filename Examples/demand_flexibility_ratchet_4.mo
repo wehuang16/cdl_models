@@ -12,10 +12,10 @@ replaceable package MediumAir = Buildings.Media.Air;
     TZonCooSetMax(displayUnit="degC") = 301.15,
     TRatThreshold=0.2,
     TRat=0.5,
-    TReb=0.3) annotation (Placement(transformation(extent={{6,62},{26,82}})));
+    TReb=0.06)
+              annotation (Placement(transformation(extent={{6,62},{26,82}})));
   Modelica.Blocks.Sources.CombiTimeTable loadShedMode(
-    table=[0,0; 10800,0; 21600,0.0; 27000,0.0; 32400,0; 43200,1; 54000,1; 64800,
-        0; 75600,0; 86400,0],
+    table=[0,0; 3600*14,1; 3600*18,0; 3600*24,0],
     smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{-152,44},{-132,64}})));
@@ -53,7 +53,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-100,-36},{-80,-16}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant[nZones]
     annotation (Placement(transformation(extent={{-64,70},{-44,90}})));
-  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=300, h=0)
+  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=200, h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
   BaseClasses.smallPass smallPass(nValues=nZones)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
@@ -122,7 +122,8 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
-      StopTime=86400,
+    StartTime=24192000,
+      StopTime=24364800,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
 end demand_flexibility_ratchet_4;

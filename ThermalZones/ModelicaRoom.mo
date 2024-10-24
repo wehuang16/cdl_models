@@ -110,7 +110,7 @@ model ModelicaRoom
     annotation (Placement(transformation(extent={{434,116},{454,136}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam=
         Modelica.Utilities.Files.loadResource(
-        "modelica://cdl_models/Resources/weatherdata/Half_Moon_Bay.mos"))
+        "modelica://cdl_models/Resources/weatherdata/HAF_epw_modified_5mins.mos"))
     annotation (Placement(transformation(extent={{108,108},{128,128}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
     annotation (Placement(transformation(extent={{286,146},{306,166}})));
@@ -121,6 +121,9 @@ model ModelicaRoom
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,-62})));
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor2(C=20*50*
+        1005*1.2)
+    annotation (Placement(transformation(extent={{358,22},{378,42}})));
 equation
   connect(weaBus.TDryBul, TOut) annotation (Line(
       points={{184.05,140.05},{184.05,210},{142,210}},
@@ -170,6 +173,8 @@ equation
           274,-56},{274,50},{307,50},{307,22}}, color={191,0,0}));
   connect(preHeaFlo.Q_flow, CustomHeatFlow) annotation (Line(points={{210,-56},
           {102,-56},{102,-62},{90,-62}}, color={0,0,127}));
+  connect(heatCapacitor2.port, roo.heaPorAir) annotation (Line(points={{368,22},
+          {368,-16},{274,-16},{274,50},{307,50},{307,22}}, color={191,0,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{100,
             -100},{520,200}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{100,-100},{520,200}})),
