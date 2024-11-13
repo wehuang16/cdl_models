@@ -1,5 +1,5 @@
 within cdl_models.Examples;
-model demand_flexibility_ratchet_4
+model demand_flexibility_ratchet_ModulatingLoad
     extends Modelica.Icons.Example;
            parameter Integer nZones=3;
 replaceable package MediumAir = Buildings.Media.Air;
@@ -30,7 +30,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
   BaseClasses.custom_air_conditioner custom_air_conditioner[nZones](
-      mRec_flow_nominal=0.7)
+      mRec_flow_nominal=0.7, heater_cooler_power_nominal=500)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint[nZones](
       final k=THeaSet)
@@ -126,4 +126,4 @@ equation
       StopTime=24364800,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end demand_flexibility_ratchet_4;
+end demand_flexibility_ratchet_ModulatingLoad;
