@@ -7,6 +7,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     "Zone cooling temperature setpoint";
         parameter Real THeaSet(unit="K")=273.15+16
     "Zone heating temperature setpoint";
+    parameter Real demand_limit(unit="W")=200;
   Controls.DF_Controller_ratchet_cooling dF_Controller[nZones](
     TZonCooSetNominal=TCooSet,
     TZonCooSetMax(displayUnit="degC") = 301.15,
@@ -53,7 +54,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-100,-36},{-80,-16}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant[nZones]
     annotation (Placement(transformation(extent={{-64,70},{-44,90}})));
-  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=200, h=0)
+  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=demand_limit,
+                                                                  h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
   BaseClasses.smallPass smallPass(nValues=nZones)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
