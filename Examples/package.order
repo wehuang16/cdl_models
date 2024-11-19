@@ -1,3 +1,5 @@
 demand_flexibility_ratchet_ModulatingLoad
 demand_flexibility_ratchet_OnOffLoad
+demand_flexibility_simple_ratchet
 BaseClasses
+Validation
