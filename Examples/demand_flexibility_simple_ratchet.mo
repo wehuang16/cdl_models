@@ -20,14 +20,12 @@ replaceable package MediumAir = Buildings.Media.Air;
                                          dF_Controller[nZones](
     TZonCooSetNominal=TCooSetOcc,
     TZonCooSetMax(displayUnit="degC") = TZonCooSetMax,
-    samplePeriod=600,
     TRatThreshold=0.2,
-    TRat=0.5,
-    TReb=0.06)
-              annotation (Placement(transformation(extent={{8,76},{28,96}})));
+    TRat=0.4,
+    TReb=0.3) annotation (Placement(transformation(extent={{8,76},{28,96}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable
-                                         loadShedMode(table=[0,false; 3600*14,
-        true; 3600*18,false; 3600*24,false], period=86400)
+                                         loadShedMode(table=[0,0; 3600*14,1; 3600
+        *18,0; 3600*24,0],                   period=86400)
     annotation (Placement(transformation(extent={{-228,118},{-208,138}})));
   ThermalZones.ModelicaRoom modelicaRoom[nZones]
     annotation (Placement(transformation(extent={{130,58},{172,88}})));
@@ -42,8 +40,8 @@ replaceable package MediumAir = Buildings.Media.Air;
                                                            [nZones](
       mRec_flow_nominal=0.7)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint[nZones](
-      final k=THeaSet)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingSetpoint[nZones](final k=
+        THeaSetOcc)
     annotation (Placement(transformation(extent={{10,18},{30,38}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition2(
     table=[0,200; 10800,200; 21600,200; 27000,200; 32400,200; 43200,200; 54000,
@@ -57,17 +55,18 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{50,-12},{70,8}})));
-  Modelica.Blocks.Interfaces.RealOutput totalElectricPower
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput
+                                        totalElectricPower
     annotation (Placement(transformation(extent={{150,-58},{170,-38}})));
-  BaseClasses.smallPass smallPass(nValues=nZones)
-    annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
+  BaseClasses.ratchetSelection ratchetSelection1(nValues=nZones)
+    annotation (Placement(transformation(extent={{-92,-54},{-72,-34}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-56,-80},{-36,-60}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep(nout=
         nZones)
     annotation (Placement(transformation(extent={{-136,116},{-116,136}})));
-  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occupiedMode(table=[0,
-        false; 3600*7,true; 3600*22,false; 3600*24,false], period=86400)
+  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occupiedMode(table=[0,0;
+        3600*7,1; 3600*22,0; 3600*24,0],                   period=86400)
     annotation (Placement(transformation(extent={{-46,116},{-26,136}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi[nZones]
     annotation (Placement(transformation(extent={{64,116},{84,136}})));
@@ -81,9 +80,14 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{118,108},{138,128}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k={1,0.5,0.2})
     annotation (Placement(transformation(extent={{80,150},{100,170}})));
+  Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum(nin=3)
+    annotation (Placement(transformation(extent={{100,-52},{120,-32}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1(k=true)
+    annotation (Placement(transformation(extent={{-100,62},{-80,82}})));
+  Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep2(nout=
+        nZones)
+    annotation (Placement(transformation(extent={{-60,46},{-40,66}})));
 equation
-  connect(smallPass.targetBool, pre.u)
-    annotation (Line(points={{-66,-70},{-58,-70}}, color={255,0,255}));
   connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a2)
     annotation (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}},
         color={0,127,255}));
@@ -106,9 +110,6 @@ equation
   connect(modelicaRoom.TZon, dF_Controller.TZon)
     annotation (Line(points={{149.6,89},{149.6,102},{-2,102},{-2,78},{6,78}},
                                                             color={0,0,127}));
-  connect(dF_Controller.TZonTempDiff, smallPass.targetValue) annotation (Line(
-        points={{30,81.6},{42,81.6},{42,-30},{-100,-30},{-100,-65.4},{-90,-65.4}},
-        color={0,0,127}));
   connect(booScaRep.y, dF_Controller.loadShed) annotation (Line(points={{-114,
           126},{-114,108},{6,108},{6,94}},  color={255,0,255}));
   connect(pre.y, dF_Controller.DoRat) annotation (Line(points={{-34,-70},{-24,-70},
@@ -134,6 +135,24 @@ equation
   connect(con.y, thermostatSetpointResolution.temRes) annotation (Line(points={
           {102,160},{110,160},{110,126},{108,126},{108,110.6},{116,110.6}},
         color={0,0,127}));
+  connect(mulSum.y, totalElectricPower) annotation (Line(points={{122,-42},{144,
+          -42},{144,-48},{160,-48}}, color={0,0,127}));
+  connect(mulSum.u[1:3], custom_air_conditioner_OnOff.electricPower)
+    annotation (Line(points={{98,-41.3333},{90,-41.3333},{90,6},{164,6},{164,
+          26.8},{122,26.8}},
+        color={0,0,127}));
+  connect(con1.y, booScaRep2.u) annotation (Line(points={{-78,72},{-70,72},{-70,
+          56},{-62,56}}, color={255,0,255}));
+  connect(booScaRep2.y, dF_Controller.DoReb) annotation (Line(points={{-38,56},
+          {-4,56},{-4,87.8},{6,87.8}}, color={255,0,255}));
+  connect(ratchetSelection1.DoRat, pre.u) annotation (Line(points={{-70,-44},{
+          -60,-44},{-60,-54},{-66,-54},{-66,-70},{-58,-70}}, color={255,0,255}));
+  connect(dF_Controller.TZonTempDiff, ratchetSelection1.TZonTempDiff)
+    annotation (Line(points={{30.2,86.6},{34,86.6},{34,-24},{-94,-24},{-94,
+          -39.4}}, color={0,0,127}));
+  connect(dF_Controller.reachComfortLimit, ratchetSelection1.reachComfortLimit)
+    annotation (Line(points={{30,79.6},{36,79.6},{36,-90},{-94,-90},{-94,-49.8}},
+        color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

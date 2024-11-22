@@ -1,5 +1,5 @@
 within cdl_models.Examples.BaseClasses;
-model smallPass
+model smallPassDemandRatchet
              parameter Integer nValues=3
     "Number of values to compare";
   Buildings.Controls.OBC.CDL.Interfaces.RealInput targetValue[nValues]
@@ -46,4 +46,4 @@ equation
           {96,22},{96,0},{120,0}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end smallPass;
+end smallPassDemandRatchet;

@@ -59,7 +59,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=demand_limit,
                                                                   h=0)
     annotation (Placement(transformation(extent={{-126,-86},{-106,-66}})));
-  BaseClasses.smallPass smallPass(nValues=nZones)
+  BaseClasses.smallPassDemandRatchet smallPass(nValues=nZones)
     annotation (Placement(transformation(extent={{-88,-80},{-68,-60}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-56,-80},{-36,-60}})));
