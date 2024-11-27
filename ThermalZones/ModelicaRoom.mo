@@ -121,7 +121,7 @@ model ModelicaRoom
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,-62})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor2(C=20*50*
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor2(C=5*50*
         1005*1.2)
     annotation (Placement(transformation(extent={{358,22},{378,42}})));
 equation
