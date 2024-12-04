@@ -31,8 +31,8 @@ replaceable package MediumAir = Buildings.Media.Air;
   BaseClasses.custom_air_conditioner custom_air_conditioner_OnOff
                                                            [nZones](
       mRec_flow_nominal=0.7,
-    heater_thermal_power_nominal=350,
-    cooler_thermal_power_nominal=400)
+    heater_thermal_power_nominal=700,
+    cooler_thermal_power_nominal=800)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingOccSetpoint[nZones](
       final k=THeaSetOcc)

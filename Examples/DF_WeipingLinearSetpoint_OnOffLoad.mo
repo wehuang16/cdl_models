@@ -1,5 +1,5 @@
 within cdl_models.Examples;
-model DF_LinearSetpoint_ModulatingLoad
+model DF_WeipingLinearSetpoint_OnOffLoad
     extends Modelica.Icons.Example;
            parameter Integer nZones=3;
 replaceable package MediumAir = Buildings.Media.Air;
@@ -17,9 +17,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     "minimum zone heating ratcheting temperature setpoint";
 
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable
-                                         loadShedMode(table=[0,0; 3600*14,1; 3600
-        *18,0; 3600*24,0],                   period=86400)
-    annotation (Placement(transformation(extent={{-232,94},{-212,114}})));
+                                         loadShedMode(table=[0,0; 3600*11,1;
+        3600*15,0; 3600*24,0],               period=86400)
+    annotation (Placement(transformation(extent={{-232,96},{-212,116}})));
   ThermalZones.ModelicaRoom modelicaRoom[nZones]
     annotation (Placement(transformation(extent={{130,58},{172,88}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
@@ -28,11 +28,12 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  BaseClasses.custom_air_conditioner custom_air_conditioner_OnOff
+  BaseClasses.custom_air_conditioner_OnOff
+                                     custom_air_conditioner_OnOff
                                                            [nZones](
       mRec_flow_nominal=0.7,
-    heater_thermal_power_nominal=350,
-    cooler_thermal_power_nominal=400)
+    heater_thermal_power_nominal=700,
+    cooler_thermal_power_nominal=800)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingOccSetpoint[nZones](
       final k=THeaSetOcc)
@@ -75,8 +76,8 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.Switch swi1
                                              [nZones]
     annotation (Placement(transformation(extent={{-8,-42},{12,-22}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingOccSetpoint[nZones](
-      final k=TCooSetOcc)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingOccSetpoint(final k=
+        TCooSetOcc)
     annotation (Placement(transformation(extent={{-178,112},{-158,132}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingShedSetpoint(final k=
         TZonCooSetMax)
@@ -84,12 +85,14 @@ replaceable package MediumAir = Buildings.Media.Air;
   BaseClasses.thermostatSetpointResolution thermostatSetpointResolution1
                                                                        [nZones]
     annotation (Placement(transformation(extent={{42,-76},{62,-56}})));
-  CCC_test.Example2.linearSetpointControl linearSetpointControl
+  BaseClasses.linearSetpointControl linearSetpointControl
     annotation (Placement(transformation(extent={{-114,90},{-94,110}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=4*3600)
     annotation (Placement(transformation(extent={{-212,52},{-192,72}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=2*3600)
     annotation (Placement(transformation(extent={{-178,10},{-158,30}})));
+  Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep(nout=nZones)
+    annotation (Placement(transformation(extent={{-68,70},{-48,90}})));
 equation
   connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a2)
     annotation (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}},
@@ -141,6 +144,22 @@ equation
   connect(thermostatSetpointResolution1.actualSetpoint,
     custom_air_conditioner_OnOff.THeaSet) annotation (Line(points={{64,-66},{88,
           -66},{88,19.6},{98,19.6}}, color={0,0,127}));
+  connect(loadShedMode.y[1], linearSetpointControl.LoadShed) annotation (Line(
+        points={{-210,106},{-126,106},{-126,100},{-116,100}}, color={255,0,255}));
+  connect(coolingShedSetpoint.y, linearSetpointControl.TZonCooSetMax)
+    annotation (Line(points={{-168,156},{-124,156},{-124,109},{-116,109}},
+        color={0,0,127}));
+  connect(coolingOccSetpoint.y, linearSetpointControl.TZonCooSetNominal)
+    annotation (Line(points={{-156,122},{-126,122},{-126,108},{-124,108},{-124,
+          103.4},{-115.6,103.4}}, color={0,0,127}));
+  connect(con2.y, linearSetpointControl.LoadShedTime) annotation (Line(points={
+          {-190,62},{-126,62},{-126,95.6},{-115.8,95.6}}, color={0,0,127}));
+  connect(con3.y, linearSetpointControl.ReboundTime) annotation (Line(points={{
+          -156,20},{-124,20},{-124,91.4},{-116,91.4}}, color={0,0,127}));
+  connect(linearSetpointControl.TCooSet, reaScaRep.u) annotation (Line(points={
+          {-92,100.2},{-80,100.2},{-80,80},{-70,80}}, color={0,0,127}));
+  connect(reaScaRep.y, swi.u1) annotation (Line(points={{-46,80},{46,80},{46,
+          134},{62,134}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(
@@ -148,4 +167,4 @@ equation
       StopTime=24364800,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end DF_LinearSetpoint_ModulatingLoad;
+end DF_WeipingLinearSetpoint_OnOffLoad;

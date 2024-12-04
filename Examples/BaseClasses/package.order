@@ -5,3 +5,4 @@ ratchetSelectionCooling
 reboundSelectionCooling
 smallPassDemandRatchet
 thermostatSetpointResolution
+linearSetpointControl
