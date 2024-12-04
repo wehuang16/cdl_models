@@ -6,5 +6,6 @@ DF_SingleSetpoint_ModulatingLoad
 DF_SimpleRatchet_ModulatingLoad
 DF_LoadRatchet_ModulatingLoad
 DF_LoadRatchetBaseline_ModulatingLoad
+DF_LinearSetpoint_ModulatingLoad
 BaseClasses
 Validation

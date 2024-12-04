@@ -10,10 +10,16 @@ model custom_air_conditioner
   parameter Modelica.Units.SI.MassFlowRate mRec_flow_nominal=1
     "Nominal mass flow rate for recirculated air";
 
-      parameter Modelica.Units.SI.Power heater_cooler_power_nominal=5000
-    "Nominal heater and cooler power";
-      parameter Real COP=3
-    "Coefficient of performance";
+
+
+          parameter Real heater_thermal_power_nominal(unit="W")=550
+    "Nominal heater power";
+          parameter Real cooler_thermal_power_nominal(unit="W")=600
+    "Nominal cooler power";
+      parameter Real COPCoo=2.5
+    "Coefficient of performance cooling";
+          parameter Real COPHea=3.5
+    "Coefficient of performance heating";
   Buildings.Fluid.Movers.FlowControlled_m_flow
                                      fan(
     redeclare package Medium = MediumAir,
@@ -32,16 +38,12 @@ model custom_air_conditioner
     annotation (Placement(transformation(extent={{-34,-52},{-14,-32}})));
   Modelica.Blocks.Sources.Constant const(k=mRec_flow_nominal)
     annotation (Placement(transformation(extent={{-140,-38},{-120,-18}})));
-  Modelica.Blocks.Math.Gain        gain(k=heater_cooler_power_nominal)
-    annotation (Placement(transformation(extent={{-52,-6},{-32,14}})));
   Buildings.Controls.OBC.ASHRAE.G36.ThermalZones.ControlLoops conLoo(
     kCooCon=0.3,
     TiCooCon=300,
     kHeaCon=0.3,
     TiHeaCon=300)
     annotation (Placement(transformation(extent={{-10,56},{10,76}})));
-  Modelica.Blocks.Math.Add add(k1=-1)
-    annotation (Placement(transformation(extent={{24,-2},{44,18}})));
   Controls.SeparateHeatingCoolingThermalEnergy     separateHeatingCoolingThermalEnergy
     annotation (Placement(transformation(extent={{16,-38},{36,-18}})));
   Modelica.Blocks.Continuous.Integrator coolingEnergy0(k=1/3600000)
@@ -69,21 +71,41 @@ model custom_air_conditioner
   Modelica.Blocks.Interfaces.RealOutput electricPower annotation (Placement(
         transformation(extent={{100,48},{140,88}}), iconTransformation(extent={{100,28},
             {140,68}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant cop_value(final k=COP)
-    "coefficient of performance"
-    annotation (Placement(transformation(extent={{18,124},{38,144}})));
-  Buildings.Controls.OBC.CDL.Reals.Abs abs1
-    annotation (Placement(transformation(extent={{80,146},{100,166}})));
   Modelica.Blocks.Interfaces.RealInput TCooSet annotation (Placement(
         transformation(extent={{-140,66},{-100,106}}), iconTransformation(
           extent={{-140,64},{-100,104}})));
   Modelica.Blocks.Interfaces.RealInput THeaSet annotation (Placement(
         transformation(extent={{-140,-6},{-100,34}}), iconTransformation(extent
           ={{-140,-44},{-100,-4}})));
+  Buildings.Controls.OBC.CDL.Reals.Subtract sub
+    annotation (Placement(transformation(extent={{46,40},{66,60}})));
+  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold
+                                           greThr(t=0, h=0)
+    annotation (Placement(transformation(extent={{222,40},{242,60}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch swi
+    annotation (Placement(transformation(extent={{254,42},{274,62}})));
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(k=
+        heater_thermal_power_nominal)
+    annotation (Placement(transformation(extent={{178,66},{198,86}})));
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai1(k=
+        cooler_thermal_power_nominal)
+    annotation (Placement(transformation(extent={{180,14},{200,34}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant cop_heating(final k=COPHea)
+    "coefficient of performance"
+    annotation (Placement(transformation(extent={{6,176},{26,196}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant cop_cooling(final k=COPCoo)
+    "coefficient of performance"
+    annotation (Placement(transformation(extent={{84,140},{104,160}})));
 protected
   Buildings.Controls.OBC.CDL.Reals.Divide              div1
+    annotation (Placement(transformation(extent={{46,194},{66,214}})));
+protected
+  Buildings.Controls.OBC.CDL.Reals.Divide              div2
+    annotation (Placement(transformation(extent={{140,176},{160,196}})));
+protected
+  Buildings.Controls.OBC.CDL.Reals.Add                 add2
     "50% of setpoint"
-    annotation (Placement(transformation(extent={{42,146},{62,166}})));
+    annotation (Placement(transformation(extent={{192,138},{212,158}})));
 equation
   connect(fan.port_b,hea.port_a)
     annotation (Line(points={{-52,-42},{-34,-42}},
@@ -91,17 +113,6 @@ equation
   connect(const.y,fan. m_flow_in) annotation (Line(points={{-119,-28},{-70,-28},
           {-70,-22},{-62,-22},{-62,-30}},
                       color={0,0,127}));
-  connect(gain.y,hea. u)
-    annotation (Line(points={{-31,4},{-28,4},{-28,-28},{-36,-28},{-36,-36}},
-                                                          color={0,0,127}));
-  connect(conLoo.yCoo,add. u1) annotation (Line(points={{12,72},{20,72},{20,22},
-          {22,22},{22,14}},
-                    color={0,0,127}));
-  connect(conLoo.yHea,add. u2) annotation (Line(points={{12,60},{12,2},{22,2}},
-                     color={0,0,127}));
-  connect(add.y,gain. u) annotation (Line(points={{45,8},{52,8},{52,-8},{-26,-8},
-          {-26,18},{-64,18},{-64,4},{-54,4}},
-                           color={0,0,127}));
   connect(hea.Q_flow, separateHeatingCoolingThermalEnergy.EffectiveThermalEnergy)
     annotation (Line(points={{-13,-36},{4,-36},{4,-28},{14,-28}},  color={0,0,127}));
   connect(separateHeatingCoolingThermalEnergy.HeatingThermalEnergy,
@@ -123,20 +134,51 @@ equation
           {102,-74}},           color={0,127,255}));
   connect(port_b, port_b)
     annotation (Line(points={{102,-74},{102,-74}}, color={0,127,255}));
-  connect(cop_value.y, div1.u2)
-    annotation (Line(points={{40,134},{40,150}}, color={0,0,127}));
-  connect(div1.y, abs1.u)
-    annotation (Line(points={{64,156},{78,156}}, color={0,0,127}));
-  connect(abs1.y, electricPower) annotation (Line(points={{102,156},{162,156},{162,
-          68},{120,68}}, color={0,0,127}));
   connect(hea.Q_flow, thermalPower) annotation (Line(points={{-13,-36},{-8,-36},
           {-8,94},{120,94}}, color={0,0,127}));
-  connect(hea.Q_flow, div1.u1) annotation (Line(points={{-13,-36},{6,-36},{6,162},
-          {40,162}}, color={0,0,127}));
   connect(conLoo.TCooSet, TCooSet)
     annotation (Line(points={{-12,72},{-12,86},{-120,86}}, color={0,0,127}));
   connect(conLoo.THeaSet, THeaSet) annotation (Line(points={{-12,60},{-12,22},{
           -94,22},{-94,14},{-120,14}}, color={0,0,127}));
+  connect(conLoo.yHea, sub.u1) annotation (Line(points={{12,60},{34,60},{34,56},
+          {44,56}}, color={0,0,127}));
+  connect(conLoo.yCoo, sub.u2) annotation (Line(points={{12,72},{28,72},{28,44},
+          {44,44}}, color={0,0,127}));
+  connect(sub.y, greThr.u) annotation (Line(points={{68,50},{68,34},{178,34},{178,
+          38},{180,38},{180,50},{220,50}}, color={0,0,127}));
+  connect(greThr.y, swi.u2)
+    annotation (Line(points={{244,50},{244,52},{252,52}}, color={255,0,255}));
+  connect(sub.y, gai.u) annotation (Line(points={{68,50},{68,34},{178,34},{178,38},
+          {180,38},{180,60},{168,60},{168,76},{176,76}}, color={0,0,127}));
+  connect(sub.y, gai1.u) annotation (Line(points={{68,50},{68,34},{170,34},{170,
+          24},{178,24}}, color={0,0,127}));
+  connect(gai.y, swi.u1)
+    annotation (Line(points={{200,76},{252,76},{252,60}}, color={0,0,127}));
+  connect(gai1.y, swi.u3)
+    annotation (Line(points={{202,24},{252,24},{252,44}}, color={0,0,127}));
+  connect(swi.y, hea.u) annotation (Line(points={{276,52},{292,52},{292,-88},{-36,
+          -88},{-36,-36}}, color={0,0,127}));
+  connect(cop_heating.y,div1. u2)
+    annotation (Line(points={{28,186},{36,186},{36,198},{44,198}},
+                                                          color={0,0,127}));
+  connect(separateHeatingCoolingThermalEnergy.HeatingThermalEnergy,div1. u1)
+    annotation (Line(points={{38,-24.4},{54,-24.4},{54,34},{36,34},{36,210},{44,
+          210}},          color={0,0,127}));
+  connect(div1.y, add2.u1) annotation (Line(points={{68,204},{184,204},{184,162},
+          {182,162},{182,154},{190,154}},
+                      color={0,0,127}));
+  connect(div2.y, add2.u2) annotation (Line(points={{162,186},{178,186},{178,142},
+          {190,142}}, color={0,0,127}));
+  connect(separateHeatingCoolingThermalEnergy.CoolingThermalEnergy,div2. u1)
+    annotation (Line(points={{38,-33.8},{50,-33.8},{50,38},{148,38},{148,170},{130,
+          170},{130,192},{138,192}},                                    color={0,
+          0,127}));
+  connect(cop_cooling.y,div2. u2) annotation (Line(points={{106,150},{128,150},{
+          128,180},{138,180}},
+                           color={0,0,127}));
+  connect(add2.y, electricPower) annotation (Line(points={{214,148},{222,148},{222,
+          130},{120,130},{120,68}},
+                         color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end custom_air_conditioner;

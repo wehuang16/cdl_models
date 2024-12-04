@@ -35,8 +35,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  BaseClasses.custom_air_conditioner_OnOff
-                                     custom_air_conditioner_OnOff
+  BaseClasses.custom_air_conditioner custom_air_conditioner_OnOff
                                                            [nZones](
       mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=350,
@@ -110,8 +109,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   ThermalZones.ModelicaRoom modelicaRoom1
                                         [nZones]
     annotation (Placement(transformation(extent={{116,-164},{158,-134}})));
-  BaseClasses.custom_air_conditioner_OnOff
-                                     custom_air_conditioner_OnOff1
+  BaseClasses.custom_air_conditioner custom_air_conditioner_OnOff1
                                                            [nZones](
     mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=350,
