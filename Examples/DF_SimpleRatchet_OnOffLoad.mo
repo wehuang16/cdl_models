@@ -20,13 +20,14 @@ replaceable package MediumAir = Buildings.Media.Air;
     TZonCooSetNominal=TCooSetOcc,
     TZonCooSetMax(displayUnit="degC") = TZonCooSetMax,
     TRatThreshold=0.2,
-    TRat=0.4,
+    TRat=1,
     TReb=0.3) annotation (Placement(transformation(extent={{8,76},{28,96}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable
                                          loadShedMode(table=[0,0; 3600*14,1; 3600
         *18,0; 3600*24,0],                   period=86400)
     annotation (Placement(transformation(extent={{-228,118},{-208,138}})));
-  ThermalZones.ModelicaRoom modelicaRoom[nZones]
+  ThermalZones.ModelicaRoom modelicaRoom[nZones](heatCapacitor2(each C=10*50*
+          1005*1.2))
     annotation (Placement(transformation(extent={{130,58},{172,88}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
     table=[0,0; 10800,0; 21600,0; 27000,0; 32400,150; 43200,250; 54000,250;
