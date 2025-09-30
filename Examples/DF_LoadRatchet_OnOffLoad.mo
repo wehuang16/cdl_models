@@ -85,31 +85,22 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum(nin=3)
     annotation (Placement(transformation(extent={{100,-52},{120,-32}})));
   BaseClasses.reboundSelectionCooling reboundSelection(nValues=nZones)
-    annotation (Placement(transformation(extent={{-160,58},{-140,78}})));
+    annotation (Placement(transformation(extent={{-164,58},{-144,78}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre1
                                             [nZones]
-    annotation (Placement(transformation(extent={{-104,54},{-84,74}})));
+    annotation (Placement(transformation(extent={{-112,54},{-92,74}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant heatingUnoccSetpoint1[nZones](
       final k=THeaSetUnocc)
     annotation (Placement(transformation(extent={{-58,-58},{-38,-38}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi1
                                              [nZones]
     annotation (Placement(transformation(extent={{-8,-42},{12,-22}})));
-  Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=demand_limit, h=0)
-    annotation (Placement(transformation(extent={{-254,-66},{-234,-46}})));
-  Buildings.Controls.OBC.CDL.Logical.Switch
-                                          logSwi
-                                             [nZones]
-    annotation (Placement(transformation(extent={{-154,-50},{-134,-30}})));
-  Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep2(nout=
-        nZones)
-    annotation (Placement(transformation(extent={{-208,-88},{-188,-68}})));
-  Buildings.Controls.OBC.CDL.Logical.Sources.Constant boolconst[nZones](final k
-      =false)
-    annotation (Placement(transformation(extent={{-164,-104},{-144,-84}})));
   BaseClasses.thermostatSetpointResolution thermostatSetpointResolution1
                                                                        [nZones]
     annotation (Placement(transformation(extent={{36,-48},{56,-28}})));
+  BaseClasses.demand_control_signal demand_control_signal(nZones=nZones,
+      demand_limit=demand_limit)
+    annotation (Placement(transformation(extent={{-160,-36},{-140,-16}})));
 equation
   connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a2)
     annotation (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}},
@@ -168,35 +159,22 @@ equation
     annotation (Line(points={{30,79.6},{36,79.6},{36,68},{-74,68},{-74,62},{-76,
           62},{-76,42},{-206,42},{-206,44},{-210,44},{-210,-22},{-206,-22},{-206,
           -25.8},{-198,-25.8}}, color={255,0,255}));
-  connect(pre1.y, dF_Controller_cooling.DoReb) annotation (Line(points={{-82,64},
-          {-20,64},{-20,87.8},{6,87.8}}, color={255,0,255}));
-  connect(reboundSelection.DoReb, pre1.u) annotation (Line(points={{-138,68},{-116,
-          68},{-116,64},{-106,64}}, color={255,0,255}));
+  connect(pre1.y, dF_Controller_cooling.DoReb) annotation (Line(points={{-90,64},
+          {-66,64},{-66,87.8},{6,87.8}}, color={255,0,255}));
   connect(dF_Controller_cooling.TZonTempDiff, reboundSelection.TZonTempDiff)
-    annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,72.6},
-          {-162,72.6}}, color={0,0,127}));
+    annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,
+          72.6},{-166,72.6}},
+                        color={0,0,127}));
   connect(dF_Controller_cooling.reachNominalTemp, reboundSelection.reachNominalTemp)
-    annotation (Line(points={{30,75.8},{38,75.8},{38,62},{-74,62},{-74,48},{-172,
-          48},{-172,62.2},{-162,62.2}}, color={255,0,255}));
+    annotation (Line(points={{30,75.8},{38,75.8},{38,62},{-74,62},{-74,48},{
+          -172,48},{-172,62.2},{-166,62.2}},
+                                        color={255,0,255}));
   connect(heatingOccSetpoint.y, swi1.u1) annotation (Line(points={{-62,2},{-18,2},
           {-18,-24},{-10,-24}}, color={0,0,127}));
   connect(heatingUnoccSetpoint1.y, swi1.u3) annotation (Line(points={{-36,-48},{
           -18,-48},{-18,-40},{-10,-40}}, color={0,0,127}));
   connect(booScaRep1.y, swi1.u2) annotation (Line(points={{24,126},{12,126},{12,
           4},{-10,4},{-10,-32}}, color={255,0,255}));
-  connect(mulSum.y, greThr.u) annotation (Line(points={{122,-42},{130,-42},{130,
-          -64},{-180,-64},{-180,-38},{-264,-38},{-264,-56},{-256,-56}}, color={
-          0,0,127}));
-  connect(greThr.y, booScaRep2.u) annotation (Line(points={{-232,-56},{-220,-56},
-          {-220,-78},{-210,-78}}, color={255,0,255}));
-  connect(booScaRep2.y, logSwi.u2) annotation (Line(points={{-186,-78},{-178,
-          -78},{-178,-40},{-156,-40}}, color={255,0,255}));
-  connect(ratchetSelection.DoRat, logSwi.u1) annotation (Line(points={{-174,-20},
-          {-164,-20},{-164,-32},{-156,-32}}, color={255,0,255}));
-  connect(logSwi.y, pre.u) annotation (Line(points={{-132,-40},{-124,-40},{-124,
-          -32},{-132,-32},{-132,-18},{-122,-18}}, color={255,0,255}));
-  connect(boolconst.y, logSwi.u3) annotation (Line(points={{-142,-94},{-134,-94},
-          {-134,-48},{-156,-48}}, color={255,0,255}));
   connect(con.y, thermostatSetpointResolution1.temRes) annotation (Line(points=
           {{102,160},{110,160},{110,126},{108,126},{108,54},{78,54},{78,50},{26,
           50},{26,-45.4},{34,-45.4}}, color={0,0,127}));
@@ -205,6 +183,15 @@ equation
   connect(thermostatSetpointResolution1.actualSetpoint,
     custom_air_conditioner_OnOff.THeaSet) annotation (Line(points={{58,-38},{88,
           -38},{88,19.6},{98,19.6}}, color={0,0,127}));
+  connect(mulSum.y, demand_control_signal.totalElectricPower) annotation (Line(
+        points={{122,-42},{130,-42},{130,-66},{-168,-66},{-168,-33.1},{-161.7,
+          -33.1}}, color={0,0,127}));
+  connect(ratchetSelection.DoRat, demand_control_signal.DoRatIni) annotation (
+      Line(points={{-174,-20},{-174,-19.8},{-162,-19.8}}, color={255,0,255}));
+  connect(pre.u, demand_control_signal.DoRatFin) annotation (Line(points={{-122,
+          -18},{-130,-18},{-130,-26},{-138,-26}}, color={255,0,255}));
+  connect(reboundSelection.DoReb, pre1.u) annotation (Line(points={{-142,68},{
+          -124,68},{-124,64},{-114,64}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

@@ -63,7 +63,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   BaseClasses.ratchetSelectionCooling ratchetSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-196,-30},{-176,-10}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
-    annotation (Placement(transformation(extent={{-160,-56},{-140,-36}})));
+    annotation (Placement(transformation(extent={{-154,-30},{-134,-10}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep(nout=
         nZones)
     annotation (Placement(transformation(extent={{-136,116},{-116,136}})));
@@ -119,8 +119,8 @@ equation
         points={{149.6,89},{149.6,102},{-2,102},{-2,78},{6,78}}, color={0,0,127}));
   connect(booScaRep.y, dF_Controller_cooling.loadShed) annotation (Line(points=
           {{-114,126},{-114,108},{6,108},{6,94}}, color={255,0,255}));
-  connect(pre.y, dF_Controller_cooling.DoRat) annotation (Line(points={{-138,
-          -46},{-138,52},{-122,52},{-122,91},{6,91}}, color={255,0,255}));
+  connect(pre.y, dF_Controller_cooling.DoRat) annotation (Line(points={{-132,
+          -20},{-124,-20},{-124,91},{6,91}},          color={255,0,255}));
   connect(loadShedMode.y[1], booScaRep.u) annotation (Line(points={{-206,128},{
           -146,128},{-146,126},{-138,126}}, color={255,0,255}));
   connect(occupiedMode.y[1], booScaRep1.u)
@@ -149,7 +149,7 @@ equation
           26.8},{122,26.8}},
         color={0,0,127}));
   connect(ratchetSelection.DoRat, pre.u) annotation (Line(points={{-174,-20},{
-          -164,-20},{-164,-30},{-170,-30},{-170,-46},{-162,-46}}, color={255,0,
+          -156,-20}},                                             color={255,0,
           255}));
   connect(dF_Controller_cooling.TZonTempDiff, ratchetSelection.TZonTempDiff)
     annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,64},

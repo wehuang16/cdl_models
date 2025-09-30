@@ -6,3 +6,4 @@ reboundSelectionCooling
 smallPassDemandRatchet
 thermostatSetpointResolution
 linearSetpointControl
+demand_control_signal
