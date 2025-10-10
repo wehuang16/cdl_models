@@ -195,10 +195,10 @@ equation
     annotation (Line(points={{98,-42},{90,-42},{90,6},{164,6},{164,26.8},{122,
           26.8}},
         color={0,0,127}));
-  connect(dF_Controller_cooling.TZonTemDif, ratchetSelection.TZonTempDiff)
+  connect(dF_Controller_cooling.TZonTemDif, ratchetSelection.TZonTemDif)
     annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,64},
           {-208,64},{-208,-15.4},{-198,-15.4}}, color={0,0,127}));
-  connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.reachComfortLimit)
+  connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.reachTZonSetMax)
     annotation (Line(points={{30,79.6},{36,79.6},{36,68},{-74,68},{-74,62},{-76,
           62},{-76,42},{-206,42},{-206,44},{-210,44},{-210,-22},{-206,-22},{-206,
           -25.8},{-198,-25.8}}, color={255,0,255}));
@@ -206,10 +206,10 @@ equation
           64},{-20,64},{-20,87.8},{6,87.8}}, color={255,0,255}));
   connect(reboundSelection.DoReb, pre1.u) annotation (Line(points={{-138,68},{-116,
           68},{-116,64},{-106,64}}, color={255,0,255}));
-  connect(dF_Controller_cooling.TZonTemDif, reboundSelection.TZonTempDiff)
+  connect(dF_Controller_cooling.TZonTemDif, reboundSelection.TZonTemDif)
     annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,
           72.6},{-162,72.6}}, color={0,0,127}));
-  connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.reachNominalTemp)
+  connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.reachTZonSetMin)
     annotation (Line(points={{30,75.8},{38,75.8},{38,62},{-74,62},{-74,48},{-172,
           48},{-172,62.2},{-162,62.2}}, color={255,0,255}));
   connect(heatingOccSetpoint.y, swi1.u1) annotation (Line(points={{-62,2},{-18,2},

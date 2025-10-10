@@ -2,7 +2,7 @@ within cdl_models.Examples.BaseClasses;
 model ratchetSelectionCooling
              parameter Integer nValues=3
     "Number of values to compare";
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonTempDiff[nValues]
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonTemDif[nValues]
     annotation (Placement(transformation(extent={{-140,16},{-100,56}}),
         iconTransformation(extent={{-140,26},{-100,66}})));
   Buildings.Controls.OBC.CDL.Reals.MultiMin mulMin(nin=nValues)
@@ -17,7 +17,7 @@ model ratchetSelectionCooling
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput DoRat[nValues]
     annotation (Placement(transformation(extent={{100,-20},{140,20}}),
         iconTransformation(extent={{100,-20},{140,20}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput reachComfortLimit[nValues]
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput reachTZonSetMax[nValues]
     annotation (Placement(transformation(extent={{-142,-90},{-102,-50}}),
         iconTransformation(extent={{-140,-78},{-100,-38}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi[nValues]
@@ -33,11 +33,11 @@ equation
     annotation (Line(points={{12,30},{26,30}}, color={255,0,255}));
   connect(not1.y, DoRat) annotation (Line(points={{50,30},{94,30},{94,0},{120,0}},
         color={255,0,255}));
-  connect(reachComfortLimit, swi.u2) annotation (Line(points={{-122,-70},{-122,
+  connect(reachTZonSetMax, swi.u2) annotation (Line(points={{-122,-70},{-122,
           12},{-80,12},{-80,38},{-70,38}}, color={255,0,255}));
   connect(con.y, swi.u1) annotation (Line(points={{-160,76},{-78,76},{-78,46},{
           -70,46}}, color={0,0,127}));
-  connect(TZonTempDiff, swi.u3) annotation (Line(points={{-120,36},{-120,10},{
+  connect(TZonTemDif, swi.u3) annotation (Line(points={{-120,36},{-120,10},{
           -78,10},{-78,30},{-70,30}}, color={0,0,127}));
   connect(swi.y, gre.u1) annotation (Line(points={{-46,38},{-22,38},{-22,30},{
           -12,30}}, color={0,0,127}));

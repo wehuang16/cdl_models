@@ -1,18 +1,12 @@
 within cdl_models.Controls;
 model DF_Controller_ratchet_cooling
 
-  parameter Real TZonCooSetNominal(unit="K")=273.15+23
-    "Nominal zone air temperature setpoint";
 
-      parameter Real TZonCooSetMax(unit="K")=273.15+27
-    "Maximum zone cooling temperature setpoint";
       parameter Real samplePeriodRatchet(unit="s")=300
     "Sample period of the demand flexibility control";
           parameter Real samplePeriodRebound(unit="s")=900
     "Sample period of rebound";
-       parameter Real TRatThreshold=0.5
-    "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd";
-           parameter Real TRatCoo=0.5
+    parameter Real TRatCoo=0.5
     "Ratcheting temperature cooling (>0)";
                parameter Real TRebCoo=-0.3
     "rebound temperature cooling (<0)";
@@ -70,8 +64,6 @@ model DF_Controller_ratchet_cooling
   Buildings.Controls.OBC.CDL.Reals.Switch swi1
     "Switch to zero adjustment when window is open"
     annotation (Placement(transformation(extent={{252,32},{272,52}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const(final k=TRebCoo)
-    annotation (Placement(transformation(extent={{-152,-108},{-132,-88}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant const1(final k=0)
     annotation (Placement(transformation(extent={{-90,-108},{-70,-88}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi2
@@ -94,21 +86,19 @@ model DF_Controller_ratchet_cooling
     "minimum zone temperature setpoint" annotation (Placement(transformation(
           extent={{-240,-194},{-200,-154}}), iconTransformation(extent={{-240,
             -180},{-200,-140}})));
-  Buildings.Controls.OBC.CDL.Reals.Switch swi3
+  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal
+                                          booToRea1(realTrue=TRebHea, realFalse
+      =TRebCoo)
     annotation (Placement(transformation(extent={{-90,-66},{-70,-46}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const2(final k=TRebHea)
-    annotation (Placement(transformation(extent={{-154,-66},{-134,-46}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi4
     "Switch to zero adjustment when window is open"
     annotation (Placement(transformation(extent={{-36,32},{-16,52}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant const3(final k=0)
     annotation (Placement(transformation(extent={{-86,16},{-66,36}})));
-  Buildings.Controls.OBC.CDL.Reals.Switch swi5
+  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal
+                                          booToRea(realTrue=TRatHea, realFalse=
+        TRatCoo)
     annotation (Placement(transformation(extent={{-88,60},{-68,80}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const4(final k=TRatHea)
-    annotation (Placement(transformation(extent={{-154,58},{-134,78}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const5(final k=TRatCoo)
-    annotation (Placement(transformation(extent={{-152,16},{-132,36}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi6
     "Switch to zero adjustment when window is open"
     annotation (Placement(transformation(extent={{20,34},{40,54}})));
@@ -132,28 +122,18 @@ equation
                 color={0,0,127}));
   connect(sam1.y, swi1.u3) annotation (Line(points={{228,22},{242,22},{242,34},
           {250,34}},color={0,0,127}));
-  connect(rebSig, swi2.u2) annotation (Line(points={{-220,-10},{-160,-10},{-160,
-          -124},{-96,-124},{-96,-80},{-40,-80}},
-                           color={255,0,255}));
+  connect(rebSig, swi2.u2) annotation (Line(points={{-220,-10},{-154,-10},{-154,
+          -80},{-40,-80}}, color={255,0,255}));
   connect(const1.y, swi2.u3) annotation (Line(points={{-68,-98},{-48,-98},{-48,
           -88},{-40,-88}},
                       color={0,0,127}));
-  connect(const2.y, swi3.u1) annotation (Line(points={{-132,-56},{-116,-56},{
-          -116,-48},{-92,-48}},
-                            color={0,0,127}));
-  connect(const.y, swi3.u3) annotation (Line(points={{-130,-98},{-100,-98},{
-          -100,-64},{-92,-64}},
-                            color={0,0,127}));
-  connect(swi3.y, swi2.u1) annotation (Line(points={{-68,-56},{-48,-56},{-48,
-          -72},{-40,-72}},
-                       color={0,0,127}));
-  connect(const5.y, swi5.u3) annotation (Line(points={{-130,26},{-90,26},{-90,
-          62}},          color={0,0,127}));
+  connect(booToRea1.y, swi2.u1) annotation (Line(points={{-68,-56},{-48,-56},{-48,
+          -72},{-40,-72}}, color={0,0,127}));
   connect(ratSig, swi4.u2) annotation (Line(points={{-220,22},{-158,22},{-158,
           42},{-38,42}},
                     color={255,0,255}));
-  connect(swi5.y, swi4.u1) annotation (Line(points={{-66,70},{-58,70},{-58,50},
-          {-38,50}},color={0,0,127}));
+  connect(booToRea.y, swi4.u1) annotation (Line(points={{-66,70},{-58,70},{-58,50},
+          {-38,50}}, color={0,0,127}));
   connect(const3.y, swi4.u3) annotation (Line(points={{-64,26},{-46,26},{-46,34},
           {-38,34}}, color={0,0,127}));
   connect(swi1.y, TZonSetCom)
@@ -166,8 +146,8 @@ equation
           {18,36}}, color={0,0,127}));
   connect(swi6.y, add.u1) annotation (Line(points={{42,44},{60,44},{60,50},{68,
           50}}, color={0,0,127}));
-  connect(TZonSetMax, min1.u2) annotation (Line(points={{-220,-134},{60,-134},{
-          60,18},{106,18},{106,38},{114,38}}, color={0,0,127}));
+  connect(TZonSetMax, min1.u2) annotation (Line(points={{-220,-134},{70,-134},{70,
+          18},{106,18},{106,38},{114,38}},    color={0,0,127}));
   connect(TZonSetMin, max1.u2) annotation (Line(points={{-220,-174},{88,-174},{
           88,8},{144,8},{144,38},{154,38}}, color={0,0,127}));
   connect(add.y, min1.u1) annotation (Line(points={{92,44},{104,44},{104,50},{
@@ -198,21 +178,19 @@ equation
       smooth=Smooth.Bezier));
   connect(swi1.u2, loaShe) annotation (Line(points={{250,42},{186,42},{186,28},
           {2,28},{2,8},{-96,8},{-96,52},{-220,52}}, color={255,0,255}));
-  connect(const4.y, swi5.u1) annotation (Line(points={{-132,68},{-124,68},{-124,
-          78},{-90,78}}, color={0,0,127}));
-  connect(heaCooMod, swi5.u2) annotation (Line(points={{-220,88},{-98,88},{-98,
-          70},{-90,70}}, color={255,0,255}));
-  connect(swi3.u2, heaCooMod) annotation (Line(points={{-92,-56},{-108,-56},{
-          -108,88},{-220,88}}, color={255,0,255}));
-  connect(TZonSetCur, les.u1) annotation (Line(points={{-220,-90},{-178,-90},{
-          -178,-128},{118,-128},{118,-94},{132,-94}}, color={0,0,127}));
-  connect(TZonSetCur, gre.u1) annotation (Line(points={{-220,-90},{-178,-90},{
-          -178,-128},{118,-128},{118,-136},{132,-136}}, color={0,0,127}));
-  connect(subt.u2, TZonSetCur) annotation (Line(points={{150,-38},{118,-38},{
-          118,-128},{-178,-128},{-178,-90},{-220,-90}}, color={0,0,127}));
-  connect(add.u2, TZonSetCur) annotation (Line(points={{68,38},{50,38},{50,-38},
-          {118,-38},{118,-128},{-178,-128},{-178,-90},{-220,-90}}, color={0,0,
+  connect(TZonSetCur, les.u1) annotation (Line(points={{-220,-90},{-178,-90},{-178,
+          -116},{50,-116},{50,-94},{132,-94}},        color={0,0,127}));
+  connect(TZonSetCur, gre.u1) annotation (Line(points={{-220,-90},{-178,-90},{-178,
+          -116},{118,-116},{118,-136},{132,-136}},      color={0,0,127}));
+  connect(subt.u2, TZonSetCur) annotation (Line(points={{150,-38},{50,-38},{50,-116},
+          {-178,-116},{-178,-90},{-220,-90}},           color={0,0,127}));
+  connect(add.u2, TZonSetCur) annotation (Line(points={{68,38},{50,38},{50,-116},
+          {-178,-116},{-178,-90},{-220,-90}},                      color={0,0,
           127}));
+  connect(heaCooMod, booToRea.u) annotation (Line(points={{-220,88},{-108,88},{-108,
+          70},{-90,70}}, color={255,0,255}));
+  connect(heaCooMod, booToRea1.u) annotation (Line(points={{-220,88},{-108,88},{
+          -108,-56},{-92,-56}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,-180},
             {300,100}})),                                        Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-200,-180},{300,100}})));
