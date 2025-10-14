@@ -1,4 +1,4 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.Controls.Subsequences;
 model demand_control_signal
   parameter Integer nZones=3
     "Number of zones to compare";

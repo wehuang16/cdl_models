@@ -2,4 +2,6 @@ SeparateHeatingCoolingThermalEnergy
 MultipleHeatPumpZoneController
 DF_Controller_ratchet_cooling
 DF_Controller_ratchet_cooling_old1
+multiple_zone_ratchet
+Subsequences
 Validation

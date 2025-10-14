@@ -1,4 +1,4 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.ThermalZones.BaseClasses;
 model thermostatSetpointResolution
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput setpointCommand annotation (

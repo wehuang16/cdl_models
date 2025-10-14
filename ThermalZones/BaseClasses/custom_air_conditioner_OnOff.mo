@@ -1,4 +1,4 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.ThermalZones.BaseClasses;
 model custom_air_conditioner_OnOff
 
           package MediumAir = Buildings.Media.Air;

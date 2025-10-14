@@ -1,4 +1,4 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.Controls.Subsequences;
 model smallPassDemandRatchet
              parameter Integer nValues=3
     "Number of values to compare";

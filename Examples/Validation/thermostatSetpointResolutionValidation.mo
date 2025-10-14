@@ -1,6 +1,7 @@
 within cdl_models.Examples.Validation;
 model thermostatSetpointResolutionValidation
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution
     annotation (Placement(transformation(extent={{6,4},{26,24}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=0.5)
     annotation (Placement(transformation(extent={{-76,-44},{-56,-24}})));

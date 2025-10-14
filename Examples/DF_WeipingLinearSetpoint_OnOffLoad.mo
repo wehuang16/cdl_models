@@ -28,10 +28,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  BaseClasses.custom_air_conditioner_OnOff
-                                     custom_air_conditioner_OnOff
-                                                           [nZones](
-      mRec_flow_nominal=0.7,
+  ThermalZones.BaseClasses.custom_air_conditioner_OnOff
+    custom_air_conditioner_OnOff[nZones](
+    mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=700,
     cooler_thermal_power_nominal=800)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
@@ -64,7 +63,8 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingUnoccSetpoint[nZones](
       final k=TCooSetUnocc)
     annotation (Placement(transformation(extent={{0,148},{20,168}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution[nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution[nZones]
     annotation (Placement(transformation(extent={{118,108},{138,128}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k={1,0.5,0.2})
     annotation (Placement(transformation(extent={{80,150},{100,170}})));
@@ -82,8 +82,8 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingShedSetpoint(final k=
         TZonCooSetMax)
     annotation (Placement(transformation(extent={{-190,146},{-170,166}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution1
-                                                                       [nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution1[nZones]
     annotation (Placement(transformation(extent={{42,-76},{62,-56}})));
   BaseClasses.linearSetpointControl linearSetpointControl
     annotation (Placement(transformation(extent={{-114,90},{-94,110}})));

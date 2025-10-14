@@ -31,10 +31,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  BaseClasses.custom_air_conditioner_OnOff
-                                     custom_air_conditioner_OnOff
-                                                           [nZones](
-      mRec_flow_nominal=0.7,
+  ThermalZones.BaseClasses.custom_air_conditioner_OnOff
+    custom_air_conditioner_OnOff[nZones](
+    mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=700,
     cooler_thermal_power_nominal=800)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
@@ -56,7 +55,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{150,-58},{170,-38}})));
-  BaseClasses.ratchetSelectionCooling ratchetSelection(nValues=nZones)
+  Controls.Subsequences.ratchetSelectionCooling ratchetSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-196,-30},{-176,-10}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-154,-30},{-134,-10}})));
@@ -74,13 +73,14 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingUnoccSetpoint[nZones](
       final k=TCooSetUnocc)
     annotation (Placement(transformation(extent={{-40,238},{-20,258}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution[nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution[nZones]
     annotation (Placement(transformation(extent={{118,108},{138,128}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k={1,0.5,0.2})
     annotation (Placement(transformation(extent={{80,150},{100,170}})));
   Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum(nin=3)
     annotation (Placement(transformation(extent={{100,-52},{120,-32}})));
-  BaseClasses.reboundSelectionCooling reboundSelection(nValues=nZones)
+  Controls.Subsequences.reboundSelectionCooling reboundSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-160,58},{-140,78}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre1
                                             [nZones]
@@ -91,8 +91,8 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.Switch swi1
                                              [nZones]
     annotation (Placement(transformation(extent={{-8,-42},{12,-22}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution1
-                                                                       [nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution1[nZones]
     annotation (Placement(transformation(extent={{40,-54},{60,-34}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1(k=false)
     annotation (Placement(transformation(extent={{-190,144},{-170,164}})));

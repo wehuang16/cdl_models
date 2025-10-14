@@ -1,28 +1,28 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.Controls.Subsequences;
 model ratchetSelectionCooling
-             parameter Integer nValues=3
+             parameter Integer nZones=3
     "Number of values to compare";
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonTemDif[nValues]
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonTemDif[nZones]
     annotation (Placement(transformation(extent={{-140,16},{-100,56}}),
         iconTransformation(extent={{-140,26},{-100,66}})));
-  Buildings.Controls.OBC.CDL.Reals.MultiMin mulMin(nin=nValues)
+  Buildings.Controls.OBC.CDL.Reals.MultiMin mulMin(nin=nZones)
     annotation (Placement(transformation(extent={{-88,-18},{-68,2}})));
-  Buildings.Controls.OBC.CDL.Reals.Greater gre[nValues]
+  Buildings.Controls.OBC.CDL.Reals.Greater gre[nZones]
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
   Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep(nout=
-        nValues)
+        nZones)
     annotation (Placement(transformation(extent={{-52,-14},{-32,6}})));
-  Buildings.Controls.OBC.CDL.Logical.Not not1[nValues]
+  Buildings.Controls.OBC.CDL.Logical.Not not1[nZones]
     annotation (Placement(transformation(extent={{28,20},{48,40}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput DoRat[nValues]
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput DoRat[nZones]
     annotation (Placement(transformation(extent={{100,-20},{140,20}}),
         iconTransformation(extent={{100,-20},{140,20}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput reachTZonSetMax[nValues]
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput reachTZonSetMax[nZones]
     annotation (Placement(transformation(extent={{-142,-90},{-102,-50}}),
         iconTransformation(extent={{-140,-78},{-100,-38}})));
-  Buildings.Controls.OBC.CDL.Reals.Switch swi[nValues]
+  Buildings.Controls.OBC.CDL.Reals.Switch swi[nZones]
     annotation (Placement(transformation(extent={{-68,28},{-48,48}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nValues](k=1000)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k=1000)
     annotation (Placement(transformation(extent={{-182,66},{-162,86}})));
 equation
   connect(mulMin.y, reaScaRep.u) annotation (Line(points={{-66,-8},{-60,-8},{-60,

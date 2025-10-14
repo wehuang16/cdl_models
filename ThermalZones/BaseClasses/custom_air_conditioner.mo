@@ -1,4 +1,4 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.ThermalZones.BaseClasses;
 model custom_air_conditioner
 
           package MediumAir = Buildings.Media.Air;
@@ -9,8 +9,6 @@ model custom_air_conditioner
 
   parameter Modelica.Units.SI.MassFlowRate mRec_flow_nominal=1
     "Nominal mass flow rate for recirculated air";
-
-
 
           parameter Real heater_thermal_power_nominal(unit="W")=550
     "Nominal heater power";

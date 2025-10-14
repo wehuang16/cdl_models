@@ -1,4 +1,4 @@
-within cdl_models.Examples.BaseClasses;
+within cdl_models.Controls.Subsequences;
 model HeatingCoolingControl
       parameter Real TCooSet(unit="K")=273.15+24
     "Zone cooling temperature setpoint";

@@ -46,7 +46,6 @@ model DF_Controller_ratchet_cooling_old1
   Buildings.Controls.OBC.CDL.Reals.Subtract subt
     annotation (Placement(transformation(extent={{-70,-82},{-50,-62}})));
   Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr(t=TRatThreshold, h=0)
-    "Check if the real requests is more than ignored requests setting"
     annotation (Placement(transformation(extent={{-4,-96},{16,-76}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(k=-1)
     annotation (Placement(transformation(extent={{-164,-44},{-144,-24}})));

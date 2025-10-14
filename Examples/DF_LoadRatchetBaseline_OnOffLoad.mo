@@ -35,10 +35,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     annotation (Placement(transformation(extent={{52,58},{72,78}})));
-  BaseClasses.custom_air_conditioner_OnOff
-                                     custom_air_conditioner_OnOff
-                                                           [nZones](
-      mRec_flow_nominal=0.7,
+  ThermalZones.BaseClasses.custom_air_conditioner_OnOff
+    custom_air_conditioner_OnOff[nZones](
+    mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=700,
     cooler_thermal_power_nominal=800)
     annotation (Placement(transformation(extent={{100,12},{120,32}})));
@@ -60,7 +59,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{150,-58},{170,-38}})));
-  BaseClasses.ratchetSelectionCooling ratchetSelection(nValues=nZones)
+  Controls.Subsequences.ratchetSelectionCooling ratchetSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-196,-30},{-176,-10}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-120,-28},{-100,-8}})));
@@ -78,13 +77,14 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant coolingUnoccSetpoint[nZones](
       final k=TCooSetUnocc)
     annotation (Placement(transformation(extent={{0,148},{20,168}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution[nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution[nZones]
     annotation (Placement(transformation(extent={{118,108},{138,128}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k={1,0.5,0.2})
     annotation (Placement(transformation(extent={{80,150},{100,170}})));
   Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum(nin=nZones)
     annotation (Placement(transformation(extent={{100,-52},{120,-32}})));
-  BaseClasses.reboundSelectionCooling reboundSelection(nValues=nZones)
+  Controls.Subsequences.reboundSelectionCooling reboundSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-160,58},{-140,78}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre1
                                             [nZones]
@@ -110,18 +110,17 @@ replaceable package MediumAir = Buildings.Media.Air;
   ThermalZones.ModelicaRoom modelicaRoom1
                                         [nZones]
     annotation (Placement(transformation(extent={{116,-164},{158,-134}})));
-  BaseClasses.custom_air_conditioner_OnOff
-                                     custom_air_conditioner_OnOff1
-                                                           [nZones](
+  ThermalZones.BaseClasses.custom_air_conditioner_OnOff
+    custom_air_conditioner_OnOff1[nZones](
     mRec_flow_nominal=0.7,
     heater_thermal_power_nominal=350,
     cooler_thermal_power_nominal=400)
     annotation (Placement(transformation(extent={{86,-210},{106,-190}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution1
-                                                                       [nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution1[nZones]
     annotation (Placement(transformation(extent={{38,-46},{58,-26}})));
-  BaseClasses.thermostatSetpointResolution thermostatSetpointResolution2
-                                                                       [nZones]
+  ThermalZones.BaseClasses.thermostatSetpointResolution
+    thermostatSetpointResolution2[nZones]
     annotation (Placement(transformation(extent={{-12,-192},{8,-172}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occupiedMode1(table=[0,0;
         3600*7,1; 3600*22,0; 3600*24,0], period=86400)
@@ -165,19 +164,23 @@ equation
      Line(points={{71,-2},{78,-2},{78,34},{92,34},{92,68},{124,68},{124,61.8},{129,
           61.8}}, color={0,0,127}));
   connect(modelicaRoom.TZon, dF_Controller_cooling.TZon) annotation (Line(
-        points={{149.6,89},{149.6,102},{-2,102},{-2,78},{6,78}}, color={0,0,127}));
-  connect(booScaRep.y, dF_Controller_cooling.loaShe) annotation (Line(points={{
-          -114,126},{-114,108},{6,108},{6,94}}, color={255,0,255}));
+        points={{149.6,89},{149.6,102},{-2,102},{-2,84.7143},{7.2,84.7143}},
+                                                                 color={0,0,127}));
+  connect(booScaRep.y, dF_Controller_cooling.loaShe) annotation (Line(points={{-114,
+          126},{-114,108},{7.2,108},{7.2,92.5714}},
+                                                color={255,0,255}));
   connect(pre.y, dF_Controller_cooling.ratSig) annotation (Line(points={{-98,-18},
-          {-90,-18},{-90,40},{-68,40},{-68,91},{6,91}}, color={255,0,255}));
+          {-90,-18},{-90,40},{-68,40},{-68,90.4286},{7.2,90.4286}},
+                                                        color={255,0,255}));
   connect(loadShedMode.y[1], booScaRep.u) annotation (Line(points={{-206,128},{
           -146,128},{-146,126},{-138,126}}, color={255,0,255}));
   connect(occupiedMode.y[1], booScaRep1.u)
     annotation (Line(points={{-24,126},{0,126}}, color={255,0,255}));
   connect(booScaRep1.y, swi.u2)
     annotation (Line(points={{24,126},{62,126}}, color={255,0,255}));
-  connect(dF_Controller_cooling.TZonSetCom, swi.u1) annotation (Line(points={{
-          30,90.8},{38,90.8},{38,134},{62,134}}, color={0,0,127}));
+  connect(dF_Controller_cooling.TZonSetCom, swi.u1) annotation (Line(points={{28.8,
+          91.8571},{38,91.8571},{38,134},{62,134}},
+                                                 color={0,0,127}));
   connect(coolingUnoccSetpoint.y, swi.u3) annotation (Line(points={{22,158},{42,
           158},{42,118},{62,118}}, color={0,0,127}));
   connect(swi.y, thermostatSetpointResolution.setpointCommand) annotation (Line(
@@ -187,7 +190,8 @@ equation
           148,118},{148,94},{88,94},{88,30.4},{98,30.4}}, color={0,0,127}));
   connect(thermostatSetpointResolution.actualSetpoint, dF_Controller_cooling.TZonSetCur)
     annotation (Line(points={{140,118},{166,118},{166,120},{186,120},{186,56},{
-          6.2,56},{6.2,75.4}}, color={0,0,127}));
+          7.2,56},{7.2,82.4286}},
+                               color={0,0,127}));
   connect(con.y, thermostatSetpointResolution.temRes) annotation (Line(points={
           {102,160},{110,160},{110,126},{108,126},{108,110.6},{116,110.6}},
         color={0,0,127}));
@@ -198,22 +202,27 @@ equation
           26.8}},
         color={0,0,127}));
   connect(dF_Controller_cooling.TZonTemDif, ratchetSelection.TZonTemDif)
-    annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,64},
-          {-208,64},{-208,-15.4},{-198,-15.4}}, color={0,0,127}));
+    annotation (Line(points={{28.8,88.8571},{36,88.8571},{36,100},{-172,100},{
+          -172,64},{-208,64},{-208,-15.4},{-198,-15.4}},
+                                                color={0,0,127}));
   connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.reachTZonSetMax)
-    annotation (Line(points={{30,79.6},{36,79.6},{36,68},{-74,68},{-74,62},{-76,
-          62},{-76,42},{-206,42},{-206,44},{-210,44},{-210,-22},{-206,-22},{-206,
-          -25.8},{-198,-25.8}}, color={255,0,255}));
-  connect(pre1.y, dF_Controller_cooling.rebSig) annotation (Line(points={{-82,
-          64},{-20,64},{-20,87.8},{6,87.8}}, color={255,0,255}));
+    annotation (Line(points={{28.8,82.1429},{36,82.1429},{36,68},{-74,68},{-74,
+          62},{-76,62},{-76,42},{-206,42},{-206,44},{-210,44},{-210,-22},{-206,
+          -22},{-206,-25.8},{-198,-25.8}},
+                                color={255,0,255}));
+  connect(pre1.y, dF_Controller_cooling.rebSig) annotation (Line(points={{-82,64},
+          {-20,64},{-20,88.1429},{7.2,88.1429}},
+                                             color={255,0,255}));
   connect(reboundSelection.DoReb, pre1.u) annotation (Line(points={{-138,68},{-116,
           68},{-116,64},{-106,64}}, color={255,0,255}));
   connect(dF_Controller_cooling.TZonTemDif, reboundSelection.TZonTemDif)
-    annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,
-          72.6},{-162,72.6}}, color={0,0,127}));
+    annotation (Line(points={{28.8,88.8571},{36,88.8571},{36,100},{-172,100},{
+          -172,72.6},{-162,72.6}},
+                              color={0,0,127}));
   connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.reachTZonSetMin)
-    annotation (Line(points={{30,75.8},{38,75.8},{38,62},{-74,62},{-74,48},{-172,
-          48},{-172,62.2},{-162,62.2}}, color={255,0,255}));
+    annotation (Line(points={{28.8,79.1429},{38,79.1429},{38,62},{-74,62},{-74,
+          48},{-172,48},{-172,62.2},{-162,62.2}},
+                                        color={255,0,255}));
   connect(heatingOccSetpoint.y, swi1.u1) annotation (Line(points={{-62,2},{-18,2},
           {-18,-24},{-10,-24}}, color={0,0,127}));
   connect(heatingUnoccSetpoint1.y, swi1.u3) annotation (Line(points={{-36,-48},{
