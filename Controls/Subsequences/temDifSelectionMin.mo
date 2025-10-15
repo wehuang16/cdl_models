@@ -1,5 +1,5 @@
 within cdl_models.Controls.Subsequences;
-model ratchetSelectionCooling
+model temDifSelectionMin
              parameter Integer nZones=3
     "Number of values to compare";
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonTemDif[nZones]
@@ -14,10 +14,10 @@ model ratchetSelectionCooling
     annotation (Placement(transformation(extent={{-52,-14},{-32,6}})));
   Buildings.Controls.OBC.CDL.Logical.Not not1[nZones]
     annotation (Placement(transformation(extent={{28,20},{48,40}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput DoRat[nZones]
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput actionFlag[nZones]
     annotation (Placement(transformation(extent={{100,-20},{140,20}}),
         iconTransformation(extent={{100,-20},{140,20}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput reachTZonSetMax[nZones]
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput ignoreFlag[nZones]
     annotation (Placement(transformation(extent={{-142,-90},{-102,-50}}),
         iconTransformation(extent={{-140,-78},{-100,-38}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi[nZones]
@@ -31,10 +31,10 @@ equation
           {-12,22}}, color={0,0,127}));
   connect(gre.y, not1.u)
     annotation (Line(points={{12,30},{26,30}}, color={255,0,255}));
-  connect(not1.y, DoRat) annotation (Line(points={{50,30},{94,30},{94,0},{120,0}},
-        color={255,0,255}));
-  connect(reachTZonSetMax, swi.u2) annotation (Line(points={{-122,-70},{-122,
-          12},{-80,12},{-80,38},{-70,38}}, color={255,0,255}));
+  connect(not1.y, actionFlag) annotation (Line(points={{50,30},{94,30},{94,0},{
+          120,0}}, color={255,0,255}));
+  connect(ignoreFlag, swi.u2) annotation (Line(points={{-122,-70},{-122,12},{-80,
+          12},{-80,38},{-70,38}}, color={255,0,255}));
   connect(con.y, swi.u1) annotation (Line(points={{-160,76},{-78,76},{-78,46},{
           -70,46}}, color={0,0,127}));
   connect(TZonTemDif, swi.u3) annotation (Line(points={{-120,36},{-120,10},{
@@ -44,5 +44,8 @@ equation
   connect(swi.y, mulMin.u) annotation (Line(points={{-46,38},{-42,38},{-42,6},{
           -90,6},{-90,-8}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
-end ratchetSelectionCooling;
+        coordinateSystem(preserveAspectRatio=false)),
+    Documentation(info="<html>
+hello
+</html>"));
+end temDifSelectionMin;

@@ -1,6 +1,6 @@
 single_zone_ratchet_cooling
-ratchetSelectionCooling
-reboundSelectionCooling
+temDifSelectionMin
+temDifSelectionMax
 HeatingCoolingControl
 smallPassDemandRatchet
 demand_control_signal

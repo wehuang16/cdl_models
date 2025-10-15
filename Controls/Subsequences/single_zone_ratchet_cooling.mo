@@ -32,9 +32,6 @@ model single_zone_ratchet_cooling
     "Zone temperature setpoint command" annotation (Placement(transformation(
           extent={{300,22},{340,62}}), iconTransformation(extent={{300,22},{340,
             62}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonTemDif annotation (
-      Placement(transformation(extent={{300,-52},{340,-12}}),
-        iconTransformation(extent={{300,-20},{340,20}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput ratSig annotation (
       Placement(transformation(extent={{-240,2},{-200,42}}), iconTransformation(
           extent={{-240,2},{-200,42}})));
@@ -73,21 +70,20 @@ model single_zone_ratchet_cooling
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput heaCooMod annotation (
       Placement(transformation(extent={{-240,68},{-200,108}}),
         iconTransformation(extent={{-240,64},{-200,104}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonSetLim(
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetLim(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
-    "thermal limit zone temperature setpoint"
-                                        annotation (Placement(transformation(
-          extent={{-240,-154},{-200,-114}}), iconTransformation(extent={{-240,
-            -144},{-200,-104}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonSetNom(
+    "thermal limit zone temperature setpoint" annotation (Placement(
+        transformation(extent={{-240,-154},{-200,-114}}), iconTransformation(
+          extent={{-240,-144},{-200,-104}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetNom(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "nominal zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-240,-194},{-200,-154}}), iconTransformation(extent={{-240,
-            -180},{-200,-140}})));
+          extent={{-240,-194},{-200,-154}}), iconTransformation(extent={{-240,-180},
+            {-200,-140}})));
   Buildings.Controls.OBC.CDL.Conversions.BooleanToReal
                                           booToRea1(realTrue=TRebHea, realFalse
       =TRebCoo)
@@ -110,13 +106,14 @@ model single_zone_ratchet_cooling
     annotation (Placement(transformation(extent={{116,34},{136,54}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt
     annotation (Placement(transformation(extent={{152,-42},{172,-22}})));
-  Buildings.Controls.OBC.CDL.Reals.Greater gre
-    annotation (Placement(transformation(extent={{134,-146},{154,-126}})));
+  Buildings.Controls.OBC.CDL.Reals.Less    les1
+    annotation (Placement(transformation(extent={{136,-214},{156,-194}})));
   Buildings.Controls.OBC.CDL.Logical.Not not1
-    annotation (Placement(transformation(extent={{176,-146},{196,-126}})));
+    annotation (Placement(transformation(extent={{178,-214},{198,-194}})));
   Buildings.Controls.OBC.CDL.Logical.Not not2
     annotation (Placement(transformation(extent={{176,-104},{196,-84}})));
-  Buildings.Controls.OBC.CDL.Reals.Less les
+  Buildings.Controls.OBC.CDL.Reals.Greater
+                                        gre3
     annotation (Placement(transformation(extent={{134,-104},{154,-84}})));
   Buildings.Controls.OBC.CDL.Reals.LessThreshold    lesThr(t=TRatThreshold, h=0)
     annotation (Placement(transformation(extent={{-268,184},{-248,204}})));
@@ -129,10 +126,42 @@ model single_zone_ratchet_cooling
     annotation (Placement(transformation(extent={{-176,122},{-156,142}})));
   Buildings.Controls.OBC.CDL.Logical.And and2
     annotation (Placement(transformation(extent={{-138,18},{-118,38}})));
-  Buildings.Controls.OBC.CDL.Reals.Max TZonSetMax
-    annotation (Placement(transformation(extent={{-126,-158},{-106,-138}})));
-  Buildings.Controls.OBC.CDL.Reals.Min TZonSetMin
-    annotation (Placement(transformation(extent={{-128,-198},{-108,-178}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch
+                                       TZonSetMax
+    annotation (Placement(transformation(extent={{-48,-144},{-28,-124}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch
+                                       TZonSetMin
+    annotation (Placement(transformation(extent={{-44,-174},{-24,-154}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetLim(
+    final unit="K",
+    displayUnit="degC",
+    final quantity="ThermodynamicTemperature")
+    "thermal limit zone temperature setpoint" annotation (Placement(
+        transformation(extent={{-236,-244},{-196,-204}}), iconTransformation(
+          extent={{-240,-214},{-200,-174}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetNom(
+    final unit="K",
+    displayUnit="degC",
+    final quantity="ThermodynamicTemperature")
+    "nominal zone temperature setpoint" annotation (Placement(transformation(
+          extent={{-236,-284},{-196,-244}}), iconTransformation(extent={{-238,
+            -250},{-198,-210}})));
+  Buildings.Controls.OBC.CDL.Reals.Less    les
+    annotation (Placement(transformation(extent={{138,-142},{158,-122}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not3
+    annotation (Placement(transformation(extent={{180,-142},{200,-122}})));
+  Buildings.Controls.OBC.CDL.Reals.Greater gre2
+    annotation (Placement(transformation(extent={{138,-252},{158,-232}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not4
+    annotation (Placement(transformation(extent={{180,-252},{200,-232}})));
+  Buildings.Controls.OBC.CDL.Logical.Switch
+                                          logSwi1
+    "Switch to zero adjustment when window is open"
+    annotation (Placement(transformation(extent={{238,-118},{258,-98}})));
+  Buildings.Controls.OBC.CDL.Logical.Switch
+                                          logSwi2
+    "Switch to zero adjustment when window is open"
+    annotation (Placement(transformation(extent={{254,-202},{274,-182}})));
 equation
   connect(sam.y, swi1.u1) annotation (Line(points={{228,68},{242,68},{242,50},{
           250,50}},
@@ -170,26 +199,21 @@ equation
           204,22}}, color={0,0,127}));
   connect(TZon, subt.u1) annotation (Line(points={{-220,-58},{-170,-58},{-170,
           -26},{150,-26}}, color={0,0,127}));
-  connect(subt.y, TZonTemDif)
-    annotation (Line(points={{174,-32},{320,-32}}, color={0,0,127}));
-  connect(gre.y, not1.u)
-    annotation (Line(points={{156,-136},{174,-136}}, color={255,0,255}));
-  connect(not1.y,reachTZonSetNom)
-    annotation (Line(points={{198,-136},{320,-136}}, color={255,0,255}));
-  connect(not2.y,reachTZonSetLim)
-    annotation (Line(points={{198,-94},{320,-94}}, color={255,0,255}));
-  connect(les.y, not2.u) annotation (Line(
+  connect(les1.y, not1.u)
+    annotation (Line(points={{158,-204},{176,-204}}, color={255,0,255}));
+  connect(gre3.y, not2.u) annotation (Line(
       points={{156,-94},{174,-94}},
       color={255,0,255},
       smooth=Smooth.Bezier));
   connect(swi1.u2, loaShe) annotation (Line(points={{250,42},{186,42},{186,28},
           {2,28},{2,8},{-96,8},{-96,52},{-220,52}}, color={255,0,255}));
-  connect(TZonSetCur, les.u1) annotation (Line(points={{-220,-90},{-178,-90},{-178,
-          -116},{50,-116},{50,-94},{132,-94}},        color={0,0,127}));
-  connect(TZonSetCur, gre.u1) annotation (Line(points={{-220,-90},{-178,-90},{-178,
-          -116},{118,-116},{118,-136},{132,-136}},      color={0,0,127}));
-  connect(subt.u2, TZonSetCur) annotation (Line(points={{150,-38},{50,-38},{50,-116},
-          {-178,-116},{-178,-90},{-220,-90}},           color={0,0,127}));
+  connect(TZonSetCur, gre3.u1) annotation (Line(points={{-220,-90},{-178,-90},{
+          -178,-116},{50,-116},{50,-94},{132,-94}}, color={0,0,127}));
+  connect(TZonSetCur, les1.u1) annotation (Line(points={{-220,-90},{-220,-92},{
+          -180,-92},{-180,-116},{52,-116},{52,-96},{124,-96},{124,-204},{134,
+          -204}}, color={0,0,127}));
+  connect(subt.u2, TZonSetCur) annotation (Line(points={{150,-38},{62,-38},{62,
+          -118},{-166,-118},{-166,-90},{-220,-90}},     color={0,0,127}));
   connect(add.u2, TZonSetCur) annotation (Line(points={{68,38},{50,38},{50,-116},
           {-178,-116},{-178,-90},{-220,-90}},                      color={0,0,
           127}));
@@ -213,26 +237,67 @@ equation
           -188,124},{-178,124}}, color={255,0,255}));
   connect(logSwi.y, and2.u1) annotation (Line(points={{-154,132},{-146,132},{
           -146,36},{-148,36},{-148,28},{-140,28}}, color={255,0,255}));
-  connect(TZonSetMax.y, les.u2) annotation (Line(points={{-104,-148},{90,-148},
-          {90,-102},{132,-102}}, color={0,0,127}));
-  connect(TZonSetMax.y, min1.u2) annotation (Line(points={{-104,-148},{90,-148},
-          {90,-102},{112,-102},{112,26},{110,26},{110,30},{106,30},{106,38},{
-          114,38}}, color={0,0,127}));
-  connect(TZonSetMin.y, gre.u2) annotation (Line(points={{-106,-188},{124,-188},
-          {124,-144},{132,-144}}, color={0,0,127}));
-  connect(TZonSetMin.y, max1.u2) annotation (Line(points={{-106,-188},{124,-188},
-          {124,26},{150,26},{150,30},{146,30},{146,38},{154,38}}, color={0,0,
+  connect(TZonSetMax.y, min1.u2) annotation (Line(points={{-26,-134},{-20,-134},
+          {-20,-108},{56,-108},{56,24},{108,24},{108,38},{114,38}},
+                    color={0,0,127}));
+  connect(TZonSetMin.y, max1.u2) annotation (Line(points={{-22,-164},{56,-164},
+          {56,-112},{64,-112},{64,20},{144,20},{144,36},{148,36},{148,38},{154,
+          38}},                                                   color={0,0,
           127}));
-  connect(TZonSetLim, TZonSetMin.u1) annotation (Line(points={{-220,-134},{-190,
-          -134},{-190,-182},{-130,-182}}, color={0,0,127}));
-  connect(TZonSetNom, TZonSetMin.u2) annotation (Line(points={{-220,-174},{-130,
-          -174},{-130,-194}}, color={0,0,127}));
-  connect(TZonSetLim, TZonSetMax.u1) annotation (Line(points={{-220,-134},{-190,
-          -134},{-190,-142},{-128,-142}}, color={0,0,127}));
-  connect(TZonSetNom, TZonSetMax.u2) annotation (Line(points={{-220,-174},{-194,
-          -174},{-194,-172},{-138,-172},{-138,-154},{-128,-154}}, color={0,0,
+  connect(heaCooMod, TZonSetMax.u2) annotation (Line(points={{-220,88},{-108,88},
+          {-108,-134},{-50,-134}}, color={255,0,255}));
+  connect(heaCooMod, TZonSetMin.u2) annotation (Line(points={{-220,88},{-108,88},
+          {-108,-136},{-64,-136},{-64,-164},{-46,-164}}, color={255,0,255}));
+  connect(TZonHeaSetNom, TZonSetMax.u1) annotation (Line(points={{-220,-174},{
+          -216,-174},{-216,-176},{-140,-176},{-140,-172},{-136,-172},{-136,-132},
+          {-60,-132},{-60,-126},{-50,-126}}, color={0,0,127}));
+  connect(TZonCooSetLim, TZonSetMax.u3) annotation (Line(points={{-216,-224},{
+          -84,-224},{-84,-142},{-50,-142}}, color={0,0,127}));
+  connect(TZonHeaSetLim, TZonSetMin.u1) annotation (Line(points={{-220,-134},{
+          -216,-134},{-216,-136},{-60,-136},{-60,-156},{-46,-156}}, color={0,0,
           127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,-180},
-            {300,100}})),                                        Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-200,-180},{300,100}})));
+  connect(TZonCooSetNom, TZonSetMin.u3) annotation (Line(points={{-216,-264},{
+          -216,-136},{-192,-136},{-192,-180},{-56,-180},{-56,-172},{-46,-172}},
+        color={0,0,127}));
+  connect(logSwi1.y, reachTZonSetLim) annotation (Line(points={{260,-108},{288,
+          -108},{288,-94},{320,-94}}, color={255,0,255}));
+  connect(logSwi2.y, reachTZonSetNom) annotation (Line(points={{276,-192},{292,
+          -192},{292,-136},{320,-136}}, color={255,0,255}));
+  connect(heaCooMod, logSwi1.u2) annotation (Line(points={{-220,88},{-190,88},{
+          -190,24},{186,24},{186,-108},{236,-108}}, color={255,0,255}));
+  connect(logSwi2.u2, heaCooMod) annotation (Line(points={{252,-192},{144,-192},
+          {144,-210},{-220,-210},{-220,88}}, color={255,0,255}));
+  connect(les.u1, TZonSetCur) annotation (Line(points={{136,-132},{124,-132},{
+          124,-96},{52,-96},{52,-116},{-168,-116},{-168,-92},{-220,-92},{-220,
+          -90}}, color={0,0,127}));
+  connect(gre2.u1, TZonSetCur) annotation (Line(points={{136,-242},{136,-244},{
+          112,-244},{112,-96},{52,-96},{52,-116},{-168,-116},{-168,-92},{-220,
+          -92},{-220,-90}}, color={0,0,127}));
+  connect(TZonHeaSetLim, gre3.u2) annotation (Line(points={{-220,-134},{-220,
+          -136},{-60,-136},{-60,-184},{172,-184},{172,-112},{132,-112},{132,
+          -102}}, color={0,0,127}));
+  connect(TZonCooSetLim, les.u2) annotation (Line(points={{-216,-224},{-120,
+          -224},{-120,-216},{98,-216},{98,-140},{136,-140}}, color={0,0,127}));
+  connect(les.y, not3.u)
+    annotation (Line(points={{160,-132},{178,-132}}, color={255,0,255}));
+  connect(not3.y, logSwi1.u3) annotation (Line(points={{202,-132},{224,-132},{
+          224,-116},{236,-116}}, color={255,0,255}));
+  connect(not2.y, logSwi1.u1) annotation (Line(points={{198,-94},{200,-100},{
+          236,-100}}, color={255,0,255}));
+  connect(not1.y, logSwi2.u1) annotation (Line(points={{200,-204},{208,-204},{
+          208,-184},{252,-184}}, color={255,0,255}));
+  connect(not4.y, logSwi2.u3) annotation (Line(points={{202,-242},{240,-242},{
+          240,-200},{252,-200}}, color={255,0,255}));
+  connect(TZonHeaSetNom, les1.u2) annotation (Line(points={{-220,-174},{-220,
+          -176},{-140,-176},{-140,-172},{-136,-172},{-136,-132},{-88,-132},{-88,
+          -176},{-64,-176},{-64,-192},{116,-192},{116,-208},{134,-208},{134,
+          -212}}, color={0,0,127}));
+  connect(TZonCooSetNom, gre2.u2) annotation (Line(points={{-216,-264},{-216,
+          116},{-248,116},{-248,-292},{136,-292},{136,-250}}, color={0,0,127}));
+  connect(gre2.y, not4.u)
+    annotation (Line(points={{160,-242},{178,-242}}, color={255,0,255}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
+            -300},{300,100}})),                                  Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-200,-300},{300,
+            100}})));
 end single_zone_ratchet_cooling;

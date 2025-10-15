@@ -59,7 +59,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{150,-58},{170,-38}})));
-  Controls.Subsequences.ratchetSelectionCooling ratchetSelection(nValues=nZones)
+  Controls.Subsequences.temDifSelectionMin ratchetSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-196,-30},{-176,-10}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-120,-28},{-100,-8}})));
@@ -84,7 +84,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{80,150},{100,170}})));
   Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum(nin=3)
     annotation (Placement(transformation(extent={{100,-52},{120,-32}})));
-  Controls.Subsequences.reboundSelectionCooling reboundSelection(nValues=nZones)
+  Controls.Subsequences.temDifSelectionMax reboundSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-164,58},{-144,78}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre1
                                             [nZones]
@@ -160,11 +160,10 @@ equation
     annotation (Line(points={{28.8,88.8571},{36,88.8571},{36,100},{-172,100},{
           -172,64},{-208,64},{-208,-15.4},{-198,-15.4}},
                                                 color={0,0,127}));
-  connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.reachTZonSetMax)
+  connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.ignoreFlag)
     annotation (Line(points={{28.8,82.1429},{36,82.1429},{36,68},{-74,68},{-74,
           62},{-76,62},{-76,42},{-206,42},{-206,44},{-210,44},{-210,-22},{-206,
-          -22},{-206,-25.8},{-198,-25.8}},
-                                color={255,0,255}));
+          -22},{-206,-25.8},{-198,-25.8}}, color={255,0,255}));
   connect(pre1.y, dF_Controller_cooling.rebSig) annotation (Line(points={{-90,64},
           {-66,64},{-66,88.1429},{7.2,88.1429}},
                                              color={255,0,255}));
@@ -172,10 +171,9 @@ equation
     annotation (Line(points={{28.8,88.8571},{36,88.8571},{36,100},{-172,100},{
           -172,72.6},{-166,72.6}},
                               color={0,0,127}));
-  connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.reachTZonSetMin)
+  connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.ignoreFlag)
     annotation (Line(points={{28.8,79.1429},{38,79.1429},{38,62},{-74,62},{-74,
-          48},{-172,48},{-172,62.2},{-166,62.2}},
-                                        color={255,0,255}));
+          48},{-172,48},{-172,62.2},{-166,62.2}}, color={255,0,255}));
   connect(heatingOccSetpoint.y, swi1.u1) annotation (Line(points={{-62,2},{-18,2},
           {-18,-24},{-10,-24}}, color={0,0,127}));
   connect(heatingUnoccSetpoint1.y, swi1.u3) annotation (Line(points={{-36,-48},{
@@ -193,12 +191,13 @@ equation
   connect(mulSum.y, demand_control_signal.totalElectricPower) annotation (Line(
         points={{122,-42},{130,-42},{130,-66},{-168,-66},{-168,-33.1},{-161.7,
           -33.1}}, color={0,0,127}));
-  connect(ratchetSelection.DoRat, demand_control_signal.DoRatIni) annotation (
-      Line(points={{-174,-20},{-174,-19.8},{-162,-19.8}}, color={255,0,255}));
+  connect(ratchetSelection.actionFlag, demand_control_signal.DoRatIni)
+    annotation (Line(points={{-174,-20},{-174,-19.8},{-162,-19.8}}, color={255,
+          0,255}));
   connect(pre.u, demand_control_signal.DoRatFin) annotation (Line(points={{-122,
           -18},{-130,-18},{-130,-26},{-138,-26}}, color={255,0,255}));
-  connect(reboundSelection.DoReb, pre1.u) annotation (Line(points={{-142,68},{
-          -124,68},{-124,64},{-114,64}}, color={255,0,255}));
+  connect(reboundSelection.actionFlag, pre1.u) annotation (Line(points={{-142,
+          68},{-124,68},{-124,64},{-114,64}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

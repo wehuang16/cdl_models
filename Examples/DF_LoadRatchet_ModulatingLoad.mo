@@ -59,7 +59,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{150,-58},{170,-38}})));
-  Controls.Subsequences.ratchetSelectionCooling ratchetSelection(nValues=nZones)
+  Controls.Subsequences.temDifSelectionMin ratchetSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-196,-30},{-176,-10}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre[nZones]
     annotation (Placement(transformation(extent={{-120,-28},{-100,-8}})));
@@ -84,7 +84,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{80,150},{100,170}})));
   Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum(nin=3)
     annotation (Placement(transformation(extent={{100,-52},{120,-32}})));
-  Controls.Subsequences.reboundSelectionCooling reboundSelection(nValues=nZones)
+  Controls.Subsequences.temDifSelectionMax reboundSelection(nValues=nZones)
     annotation (Placement(transformation(extent={{-160,58},{-140,78}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre1
                                             [nZones]
@@ -163,18 +163,18 @@ equation
   connect(dF_Controller_cooling.TZonTemDif, ratchetSelection.TZonTemDif)
     annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,64},
           {-208,64},{-208,-15.4},{-198,-15.4}}, color={0,0,127}));
-  connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.reachTZonSetMax)
+  connect(dF_Controller_cooling.reachTZonSetMax, ratchetSelection.ignoreFlag)
     annotation (Line(points={{30,79.6},{36,79.6},{36,68},{-74,68},{-74,62},{-76,
           62},{-76,42},{-206,42},{-206,44},{-210,44},{-210,-22},{-206,-22},{-206,
           -25.8},{-198,-25.8}}, color={255,0,255}));
   connect(pre1.y, dF_Controller_cooling.rebSig) annotation (Line(points={{-82,
           64},{-20,64},{-20,87.8},{6,87.8}}, color={255,0,255}));
-  connect(reboundSelection.DoReb, pre1.u) annotation (Line(points={{-138,68},{-116,
-          68},{-116,64},{-106,64}}, color={255,0,255}));
+  connect(reboundSelection.actionFlag, pre1.u) annotation (Line(points={{-138,
+          68},{-116,68},{-116,64},{-106,64}}, color={255,0,255}));
   connect(dF_Controller_cooling.TZonTemDif, reboundSelection.TZonTemDif)
     annotation (Line(points={{30.2,86.6},{36,86.6},{36,100},{-172,100},{-172,
           72.6},{-162,72.6}}, color={0,0,127}));
-  connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.reachTZonSetMin)
+  connect(dF_Controller_cooling.reachTZonSetMin, reboundSelection.ignoreFlag)
     annotation (Line(points={{30,75.8},{38,75.8},{38,62},{-74,62},{-74,48},{-172,
           48},{-172,62.2},{-162,62.2}}, color={255,0,255}));
   connect(heatingOccSetpoint.y, swi1.u1) annotation (Line(points={{-62,2},{-18,2},
@@ -190,8 +190,8 @@ equation
           {-220,-78},{-210,-78}}, color={255,0,255}));
   connect(booScaRep2.y, logSwi.u2) annotation (Line(points={{-186,-78},{-178,
           -78},{-178,-40},{-156,-40}}, color={255,0,255}));
-  connect(ratchetSelection.DoRat, logSwi.u1) annotation (Line(points={{-174,-20},
-          {-164,-20},{-164,-32},{-156,-32}}, color={255,0,255}));
+  connect(ratchetSelection.actionFlag, logSwi.u1) annotation (Line(points={{-174,
+          -20},{-164,-20},{-164,-32},{-156,-32}}, color={255,0,255}));
   connect(logSwi.y, pre.u) annotation (Line(points={{-132,-40},{-124,-40},{-124,
           -32},{-132,-32},{-132,-18},{-122,-18}}, color={255,0,255}));
   connect(boolconst.y, logSwi.u3) annotation (Line(points={{-142,-94},{-134,-94},
