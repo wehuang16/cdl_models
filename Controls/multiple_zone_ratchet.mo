@@ -2,8 +2,30 @@ within cdl_models.Controls;
 model multiple_zone_ratchet
 
   parameter Integer nZones=3;
+
+
+      parameter Real samplePeriodRatchet(unit="s")=300
+    "Sample period of the demand flexibility control";
+          parameter Real samplePeriodRebound(unit="s")=900
+    "Sample period of rebound";
+     parameter Real TRatThreshold=0.5
+    "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd";
+    parameter Real TRatCoo=0.5
+    "Ratcheting temperature cooling (>0)";
+               parameter Real TRebCoo=-0.3
+    "rebound temperature cooling (<0)";
+           parameter Real TRatHea=-0.5
+    "Ratcheting temperature heating (<0)";
+           parameter Real TRebHea=0.3
+    "rebound temperature heating (>0)";
   Subsequences.single_zone_ratchet_cooling single_zone_ratchet_cooling[nZones](
-      TRatThreshold=1)
+    samplePeriodRatchet=samplePeriodRatchet,
+    samplePeriodRebound=samplePeriodRebound,
+    TRatThreshold=TRatThreshold,
+    TRatCoo=TRatCoo,
+    TRebCoo=TRebCoo,
+    TRatHea=TRatHea,
+    TRebHea=TRebHea)
     annotation (Placement(transformation(extent={{204,-12},{254,16}})));
   Subsequences.temDifSelectionMin temDifSelectionMinHeaRat(nZones=nZones)
     annotation (Placement(transformation(extent={{104,78},{124,98}})));
@@ -11,59 +33,59 @@ model multiple_zone_ratchet
     annotation (Placement(transformation(extent={{126,-62},{146,-42}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput heaCooMod annotation (
       Placement(transformation(extent={{-140,54},{-100,94}}),
-        iconTransformation(extent={{-240,64},{-200,104}})));
+        iconTransformation(extent={{-142,72},{-102,112}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput loaShe
     "Load shed event flag" annotation (Placement(transformation(extent={{-140,18},
-            {-100,58}}), iconTransformation(extent={{-240,32},{-200,72}})));
+            {-100,58}}), iconTransformation(extent={{-142,40},{-102,80}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon[nZones](
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Current zone room air temperature" annotation (Placement(transformation(
-          extent={{-140,-14},{-100,26}}), iconTransformation(extent={{-240,-78},
-            {-200,-38}})));
+          extent={{-140,-14},{-100,26}}), iconTransformation(extent={{-142,-70},
+            {-102,-30}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonSetCur[nZones](
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Current zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-140,-46},{-100,-6}}), iconTransformation(extent={{-240,-110},
-            {-200,-70}})));
+          extent={{-140,-46},{-100,-6}}), iconTransformation(extent={{-142,-102},
+            {-102,-62}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetLim(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "thermal limit zone temperature setpoint" annotation (Placement(
         transformation(extent={{-140,-90},{-100,-50}}), iconTransformation(
-          extent={{-240,-144},{-200,-104}})));
+          extent={{-142,-136},{-102,-96}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetNom(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "nominal zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-140,-130},{-100,-90}}), iconTransformation(extent={{-240,-180},
-            {-200,-140}})));
+          extent={{-140,-130},{-100,-90}}), iconTransformation(extent={{-142,-172},
+            {-102,-132}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetLim(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "thermal limit zone temperature setpoint" annotation (Placement(
         transformation(extent={{-136,-180},{-96,-140}}), iconTransformation(
-          extent={{-240,-214},{-200,-174}})));
+          extent={{-142,-206},{-102,-166}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetNom(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "nominal zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-136,-220},{-96,-180}}), iconTransformation(extent={{-238,
-            -250},{-198,-210}})));
+          extent={{-136,-220},{-96,-180}}), iconTransformation(extent={{-140,-242},
+            {-100,-202}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonSetCom[nZones](
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Zone temperature setpoint command" annotation (Placement(transformation(
-          extent={{282,32},{322,72}}), iconTransformation(extent={{300,22},{340,
-            62}})));
+          extent={{282,32},{322,72}}), iconTransformation(extent={{280,18},{320,
+            58}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep(nout=
         nZones) annotation (Placement(transformation(extent={{24,52},{44,72}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep1(nout=
@@ -89,6 +111,11 @@ model multiple_zone_ratchet
     annotation (Placement(transformation(extent={{144,62},{164,82}})));
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi1[nZones]
     annotation (Placement(transformation(extent={{174,-82},{194,-62}})));
+  Subsequences.zone_setpoint_mock zone_setpoint_mock[nZones] annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={204,-150})));
 equation
   connect(heaCooMod, booScaRep.u) annotation (Line(points={{-120,74},{14,74},{
           14,62},{22,62}}, color={255,0,255}));
@@ -118,14 +145,10 @@ equation
           -7.1}}, color={0,0,127}));
   connect(TZon, single_zone_ratchet_cooling.TZon) annotation (Line(points={{
           -120,6},{72,6},{72,4.94},{202,4.94}}, color={0,0,127}));
-  connect(TZonSetCur, single_zone_ratchet_cooling.TZonSetCur) annotation (Line(
-        points={{-120,-26},{-84,-26},{-84,2.7},{202,2.7}}, color={0,0,127}));
   connect(single_zone_ratchet_cooling.TZonSetCom, TZonSetCom) annotation (Line(
         points={{256,11.94},{276,11.94},{276,52},{302,52}}, color={0,0,127}));
   connect(TZon, subt.u1) annotation (Line(points={{-120,6},{-38,6},{-38,-16},{
           -44,-16},{-44,-26},{-36,-26}}, color={0,0,127}));
-  connect(TZonSetCur, subt.u2) annotation (Line(points={{-120,-26},{-46,-26},{
-          -46,-38},{-36,-38}}, color={0,0,127}));
   connect(temDifSelectionMinHeaRat.actionFlag, logSwi.u1) annotation (Line(
         points={{126,88},{134,88},{134,80},{142,80}}, color={255,0,255}));
   connect(temDifSelectionMaxCooRat.actionFlag, logSwi.u3) annotation (Line(
@@ -164,6 +187,14 @@ equation
   connect(temDifSelectionMaxCooRat.ignoreFlag, single_zone_ratchet_cooling.reachTZonSetLim)
     annotation (Line(points={{100,48.2},{92,48.2},{92,36},{266,36},{266,2.42},{
           256,2.42}}, color={255,0,255}));
+  connect(single_zone_ratchet_cooling.TZonSetCom, zone_setpoint_mock.setpointCommand)
+    annotation (Line(points={{256,11.94},{268,11.94},{268,-150},{216,-150}},
+        color={0,0,127}));
+  connect(zone_setpoint_mock.setpoint, subt.u2) annotation (Line(points={{192,
+          -150},{160,-150},{160,2},{-48,2},{-48,-38},{-36,-38}}, color={0,0,127}));
+  connect(zone_setpoint_mock.setpoint, single_zone_ratchet_cooling.TZonSetCur)
+    annotation (Line(points={{192,-150},{160,-150},{160,2.7},{202,2.7}}, color=
+          {0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -220},{280,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-220},{280,

@@ -147,12 +147,12 @@ replaceable package MediumAir = Buildings.Media.Air;
         demand_limit_diff)
     annotation (Placement(transformation(extent={{-350,-152},{-330,-132}})));
 equation
-  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a2)
-    annotation (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}},
+  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a) annotation
+    (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}}, color={0,
+          127,255}));
+  connect(modelicaRoom.port_b, custom_air_conditioner_OnOff.port_a) annotation
+    (Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,14.6}},
         color={0,127,255}));
-  connect(modelicaRoom.port_b2, custom_air_conditioner_OnOff.port_a)
-    annotation (Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,
-          14.6}}, color={0,127,255}));
   connect(modelicaRoom.TZon, custom_air_conditioner_OnOff.ZAT) annotation (Line(
         points={{149.6,89},{149.6,24.8},{98,24.8}}, color={0,0,127}));
   connect(customHeatAddition1.y[1], modelicaRoom[1].CustomHeatFlow) annotation (
@@ -229,10 +229,10 @@ equation
           -32},{-132,-32},{-132,-18},{-122,-18}}, color={255,0,255}));
   connect(boolconst.y, logSwi.u3) annotation (Line(points={{-142,-94},{-134,-94},
           {-134,-48},{-156,-48}}, color={255,0,255}));
-  connect(modelicaRoom1.port_b2, custom_air_conditioner_OnOff1.port_a)
-    annotation (Line(points={{158.4,-145.2},{166,-145.2},{166,-218},{74,-218},{74,
-          -207.4},{85.6,-207.4}}, color={0,127,255}));
-  connect(custom_air_conditioner_OnOff1.port_b, modelicaRoom1.port_a2)
+  connect(modelicaRoom1.port_b, custom_air_conditioner_OnOff1.port_a)
+    annotation (Line(points={{158.4,-145.2},{166,-145.2},{166,-218},{74,-218},{
+          74,-207.4},{85.6,-207.4}}, color={0,127,255}));
+  connect(custom_air_conditioner_OnOff1.port_b, modelicaRoom1.port_a)
     annotation (Line(points={{106.2,-207.4},{128,-207.4},{128,-145.6},{115.4,-145.6}},
         color={0,127,255}));
   connect(modelicaRoom1.TZon, custom_air_conditioner_OnOff1.ZAT) annotation (

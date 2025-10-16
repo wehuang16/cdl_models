@@ -4,3 +4,4 @@ temDifSelectionMax
 HeatingCoolingControl
 smallPassDemandRatchet
 demand_control_signal
+zone_setpoint_mock

@@ -12,21 +12,17 @@ model ModelicaRoom
   final parameter Modelica.Units.SI.Area AFlo=LengthFlo*WidthFlo "Floor area";
 
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather Data Bus"
-    annotation (Placement(transformation(extent={{174,130},{194,150}}),
+    annotation (Placement(transformation(extent={{90,128},{110,148}}),
         iconTransformation(extent={{286,104},{306,124}})));
-  Modelica.Blocks.Interfaces.RealOutput TOut
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={142,210})));
   Modelica.Blocks.Interfaces.RealOutput TZon annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={296,210})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a2(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
         MediumAir)
     annotation (Placement(transformation(extent={{84,74},{104,94}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b2(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium =
         MediumAir)
     annotation (Placement(transformation(extent={{514,78},{534,98}})));
   parameter Buildings.HeatTransfer.Data.OpaqueConstructions.Generic conExtWal(
@@ -108,10 +104,6 @@ model ModelicaRoom
     d=37.4832042950667,
     nStaRef=1) "Wood for exterior construction"
     annotation (Placement(transformation(extent={{434,116},{454,136}})));
-  Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam=
-        Modelica.Utilities.Files.loadResource(
-        "modelica://cdl_models/Resources/weatherdata/HAF_epw_modified_5mins.mos"))
-    annotation (Placement(transformation(extent={{108,108},{128,128}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
     annotation (Placement(transformation(extent={{286,146},{306,166}})));
   Buildings.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo
@@ -121,18 +113,10 @@ model ModelicaRoom
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,-62})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor2(C=5*50*
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=5*50*
         1005*1.2)
     annotation (Placement(transformation(extent={{358,22},{378,42}})));
 equation
-  connect(weaBus.TDryBul, TOut) annotation (Line(
-      points={{184.05,140.05},{184.05,210},{142,210}},
-      color={255,204,51},
-      thickness=0.5), Text(
-      string="%first",
-      index=-1,
-      extent={{-6,3},{-6,3}},
-      horizontalAlignment=TextAlignment.Right));
   connect(qRadGai_flow.y,multiplex3_1. u1[1])  annotation (Line(
       points={{183,76},{192,76},{192,43},{200,43}},
       color={0,0,127},
@@ -149,22 +133,10 @@ equation
       points={{223,36},{280,36},{280,30},{286.4,30}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(weaDat1.weaBus, weaBus) annotation (Line(
-      points={{128,118},{184,118},{184,140}},
-      color={255,204,51},
-      thickness=0.5), Text(
-      string="%second",
-      index=1,
-      extent={{6,3},{6,3}},
-      horizontalAlignment=TextAlignment.Left));
-  connect(roo.weaBus, weaDat1.weaBus) annotation (Line(
-      points={{325.9,39.9},{325.9,118},{128,118}},
-      color={255,204,51},
-      thickness=0.5));
-  connect(port_a2, roo.ports[1]) annotation (Line(points={{94,84},{180,84},{180,
+  connect(port_a, roo.ports[1]) annotation (Line(points={{94,84},{180,84},{180,
           92},{272,92},{272,11},{293,11}}, color={0,127,255}));
-  connect(port_b2, roo.ports[2]) annotation (Line(points={{524,88},{410,88},{
-          410,-14},{293,-14},{293,13}}, color={0,127,255}));
+  connect(port_b, roo.ports[2]) annotation (Line(points={{524,88},{410,88},{410,
+          -14},{293,-14},{293,13}}, color={0,127,255}));
   connect(roo.heaPorAir, temperatureSensor.port) annotation (Line(points={{307,
           22},{310,22},{310,50},{286,50},{286,156}}, color={191,0,0}));
   connect(TZon, temperatureSensor.T) annotation (Line(points={{296,210},{296,
@@ -173,8 +145,16 @@ equation
           274,-56},{274,50},{307,50},{307,22}}, color={191,0,0}));
   connect(preHeaFlo.Q_flow, CustomHeatFlow) annotation (Line(points={{210,-56},
           {102,-56},{102,-62},{90,-62}}, color={0,0,127}));
-  connect(heatCapacitor2.port, roo.heaPorAir) annotation (Line(points={{368,22},
+  connect(heatCapacitor.port, roo.heaPorAir) annotation (Line(points={{368,22},
           {368,-16},{274,-16},{274,50},{307,50},{307,22}}, color={191,0,0}));
+  connect(weaBus, roo.weaBus) annotation (Line(
+      points={{100,138},{325.9,138},{325.9,39.9}},
+      color={255,204,51},
+      thickness=0.5), Text(
+      string="%first",
+      index=-1,
+      extent={{-3,6},{-3,6}},
+      horizontalAlignment=TextAlignment.Right));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{100,
             -100},{520,200}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{100,-100},{520,200}})),

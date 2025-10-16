@@ -22,7 +22,7 @@ replaceable package MediumAir = Buildings.Media.Air;
                                          loadShedMode(table=[0,0; 3600*14,1; 3600
         *18,0; 3600*24,0],                   period=86400)
     annotation (Placement(transformation(extent={{-228,118},{-208,138}})));
-  ThermalZones.ModelicaRoom modelicaRoom[nZones](heatCapacitor2(each C=10*50*
+  ThermalZones.ModelicaRoom modelicaRoom[nZones](heatCapacitor(each C=10*50*
           1005*1.2))
     annotation (Placement(transformation(extent={{130,58},{172,88}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
@@ -104,13 +104,17 @@ replaceable package MediumAir = Buildings.Media.Air;
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-20,34})));
+  Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam=
+        Modelica.Utilities.Files.loadResource(
+        "modelica://cdl_models/Resources/weatherdata/HAF_epw_modified_5mins.mos"))
+    annotation (Placement(transformation(extent={{-164,-94},{-144,-74}})));
 equation
-  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a2)
-    annotation (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}},
+  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a) annotation
+    (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}}, color={0,
+          127,255}));
+  connect(modelicaRoom.port_b, custom_air_conditioner_OnOff.port_a) annotation
+    (Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,14.6}},
         color={0,127,255}));
-  connect(modelicaRoom.port_b2, custom_air_conditioner_OnOff.port_a)
-    annotation (Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,
-          14.6}}, color={0,127,255}));
   connect(modelicaRoom.TZon, custom_air_conditioner_OnOff.ZAT) annotation (Line(
         points={{149.6,89},{149.6,24.8},{98,24.8}}, color={0,0,127}));
   connect(customHeatAddition1.y[1], modelicaRoom[1].CustomHeatFlow) annotation (

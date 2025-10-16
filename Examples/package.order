@@ -1,5 +1,6 @@
 DF_SingleSetpoint_OnOffLoad
 DF_SimpleRatchet_OnOffLoad
+DF_SimpleRatchet_OnOffLoad2
 DF_LoadRatchet_OnOffLoad
 DF_LoadRatchetBaseline_OnOffLoad
 DF_WeipingLinearSetpoint_OnOffLoad
