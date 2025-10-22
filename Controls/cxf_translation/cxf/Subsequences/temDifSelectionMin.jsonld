@@ -1,0 +1,364 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.con"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.not1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi"
+        }
+      ],
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231P:documentation": "info=<html>\nhello\n</html>",
+      "S231P:hasInput": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.ignoreFlag"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.TZonTemDif"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.actionFlag"
+      },
+      "S231P:hasParameter": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.nZones"
+      },
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
+      "S231P:label": "temDifSelectionMin"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.actionFlag",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "actionFlag[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Add",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-48,-18},{-28,2}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2.u1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2.u2"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "add2[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre.u1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.con",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-182,66},{-162,86}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.con.k"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.con.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "con[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.con.k",
+      "S231P:value": 1000
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.con.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const",
+      "@type": "http://example.org#Modelica.Blocks.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-88,-66},{-68,-46}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const.k"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "const[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const.k",
+      "S231P:value": "1:1:nZones"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai.u"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-36,-70},{-16,-50}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai.k"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "gai[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai.k",
+      "S231P:value": {
+        "@value": "0.000001",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gai.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-10,20},{10,40}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre.u1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre.u2"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "gre[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.not1.u"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.ignoreFlag",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-142,-90},{-102,-50}})),iconTransformation(extent={{-140,-78},{-100,-38}})))",
+      "S231P:isArray": true,
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.u2"
+      },
+      "S231P:label": "ignoreFlag[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiMin",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-12,-26},{8,-6}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin.nin"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin.y"
+        }
+      ],
+      "S231P:label": "mulMin"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin.nin",
+      "S231P:value": "nZones"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.mulMin.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep.u"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.not1",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Not",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{28,20},{48,40}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.not1.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.not1.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "not1[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.not1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.actionFlag"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.nZones",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of values to compare",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nZones",
+      "S231P:value": 3
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{28,-30},{48,-10}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep.nout"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep.y"
+        }
+      ],
+      "S231P:label": "reaScaRep"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep.nout",
+      "S231P:value": "nZones"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.reaScaRep.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.gre.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-68,28},{-48,48}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.u1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.u2"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.u3"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.y"
+        }
+      ],
+      "S231P:isArray": true,
+      "S231P:label": "swi[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.add2.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.TZonTemDif",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-140,16},{-100,56}})),iconTransformation(extent={{-140,26},{-100,66}})))",
+      "S231P:isArray": true,
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.swi.u3"
+      },
+      "S231P:label": "TZonTemDif[nZones]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nZones)"
+    }
+  ]
+}
