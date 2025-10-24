@@ -37,14 +37,56 @@ model multiple_zone_ratchet
     final quantity="ThermodynamicTemperature")
     "Current zone room air temperature" annotation (Placement(transformation(
           extent={{-140,-14},{-100,26}}), iconTransformation(extent={{-142,-34},
-            {-102,6}})));
+            {-102,6}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix hpfs: <http://hpflex/shapes#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix qudt: <http://qudt.org/schema/qudt/> .
+            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+            @prefix unit: <http://qudt.org/vocab/unit/> .
+            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
+              sh:class brick:Zone_Air_Temperature_Sensor ;
+              sh:property hpfs:temperature_Kelvin, hpfs:temperature_ref .
+            hpfs:temperature_Kelvin a sh:PropertyShape ;
+              sh:hasValue unit:Kelvin ;
+              sh:minCount 1 ;
+              sh:path qudt:hasUnit .
+            hpfs:temperature_ref a sh:PropertyShape ;
+              sh:minCount 1 ;
+              sh:path ref:hasExternalReference .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a temperature reading input that should be hardwired to the zone air temperature sensor"))   );
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetCur[nZones](
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Current zone temperature setpoint" annotation (Placement(transformation(
           extent={{-140,-46},{-100,-6}}), iconTransformation(extent={{-142,-66},
-            {-102,-26}})));
+            {-102,-26}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix hpfs: <http://hpflex/shapes#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix qudt: <http://qudt.org/schema/qudt/> .
+            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+            @prefix unit: <http://qudt.org/vocab/unit/> .
+            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
+              sh:class brick:Zone_Air_Temperature_Setpoint ;
+              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
+            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
+              sh:hasValue unit:Kelvin ;
+              sh:minCount 1 ;
+              sh:path qudt:hasUnit .
+            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
+                sh:minCount 1 ;
+                sh:path ref:hasExternalReference .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a temperature heating setpoint input"))   );
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetMin(
     final unit="K",
     displayUnit="degC",
@@ -121,7 +163,28 @@ model multiple_zone_ratchet
     final quantity="ThermodynamicTemperature")
     "Current zone temperature setpoint" annotation (Placement(transformation(
           extent={{-140,-78},{-100,-38}}), iconTransformation(extent={{-140,
-            -100},{-100,-60}})));
+            -100},{-100,-60}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix hpfs: <http://hpflex/shapes#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix qudt: <http://qudt.org/schema/qudt/> .
+            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+            @prefix unit: <http://qudt.org/vocab/unit/> .
+            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
+              sh:class brick:Zone_Air_Temperature_Setpoint ;
+              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
+            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
+              sh:hasValue unit:Kelvin ;
+              sh:minCount 1 ;
+              sh:path qudt:hasUnit .
+            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
+                sh:minCount 1 ;
+                sh:path ref:hasExternalReference .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a temperature cooling setpoint input"))   );
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi2
                                                   [nZones]
     annotation (Placement(transformation(extent={{138,18},{158,38}})));
