@@ -16,10 +16,10 @@ replaceable package MediumAir = Buildings.Media.Air;
    parameter Real TZonHeaSetMin(unit="K")=273.15+16
     "minimum zone heating ratcheting temperature setpoint";
 
-  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable
-                                         loadShedMode(
-    table=[0,0; 14,1; 18,0; 24,0],
-    timeScale=3600,                          period=86400)
+  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occupancyMode(
+    table=[0,0; 7,1; 20,0; 24,0],
+    timeScale=3600,
+    period=86400)
     annotation (Placement(transformation(extent={{-88,56},{-68,76}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam=
         Modelica.Utilities.Files.loadResource(
@@ -33,9 +33,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     custom_air_conditioner_OnOff[3]
     annotation (Placement(transformation(extent={{76,-4},{96,16}})));
   Controls.multiple_zone_ratchet multiple_zone_ratchet(
-    nZones=3,
-    loadShedDurationTypical(displayUnit="h") = 14400,
-    TRatThreshold=1)
+    nZones=3, loadShedDurationTypical(displayUnit="h"))
                annotation (Placement(transformation(extent={{22,60},{60,92}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1[3](k={1,1,1})
     annotation (Placement(transformation(extent={{38,110},{58,130}})));
@@ -76,9 +74,6 @@ replaceable package MediumAir = Buildings.Media.Air;
         rotation=180,
         origin={146,48})));
 equation
-  connect(loadShedMode.y[1], multiple_zone_ratchet.loaShe) annotation (Line(
-        points={{-66,66},{10,66},{10,85.6},{20,85.6}},
-                                                     color={255,0,255}));
   connect(con1.y, thermostatSetpointResolutionCoo.temRes) annotation (Line(
         points={{60,120},{108,120},{108,72},{76,72},{76,82.6}}, color={0,0,127}));
   connect(custom_air_conditioner_OnOff.port_b, building_3_zone.port_a)
@@ -101,11 +96,6 @@ equation
           2},{-158,24},{-142,24}}, color={0,0,127}));
   connect(con2.y, add2.u2) annotation (Line(points={{-180,48},{-172,48},{-172,44},
           {-160,44},{-160,12},{-142,12}}, color={0,0,127}));
-  connect(heatingSetpoint.y[1], multiple_zone_ratchet.TZonHeaSetNom)
-    annotation (Line(points={{-188,76},{-94,76},{-94,50},{-58,50},{-58,64},{14,64},
-          {14,66.8},{19.8,66.8}}, color={0,0,127}));
-  connect(coolingSetpoint.y[1], multiple_zone_ratchet.TZonCooSetNom)
-    annotation (Line(points={{-198,2},{12,2},{12,59.8},{20,59.8}}, color={0,0,127}));
   connect(weaDat1.weaBus, building_3_zone.weaBus) annotation (Line(
       points={{-80,-74},{52,-74},{52,-76.96},{57.4,-76.96}},
       color={255,204,51},
@@ -113,14 +103,8 @@ equation
   connect(multiple_zone_ratchet.TZonCooSetCom, thermostatSetpointResolutionCoo.setpointCommand)
     annotation (Line(points={{62,69},{122,69},{122,100},{104,100},{104,106},{76,
           106},{76,90}}, color={0,0,127}));
-  connect(sub.y, multiple_zone_ratchet.TZonHeaSetMin) annotation (Line(points={
-          {-128,50},{-120,50},{-120,82},{12,82},{12,70.4},{19.8,70.4}}, color={
-          0,0,127}));
-  connect(add2.y, multiple_zone_ratchet.TZonCooSetMax) annotation (Line(points=
-          {{-118,18},{10,18},{10,62},{14,62},{14,63.4},{19.8,63.4}}, color={0,0,
-          127}));
-  connect(thermostatSetpointResolutionCoo.actualSetpoint, uniDel.u) annotation
-    (Line(points={{100,90},{110,90},{110,42},{98,42}}, color={0,0,127}));
+  connect(thermostatSetpointResolutionCoo.actualSetpoint, uniDel.u) annotation (
+     Line(points={{100,90},{110,90},{110,42},{98,42}}, color={0,0,127}));
   connect(uniDel.y, custom_air_conditioner_OnOff.TCooSet) annotation (Line(
         points={{74,42},{60,42},{60,14.4},{74,14.4}}, color={0,0,127}));
   connect(uniDel.y, multiple_zone_ratchet.TZonCooSetCur)
@@ -145,6 +129,8 @@ equation
   connect(uniDel1.y, custom_air_conditioner_OnOff.THeaSet) annotation (Line(
         points={{134,48},{126,48},{126,24},{58,24},{58,3.6},{74,3.6}}, color={0,
           0,127}));
+  connect(occupancyMode.y[1], multiple_zone_ratchet.occSta) annotation (Line(
+        points={{-66,66},{-58,66},{-58,89.8},{20,89.8}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(

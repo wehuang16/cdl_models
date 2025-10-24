@@ -2,20 +2,26 @@ within cdl_models.Controls;
 model multiple_zone_ratchet
 
   parameter Integer nZones=3;
+  parameter Real loadShedHourStart=16;
+  parameter Real loadShedHourEnd=18;
+  parameter Real TZonHeaSetNomOcc(unit="K")=273.15+20;
+  parameter Real TZonHeaSetNomUnocc(unit="K")=273.15+12;
+  parameter Real TZonCooSetNomOcc(unit="K")=273.15+25;
+  parameter Real TZonCooSetNomUnocc(unit="K")=273.15+32;
     parameter Real loadShedDurationTypical(unit="s")=7200;
     parameter Real reboundDuration(unit="s")=3600;
-    parameter Real loadShedTempAmountTypical=5;
+    parameter Real loadShedTempAmount=5;
     parameter Boolean loaSheHeaAct=true;
     parameter Boolean loaSheCooAct=true;
-     parameter Real TRatThreshold=0.5
+     parameter Real TRatThreshold=1
     "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd";
     parameter Real TRat=1
     "Ratcheting temperature (defined as >0)";
                parameter Real TReb=1
     "rebound temperature (defined as >0)";
-      parameter Real samplePeriodRatchet(unit="s")=loadShedDurationTypical*0.3333*TRat/loadShedTempAmountTypical/nZones
+      parameter Real samplePeriodRatchet(unit="s")=loadShedDurationTypical*0.3333*TRat/loadShedTempAmount/nZones
     "Sample period of the demand flexibility control";
-          parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmountTypical/nZones
+          parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount/nZones
     "Sample period of rebound";
   Subsequences.single_zone_ratchet_heating single_zone_ratchet_heating[nZones](
     samplePeriodRatchet=samplePeriodRatchet,
@@ -28,9 +34,6 @@ model multiple_zone_ratchet
     annotation (Placement(transformation(extent={{144,162},{164,182}})));
   Subsequences.temDifSelectionMax temDifSelectionMaxHeaReb(nZones=nZones)
     annotation (Placement(transformation(extent={{148,90},{168,110}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput loaShe
-    "Load shed event flag" annotation (Placement(transformation(extent={{-140,18},
-            {-100,58}}), iconTransformation(extent={{-140,16},{-100,56}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon[nZones](
     final unit="K",
     displayUnit="degC",
@@ -58,7 +61,7 @@ model multiple_zone_ratchet
               sh:minCount 1 ;
               sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature reading input that should be hardwired to the zone air temperature sensor"))   );
+            "<cdl_instance_name> is a temperature reading input that should be hardwired to the zone air temperature sensor")));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetCur[nZones](
     final unit="K",
     displayUnit="degC",
@@ -76,7 +79,7 @@ model multiple_zone_ratchet
             @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
             @prefix unit: <http://qudt.org/vocab/unit/> .
             hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Zone_Air_Temperature_Setpoint ;
+              sh:class brick:Heating_Zone_Air_Temperature_Setpoint ;
               sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
             hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
               sh:hasValue unit:Kelvin ;
@@ -86,43 +89,37 @@ model multiple_zone_ratchet
                 sh:minCount 1 ;
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input"))   );
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetMin(
-    final unit="K",
-    displayUnit="degC",
-    final quantity="ThermodynamicTemperature")
-    "thermal limit zone temperature setpoint" annotation (Placement(
-        transformation(extent={{-138,-110},{-98,-70}}), iconTransformation(
-          extent={{-142,-136},{-102,-96}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetNom(
-    final unit="K",
-    displayUnit="degC",
-    final quantity="ThermodynamicTemperature")
-    "nominal zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-138,-150},{-98,-110}}), iconTransformation(extent={{-142,-172},
-            {-102,-132}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetMax(
-    final unit="K",
-    displayUnit="degC",
-    final quantity="ThermodynamicTemperature")
-    "thermal limit zone temperature setpoint" annotation (Placement(
-        transformation(extent={{-138,-200},{-98,-160}}), iconTransformation(
-          extent={{-142,-206},{-102,-166}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetNom(
-    final unit="K",
-    displayUnit="degC",
-    final quantity="ThermodynamicTemperature")
-    "nominal zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-138,-240},{-98,-200}}), iconTransformation(extent={{-140,-242},
-            {-100,-202}})));
+            "<cdl_instance_name> is a temperature heating setpoint input")));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonHeaSetCom[nZones](
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Zone temperature setpoint command" annotation (Placement(transformation(
           extent={{282,32},{322,72}}), iconTransformation(extent={{280,18},{320,
-            58}})));
-  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1[nZones](k=true)
+            58}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix hpfs: <http://hpflex/shapes#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix qudt: <http://qudt.org/schema/qudt/> .
+            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+            @prefix unit: <http://qudt.org/vocab/unit/> .
+            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
+              sh:class brick:Heating_Zone_Air_Temperature_Setpoint ;
+              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
+            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
+              sh:hasValue unit:Kelvin ;
+              sh:minCount 1 ;
+              sh:path qudt:hasUnit .
+            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
+                sh:minCount 1 ;
+                sh:path ref:hasExternalReference .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a temperature heating setpoint input")));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1[nZones](k=
+        loaSheHeaAct)
     annotation (Placement(transformation(extent={{26,72},{46,92}})));
   Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep1(nout=
         nZones) annotation (Placement(transformation(extent={{34,24},{54,44}})));
@@ -149,7 +146,28 @@ model multiple_zone_ratchet
     final quantity="ThermodynamicTemperature")
     "Zone temperature setpoint command" annotation (Placement(transformation(
           extent={{282,-144},{322,-104}}), iconTransformation(extent={{280,-150},
-            {320,-110}})));
+            {320,-110}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix hpfs: <http://hpflex/shapes#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix qudt: <http://qudt.org/schema/qudt/> .
+            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+            @prefix unit: <http://qudt.org/vocab/unit/> .
+            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
+              sh:class brick:Cooling_Zone_Air_Temperature_Setpoint ;
+              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
+            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
+              sh:hasValue unit:Kelvin ;
+              sh:minCount 1 ;
+              sh:path qudt:hasUnit .
+            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
+                sh:minCount 1 ;
+                sh:path ref:hasExternalReference .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a temperature cooling setpoint input")));
   Subsequences.single_zone_ratchet_cooling single_zone_ratchet_cooling[nZones](
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
@@ -174,7 +192,7 @@ model multiple_zone_ratchet
             @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
             @prefix unit: <http://qudt.org/vocab/unit/> .
             hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Zone_Air_Temperature_Setpoint ;
+              sh:class brick:Cooling_Zone_Air_Temperature_Setpoint ;
               sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
             hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
               sh:hasValue unit:Kelvin ;
@@ -184,7 +202,7 @@ model multiple_zone_ratchet
                 sh:minCount 1 ;
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature cooling setpoint input"))   );
+            "<cdl_instance_name> is a temperature cooling setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi2
                                                   [nZones]
     annotation (Placement(transformation(extent={{138,18},{158,38}})));
@@ -196,19 +214,53 @@ model multiple_zone_ratchet
   Buildings.Controls.OBC.CDL.Reals.Subtract subt1
                                                 [nZones]
     annotation (Placement(transformation(extent={{-18,-46},{2,-26}})));
-  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con2[nZones](k=true)
-    annotation (Placement(transformation(extent={{-64,44},{-44,64}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con2[nZones](k=
+        loaSheCooAct)
+    annotation (Placement(transformation(extent={{-86,56},{-66,76}})));
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput occSta "occupancy status"
+    annotation (Placement(transformation(extent={{-140,62},{-100,102}}),
+        iconTransformation(extent={{-140,58},{-100,98}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix hpfs: <http://hpflex/shapes#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix qudt: <http://qudt.org/schema/qudt/> .
+            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+            @prefix unit: <http://qudt.org/vocab/unit/> .
+            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
+              sh:class brick:Occupancy_Sensor ;
+              sh:property hpfs:occupancy_ref .
+            hpfs:occupancy_ref a sh:PropertyShape ;
+                sh:minCount 1 ;
+                sh:path ref:hasExternalReference .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a temperature heating setpoint input")));
+  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable loaShe(
+    table=[0,0; loadShedHourStart,1; loadShedHourEnd,0; 24,0],
+    timeScale=3600,
+    period=86400)
+    annotation (Placement(transformation(extent={{-94,18},{-74,38}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=loadShedTempAmount)
+    annotation (Placement(transformation(extent={{-246,-150},{-226,-130}})));
+  Buildings.Controls.OBC.CDL.Reals.Subtract TZonHeaSetMin
+    annotation (Placement(transformation(extent={{-184,-120},{-164,-100}})));
+  Buildings.Controls.OBC.CDL.Reals.Add TZonCooSetMax
+    annotation (Placement(transformation(extent={{-172,-178},{-152,-158}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con4(k=TZonHeaSetNomOcc)
+    annotation (Placement(transformation(extent={{-254,-70},{-234,-50}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con5(k=TZonCooSetNomOcc)
+    annotation (Placement(transformation(extent={{-232,-210},{-212,-190}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con6(k=TZonHeaSetNomUnocc)
+    annotation (Placement(transformation(extent={{-248,-108},{-228,-88}})));
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con7(k=TZonCooSetNomUnocc)
+    annotation (Placement(transformation(extent={{-220,-246},{-200,-226}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch TZonHeaSetNom
+    annotation (Placement(transformation(extent={{-194,-78},{-174,-58}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch TZonCooSetNom
+    annotation (Placement(transformation(extent={{-178,-236},{-158,-216}})));
 equation
-  connect(loaShe, booScaRep1.u) annotation (Line(points={{-120,38},{-46,38},{
-          -46,34},{32,34}}, color={255,0,255}));
-  connect(TZonHeaSetMin, reaScaRep.u) annotation (Line(points={{-118,-90},{-42,
-          -90},{-42,-74},{-34,-74}}, color={0,0,127}));
-  connect(TZonHeaSetNom, reaScaRep1.u) annotation (Line(points={{-118,-130},{
-          -34,-130},{-34,-104},{-24,-104}}, color={0,0,127}));
-  connect(TZonCooSetMax, reaScaRep2.u) annotation (Line(points={{-118,-180},{
-          -30,-180},{-30,-140},{-16,-140}}, color={0,0,127}));
-  connect(TZonCooSetNom, reaScaRep3.u) annotation (Line(points={{-118,-220},{
-          -18,-220},{-18,-186},{-10,-186}}, color={0,0,127}));
   connect(reaScaRep1.y,single_zone_ratchet_heating. TZonHeaSetNom) annotation (
       Line(points={{0,-104},{76,-104},{76,-16},{74,-16},{74,-2.2},{202,-2.2}},
         color={0,0,127}));
@@ -294,9 +346,44 @@ equation
           -148},{112,-148}}, color={255,0,255}));
   connect(con.y, logSwi3.u3) annotation (Line(points={{40,-60},{52,-60},{52,-170},
           {112,-170},{112,-164}}, color={255,0,255}));
-  connect(con2.y, logSwi3.u2) annotation (Line(points={{-42,54},{-36,54},{-36,72},
-          {10,72},{10,-28},{18,-28},{18,-44},{54,-44},{54,-156},{112,-156}},
+  connect(con2.y, logSwi3.u2) annotation (Line(points={{-64,66},{-56,66},{-56,-144},
+          {-24,-144},{-24,-156},{112,-156}},
         color={255,0,255}));
+  connect(loaShe.y[1], booScaRep1.u) annotation (Line(points={{-72,28},{22,28},{
+          22,34},{32,34}}, color={255,0,255}));
+  connect(occSta, TZonHeaSetNom.u2) annotation (Line(points={{-120,82},{-120,32},
+          {-206,32},{-206,-68},{-196,-68}}, color={255,0,255}));
+  connect(con4.y, TZonHeaSetNom.u1)
+    annotation (Line(points={{-232,-60},{-196,-60}}, color={0,0,127}));
+  connect(con6.y, TZonHeaSetNom.u3) annotation (Line(points={{-226,-98},{-204,-98},
+          {-204,-76},{-196,-76}}, color={0,0,127}));
+  connect(con5.y, TZonCooSetNom.u1) annotation (Line(points={{-210,-200},{-188,-200},
+          {-188,-218},{-180,-218}}, color={0,0,127}));
+  connect(con7.y, TZonCooSetNom.u3) annotation (Line(points={{-198,-236},{-188,-236},
+          {-188,-234},{-180,-234}}, color={0,0,127}));
+  connect(occSta, TZonCooSetNom.u2) annotation (Line(points={{-120,82},{-120,32},
+          {-206,32},{-206,-184},{-238,-184},{-238,-218},{-190,-218},{-190,-226},
+          {-180,-226}}, color={255,0,255}));
+  connect(TZonHeaSetNom.y, reaScaRep1.u) annotation (Line(points={{-172,-68},{-146,
+          -68},{-146,34},{-100,34},{-100,44},{-58,44},{-58,-104},{-24,-104}},
+        color={0,0,127}));
+  connect(TZonHeaSetNom.y, TZonHeaSetMin.u1) annotation (Line(points={{-172,-68},
+          {-164,-68},{-164,-94},{-194,-94},{-194,-104},{-186,-104}}, color={0,0,
+          127}));
+  connect(con3.y, TZonHeaSetMin.u2) annotation (Line(points={{-224,-140},{-196,-140},
+          {-196,-116},{-186,-116}}, color={0,0,127}));
+  connect(TZonHeaSetMin.y, reaScaRep.u) annotation (Line(points={{-162,-110},{-144,
+          -110},{-144,-246},{-88,-246},{-88,-142},{-52,-142},{-52,-74},{-34,-74}},
+        color={0,0,127}));
+  connect(TZonCooSetNom.y, reaScaRep3.u) annotation (Line(points={{-156,-226},{-146,
+          -226},{-146,-248},{-20,-248},{-20,-186},{-10,-186}}, color={0,0,127}));
+  connect(TZonCooSetNom.y, TZonCooSetMax.u2) annotation (Line(points={{-156,-226},
+          {-148,-226},{-148,-184},{-182,-184},{-182,-174},{-174,-174}}, color={0,
+          0,127}));
+  connect(con3.y, TZonCooSetMax.u1) annotation (Line(points={{-224,-140},{-184,-140},
+          {-184,-162},{-174,-162}}, color={0,0,127}));
+  connect(TZonCooSetMax.y, reaScaRep2.u) annotation (Line(points={{-150,-168},{-82,
+          -168},{-82,-140},{-16,-140}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -220},{280,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-220},{280,
