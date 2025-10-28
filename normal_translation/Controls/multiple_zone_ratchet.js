@@ -7,17 +7,23 @@ const temdifselectionmin_1c237bd2 = require("./Subsequences/temDifSelectionMin")
 
 module.exports = (
   {
+		loadShedHourEnd = 18,
+		loadShedHourStart = 16,
 		loaSheCooAct = true,
 		loaSheHeaAct = true,
 		loadShedDurationTypical = 7200,
-		loadShedTempAmountTypical = 5,
+		loadShedTempAmount = 5,
 		nZones = 3,
 		TRat = 1,
-		samplePeriodRatchet = loadShedDurationTypical*0.3333*TRat/loadShedTempAmountTypical/nZones,
+		samplePeriodRatchet = loadShedDurationTypical*0.3333*TRat/loadShedTempAmount/nZones,
 		reboundDuration = 3600,
 		TReb = 1,
-		samplePeriodRebound = reboundDuration*TReb/loadShedTempAmountTypical/nZones,
-		TRatThreshold = 0.5,
+		samplePeriodRebound = reboundDuration*TReb/loadShedTempAmount/nZones,
+		TRatThreshold = 1,
+		TZonCooSetNomOcc = 273.15 +25,
+		TZonCooSetNomUnocc = 273.15 +32,
+		TZonHeaSetNomOcc = 273.15 +20,
+		TZonHeaSetNomUnocc = 273.15 +12,
     } = {}
 ) => {
   // http://example.org#cdl_models.Controls.multiple_zone_ratchet.single_zone_ratchet_cooling
