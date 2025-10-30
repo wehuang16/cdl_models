@@ -1,0 +1,11 @@
+{
+  "inputs": [
+    "TZon",
+    "TZonCooSetCur",
+    "TZonHeaSetCur"
+  ],
+  "outputs": [
+    "TZonCooSetCom",
+    "TZonHeaSetCom"
+  ]
+}
