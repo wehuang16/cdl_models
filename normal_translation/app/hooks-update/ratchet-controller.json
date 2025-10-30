@@ -1,1 +1,0 @@
-{"name":"ratchet-controller","entryPoint":"hooks/ratchet-controller.js","schedule":{"rrule":"RRULE:FREQ=SECONDLY;INTERVAL=1"}}

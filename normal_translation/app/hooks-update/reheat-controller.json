@@ -1,1 +1,0 @@
-{"name":"reheat-controller","entryPoint":"hooks/reheat-controller.js","schedule":{"rrule":"RRULE:FREQ=SECONDLY;INTERVAL=1"}}
