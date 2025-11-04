@@ -1,5 +1,5 @@
 
-// http://example.org#cdl_models.Controls.multiple_zone_ratchet
+// http://example.org#cdl_models.Controls.Controller
 const constant_655d39b4 = require("../../Buildings/Controls/OBC/CDL/Logical/Sources/Constant");
 const timetable_61011cf1 = require("../../Buildings/Controls/OBC/CDL/Logical/Sources/TimeTable");
 const switch_1e2c142e = require("../../Buildings/Controls/OBC/CDL/Logical/Switch");
@@ -9,10 +9,10 @@ const subtract_040901c2 = require("../../Buildings/Controls/OBC/CDL/Reals/Subtra
 const switch_91d77162 = require("../../Buildings/Controls/OBC/CDL/Reals/Switch");
 const booleanscalarreplicator_85f98ef6 = require("../../Buildings/Controls/OBC/CDL/Routing/BooleanScalarReplicator");
 const realscalarreplicator_6941df46 = require("../../Buildings/Controls/OBC/CDL/Routing/RealScalarReplicator");
-const single_zone_ratchet_cooling_89149cd0 = require("./Subsequences/single_zone_ratchet_cooling");
-const single_zone_ratchet_heating_7fc1a8c9 = require("./Subsequences/single_zone_ratchet_heating");
-const temdifselectionmax_1c237ae4 = require("./Subsequences/temDifSelectionMax");
-const temdifselectionmin_1c237bd2 = require("./Subsequences/temDifSelectionMin");
+const single_zone_ratchet_cooling_89149cd0 = require("../../Subsequences/single_zone_ratchet_cooling");
+const single_zone_ratchet_heating_7fc1a8c9 = require("../../Subsequences/single_zone_ratchet_heating");
+const temdifselectionmax_1c237ae4 = require("../../Subsequences/temDifSelectionMax");
+const temdifselectionmin_1c237bd2 = require("../../Subsequences/temDifSelectionMin");
 
 module.exports = (
   {
@@ -78,7 +78,7 @@ module.exports = (
   // http://example.org#cdl_models.Controls.multiple_zone_ratchet.single_zone_ratchet_heating
   const single_zone_ratchet_heatingFn = single_zone_ratchet_heating_7fc1a8c9({ samplePeriodRatchet: samplePeriodRatchet, samplePeriodRebound: samplePeriodRebound, TRat: TRat, TRatThreshold: TRatThreshold, TReb: TReb });
   // http://example.org#cdl_models.Controls.multiple_zone_ratchet.loaShe
-  const loaSheFn = timetable_61011cf1({ period: 86400, table: "[0,0;loadShedHourStart,1;loadShedHourEnd,0;24,0]", timeScale: 3600 });
+  const loaSheFn = timetable_61011cf1({ period: 86400, table: [[0,0],[loadShedHourStart,1],[loadShedHourEnd,0],[24,0]], timeScale: 3600 });
   // http://example.org#cdl_models.Controls.multiple_zone_ratchet.subt1
   const subt1Fn = subtract_040901c2({});
   // http://example.org#cdl_models.Controls.multiple_zone_ratchet.temDifSelectionMaxCooRat
