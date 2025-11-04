@@ -5,12 +5,16 @@ model ModelicaRoom
     package MediumPropyleneGlycol =
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
-   parameter Modelica.Units.SI.Length LengthFlo=6.096 "length of floor";
-   parameter Modelica.Units.SI.Length WidthFlo=6.096 "width of floor";
-  final parameter Modelica.Units.SI.Volume VRoo= AFlo*hRoo "Room volume";
-  parameter Modelica.Units.SI.Height hRoo=2.4384 "Room height";
-  final parameter Modelica.Units.SI.Area AFlo=LengthFlo*WidthFlo "Floor area";
 
+parameter Modelica.Units.SI.HeatCapacity C=250*1014.54*1.2
+    "Heat capacity of element (= cp*m)";
+  parameter Modelica.Units.SI.Height hRoo=2.4384 "Room height";
+   parameter Modelica.Units.SI.Area AFlo=37 "Floor area";
+
+
+   final parameter Modelica.Units.SI.Length LengthFlo=6.096 "length of floor";
+   final parameter Modelica.Units.SI.Length WidthFlo=AFlo/LengthFlo "width of floor";
+final parameter Modelica.Units.SI.Volume VRoo= AFlo*hRoo "Room volume";
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather Data Bus"
     annotation (Placement(transformation(extent={{90,128},{110,148}}),
         iconTransformation(extent={{286,104},{306,124}})));
@@ -113,8 +117,7 @@ model ModelicaRoom
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,-62})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=5*50*
-        1005*1.2)
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=C)
     annotation (Placement(transformation(extent={{358,22},{378,42}})));
 equation
   connect(qRadGai_flow.y,multiplex3_1. u1[1])  annotation (Line(

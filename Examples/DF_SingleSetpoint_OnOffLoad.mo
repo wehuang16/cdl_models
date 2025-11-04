@@ -92,11 +92,11 @@ replaceable package MediumAir = Buildings.Media.Air;
     thermostatSetpointResolution1[nZones]
     annotation (Placement(transformation(extent={{42,-76},{62,-56}})));
 equation
-  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a) annotation
-    (Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}}, color={0,
+  connect(custom_air_conditioner_OnOff.port_b, modelicaRoom.port_a) annotation (
+     Line(points={{120.2,14.6},{138,14.6},{138,76.4},{129.4,76.4}}, color={0,
           127,255}));
-  connect(modelicaRoom.port_b, custom_air_conditioner_OnOff.port_a) annotation
-    (Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,14.6}},
+  connect(modelicaRoom.port_b, custom_air_conditioner_OnOff.port_a) annotation (
+     Line(points={{172.4,76.8},{194,76.8},{194,-6},{99.6,-6},{99.6,14.6}},
         color={0,127,255}));
   connect(modelicaRoom.TZon, custom_air_conditioner_OnOff.ZAT) annotation (Line(
         points={{149.6,89},{149.6,24.8},{98,24.8}}, color={0,0,127}));

@@ -1,5 +1,5 @@
 within cdl_models.Examples;
-model DF_SimpleRatchet_OnOffLoad2
+model DF_SimpleRatchet_OnOffLoad_3Zone
     extends Modelica.Icons.Example;
            parameter Integer nZones=3;
 replaceable package MediumAir = Buildings.Media.Air;
@@ -37,24 +37,6 @@ replaceable package MediumAir = Buildings.Media.Air;
                annotation (Placement(transformation(extent={{22,60},{60,92}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1[3](k={1,1,1})
     annotation (Placement(transformation(extent={{38,110},{58,130}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable heatingSetpoint(
-    table=[0,273.15 + 12; 7,273.15 + 20; 19,273.15 + 12; 24,273.15 + 12],
-    smoothness=Buildings.Controls.OBC.CDL.Types.Smoothness.ConstantSegments,
-    extrapolation=Buildings.Controls.OBC.CDL.Types.Extrapolation.Periodic,
-    timeScale=3600)
-    annotation (Placement(transformation(extent={{-210,66},{-190,86}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable coolingSetpoint(
-    table=[0,273.15 + 32; 7,273.15 + 25; 19,273.15 + 32; 24,273.15 + 32],
-    smoothness=Buildings.Controls.OBC.CDL.Types.Smoothness.ConstantSegments,
-    extrapolation=Buildings.Controls.OBC.CDL.Types.Extrapolation.Periodic,
-    timeScale=3600)
-    annotation (Placement(transformation(extent={{-220,-8},{-200,12}})));
-  Buildings.Controls.OBC.CDL.Reals.Add add2
-    annotation (Placement(transformation(extent={{-140,8},{-120,28}})));
-  Buildings.Controls.OBC.CDL.Reals.Subtract sub
-    annotation (Placement(transformation(extent={{-150,40},{-130,60}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=5)
-    annotation (Placement(transformation(extent={{-202,38},{-182,58}})));
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel[3](samplePeriod=10,
       y_start=293.15) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -88,14 +70,6 @@ equation
   connect(building_3_zone.TZon, multiple_zone_ratchet.TZon) annotation (Line(
         points={{79,-72.78},{96,-72.78},{96,-24},{-8,-24},{-8,80.6},{19.8,80.6}},
         color={0,0,127}));
-  connect(heatingSetpoint.y[1], sub.u1) annotation (Line(points={{-188,76},{-162,
-          76},{-162,56},{-152,56}}, color={0,0,127}));
-  connect(con2.y, sub.u2) annotation (Line(points={{-180,48},{-172,48},{-172,44},
-          {-152,44}}, color={0,0,127}));
-  connect(coolingSetpoint.y[1], add2.u1) annotation (Line(points={{-198,2},{-158,
-          2},{-158,24},{-142,24}}, color={0,0,127}));
-  connect(con2.y, add2.u2) annotation (Line(points={{-180,48},{-172,48},{-172,44},
-          {-160,44},{-160,12},{-142,12}}, color={0,0,127}));
   connect(weaDat1.weaBus, building_3_zone.weaBus) annotation (Line(
       points={{-80,-74},{52,-74},{52,-76.96},{57.4,-76.96}},
       color={255,204,51},
@@ -138,4 +112,4 @@ equation
       StopTime=172800,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end DF_SimpleRatchet_OnOffLoad2;
+end DF_SimpleRatchet_OnOffLoad_3Zone;
