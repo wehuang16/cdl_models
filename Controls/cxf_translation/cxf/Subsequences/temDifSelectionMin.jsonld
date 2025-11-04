@@ -126,7 +126,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin.const",
-      "@type": "http://example.org#Modelica.Blocks.Sources.Constant",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{-88,-66},{-68,-46}})))",
       "S231P:hasInstance": [

@@ -24,7 +24,7 @@ model temDifSelectionMin
     annotation (Placement(transformation(extent={{-68,28},{-48,48}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k=1000)
     annotation (Placement(transformation(extent={{-182,66},{-162,86}})));
-  Modelica.Blocks.Sources.Constant const[nZones](k=1:1:nZones)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const[nZones](k=1:1:nZones)
     annotation (Placement(transformation(extent={{-88,-66},{-68,-46}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai[nZones](k=0.000001)
     annotation (Placement(transformation(extent={{-36,-70},{-16,-50}})));

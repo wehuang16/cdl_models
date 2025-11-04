@@ -28,7 +28,7 @@ model temDifSelectionMax
     annotation (Placement(transformation(extent={{-44,-14},{-24,6}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai[nZones](k=0.000001)
     annotation (Placement(transformation(extent={{-26,-98},{-6,-78}})));
-  Modelica.Blocks.Sources.Constant const[nZones](k=1:1:nZones)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant const[nZones](k=1:1:nZones)
     annotation (Placement(transformation(extent={{-78,-94},{-58,-74}})));
 equation
   connect(mulMax.y, reaScaRep.u) annotation (Line(points={{58,-16},{64,-16},{64,
