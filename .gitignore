@@ -11,4 +11,5 @@
 **/spawn-*/
 **/buildlog.txt
 **/*.bak-mo
+!normal_translation/out/Buildings/
 Buildings/
