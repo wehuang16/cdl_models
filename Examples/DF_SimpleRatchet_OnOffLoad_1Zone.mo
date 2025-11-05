@@ -1,5 +1,5 @@
 within cdl_models.Examples;
-model DF_SimpleRatchet_OnOffLoad_5Zone
+model DF_SimpleRatchet_OnOffLoad_1Zone
     extends Modelica.Icons.Example;
            parameter Integer nZones=5;
 replaceable package MediumAir = Buildings.Media.Air;
@@ -11,7 +11,6 @@ replaceable package MediumAir = Buildings.Media.Air;
     "Zone cooling temperature setpoint";
         parameter Real THeaSetUnocc(unit="K")=273.15+15.56
     "Zone heating temperature setpoint";
-
 
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occupancyMode(
     table=[0,0; 7,1; 20,0; 24,0],
@@ -229,4 +228,4 @@ equation
       StopTime=172800,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
-end DF_SimpleRatchet_OnOffLoad_5Zone;
+end DF_SimpleRatchet_OnOffLoad_1Zone;
