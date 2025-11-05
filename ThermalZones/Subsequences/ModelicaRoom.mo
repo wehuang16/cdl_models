@@ -1,4 +1,4 @@
-within cdl_models.ThermalZones;
+within cdl_models.ThermalZones.Subsequences;
 model ModelicaRoom
           package MediumAir = Buildings.Media.Air;
   package MediumWater = Buildings.Media.Water;
@@ -10,7 +10,6 @@ parameter Modelica.Units.SI.HeatCapacity C=250*1014.54*1.2
     "Heat capacity of element (= cp*m)";
   parameter Modelica.Units.SI.Height hRoo=2.4384 "Room height";
    parameter Modelica.Units.SI.Area AFlo=37 "Floor area";
-
 
    final parameter Modelica.Units.SI.Length LengthFlo=6.096 "length of floor";
    final parameter Modelica.Units.SI.Length WidthFlo=AFlo/LengthFlo "width of floor";

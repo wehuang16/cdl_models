@@ -48,7 +48,7 @@ equation
           -78,10},{-78,30},{-70,30}}, color={0,0,127}));
   connect(gai.y, add2.u2) annotation (Line(points={{-4,-88},{4,-88},{4,-18},{
           -46,-18},{-46,-10}}, color={0,0,127}));
-  connect(const.y, gai.u) annotation (Line(points={{-57,-84},{-38,-84},{-38,-88},
+  connect(const.y, gai.u) annotation (Line(points={{-56,-84},{-38,-84},{-38,-88},
           {-28,-88}}, color={0,0,127}));
   connect(swi.y, add2.u1) annotation (Line(points={{-46,38},{-38,38},{-38,10},{
           -46,10},{-46,2}}, color={0,0,127}));

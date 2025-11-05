@@ -24,10 +24,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-100,-84},{-80,-64}})));
   ThermalZones.building_5_zone building_5_zone
     annotation (Placement(transformation(extent={{58,-84},{78,-62}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionCoo[5]
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionCoo[5]
     annotation (Placement(transformation(extent={{78,80},{98,100}})));
-  ThermalZones.BaseClasses.custom_air_conditioner_OnOff_timer
-    custom_air_conditioner_OnOff_timer[5]
+  HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer[5]
     annotation (Placement(transformation(extent={{76,-4},{96,16}})));
   Controls.multiple_zone_ratchet multiple_zone_ratchet(
     nZones=5,
@@ -50,7 +49,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{206,-128},{226,-108}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionHea[5]
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionHea[5]
     annotation (Placement(transformation(extent={{132,116},{152,136}})));
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel1
                                                       [5](samplePeriod=10,
@@ -58,7 +57,8 @@ replaceable package MediumAir = Buildings.Media.Air;
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={146,48})));
-  ThermalZones.BaseClasses.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer_baseline[5]
+  HVAC.custom_air_conditioner_OnOff_timer
+    custom_air_conditioner_OnOff_timer_baseline[5]
     annotation (Placement(transformation(extent={{168,-172},{188,-152}})));
   ThermalZones.building_5_zone building_5_zone_baseline
     annotation (Placement(transformation(extent={{186,-214},{206,-192}})));
@@ -82,9 +82,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-76,-180},{-56,-160}})));
   Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep1(nout=5)
     annotation (Placement(transformation(extent={{-78,-280},{-58,-260}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionHea_baseline[5]
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionHea_baseline[5]
     annotation (Placement(transformation(extent={{-16,-218},{4,-198}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionCoo_baseline[5]
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionCoo_baseline[5]
     annotation (Placement(transformation(extent={{-4,-286},{16,-266}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2[5](k={0.5556,0.5556,
         0.5556,0.5556,0.5556})

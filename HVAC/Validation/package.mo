@@ -1,3 +1,3 @@
-within cdl_models.Examples;
+within cdl_models.HVAC;
 package Validation
 end Validation;

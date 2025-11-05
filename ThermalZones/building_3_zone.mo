@@ -6,7 +6,7 @@ model building_3_zone
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
   parameter Integer nZones=3;
-  ModelicaRoom modelicaRoom[nZones]
+  Subsequences.ModelicaRoom modelicaRoom[nZones]
     annotation (Placement(transformation(extent={{-24,18},{18,48}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
     table=[0,0; 12,150; 14,250; 16,150; 18,0.0; 24,0.0],

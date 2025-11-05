@@ -6,7 +6,7 @@ model building_5_zone
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
   parameter Integer nZones=5;
-  ModelicaRoom modelicaRoom[nZones](C=0*1014.54*1.2)
+  Subsequences.ModelicaRoom modelicaRoom[nZones](C=0*1014.54*1.2)
     annotation (Placement(transformation(extent={{-24,18},{18,48}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
     table=[0,0; 12,150; 14,250; 16,150; 18,0.0; 24,0.0],
@@ -19,11 +19,11 @@ model building_5_zone
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={110,2})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a[nZones](redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_a port_a[nZones](redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{-108,48},{-88,68}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b[nZones](redeclare package Medium
-      = MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b[nZones](redeclare package Medium =
+        MediumAir)
     annotation (Placement(transformation(extent={{92,48},{112,68}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition2(
     table=[0,200; 12,350; 14,450; 16,350; 18,200; 24,200],

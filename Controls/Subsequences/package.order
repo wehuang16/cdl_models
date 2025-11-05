@@ -2,7 +2,3 @@ single_zone_ratchet_heating
 single_zone_ratchet_cooling
 temDifSelectionMin
 temDifSelectionMax
-HeatingCoolingControl
-smallPassDemandRatchet
-demand_control_signal
-zone_setpoint_mock

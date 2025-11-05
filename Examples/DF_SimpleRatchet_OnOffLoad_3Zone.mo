@@ -27,10 +27,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-100,-84},{-80,-64}})));
   ThermalZones.building_3_zone building_3_zone
     annotation (Placement(transformation(extent={{58,-84},{78,-62}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionCoo[3]
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionCoo[3]
     annotation (Placement(transformation(extent={{78,80},{98,100}})));
-  ThermalZones.BaseClasses.custom_air_conditioner_OnOff
-    custom_air_conditioner_OnOff[3]
+  CCC_test.cdl.custom_air_conditioner_OnOff custom_air_conditioner_OnOff[3]
     annotation (Placement(transformation(extent={{76,-4},{96,16}})));
   Controls.multiple_zone_ratchet multiple_zone_ratchet(
     nZones=3, loadShedDurationTypical(displayUnit="h"))
@@ -48,7 +47,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{206,-128},{226,-108}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionHea[3]
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionHea[3]
     annotation (Placement(transformation(extent={{132,116},{152,136}})));
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel1
                                                       [3](samplePeriod=10,

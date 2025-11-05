@@ -46,7 +46,7 @@ equation
           -70,46}}, color={0,0,127}));
   connect(TZonTemDif, swi.u3) annotation (Line(points={{-120,36},{-120,10},{
           -78,10},{-78,30},{-70,30}}, color={0,0,127}));
-  connect(const.y, gai.u) annotation (Line(points={{-67,-56},{-48,-56},{-48,-60},
+  connect(const.y, gai.u) annotation (Line(points={{-66,-56},{-48,-56},{-48,-60},
           {-38,-60}}, color={0,0,127}));
   connect(gai.y, add2.u2) annotation (Line(points={{-14,-60},{-6,-60},{-6,-30},
           {-50,-30},{-50,-14}}, color={0,0,127}));

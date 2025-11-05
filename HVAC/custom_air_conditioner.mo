@@ -1,4 +1,4 @@
-within cdl_models.ThermalZones.BaseClasses;
+within cdl_models.HVAC;
 model custom_air_conditioner
 
           package MediumAir = Buildings.Media.Air;
@@ -42,21 +42,12 @@ model custom_air_conditioner
     kHeaCon=0.3,
     TiHeaCon=300)
     annotation (Placement(transformation(extent={{-10,56},{10,76}})));
-  Controls.SeparateHeatingCoolingThermalEnergy     separateHeatingCoolingThermalEnergy
+  Subsequences.SeparateHeatingCoolingThermalEnergy
+    separateHeatingCoolingThermalEnergy
     annotation (Placement(transformation(extent={{16,-38},{36,-18}})));
-  Modelica.Blocks.Continuous.Integrator coolingEnergy0(k=1/3600000)
-    annotation (Placement(transformation(extent={{68,-56},{88,-36}})));
-  Modelica.Blocks.Continuous.Integrator heatingEnergy0(k=1/3600000)
-    annotation (Placement(transformation(extent={{66,-18},{86,2}})));
   Modelica.Blocks.Interfaces.RealInput ZAT annotation (Placement(transformation(
           extent={{-140,8},{-100,48}}),  iconTransformation(extent={{-140,8},{
             -100,48}})));
-  Modelica.Blocks.Interfaces.RealOutput heatingEnergy annotation (Placement(
-        transformation(extent={{100,-12},{140,28}}),iconTransformation(extent={{100,-12},
-            {140,28}})));
-  Modelica.Blocks.Interfaces.RealOutput coolingEnergy annotation (Placement(
-        transformation(extent={{100,-54},{140,-14}}),iconTransformation(extent={{100,-54},
-            {140,-14}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
         MediumAir) annotation (Placement(transformation(extent={{-114,-84},{-94,
             -64}}), iconTransformation(extent={{-114,-84},{-94,-64}})));
@@ -113,19 +104,8 @@ equation
                       color={0,0,127}));
   connect(hea.Q_flow, separateHeatingCoolingThermalEnergy.EffectiveThermalEnergy)
     annotation (Line(points={{-13,-36},{4,-36},{4,-28},{14,-28}},  color={0,0,127}));
-  connect(separateHeatingCoolingThermalEnergy.HeatingThermalEnergy,
-    heatingEnergy0.u) annotation (Line(points={{38,-24.4},{54,-24.4},{54,-8},{64,
-          -8}},       color={0,0,127}));
-  connect(separateHeatingCoolingThermalEnergy.CoolingThermalEnergy,
-    coolingEnergy0.u) annotation (Line(points={{38,-33.8},{58,-33.8},{58,-46},{66,
-          -46}},      color={0,0,127}));
   connect(conLoo.TZon, ZAT) annotation (Line(points={{-12,66},{-94,66},{-94,28},
           {-120,28}},color={0,0,127}));
-  connect(coolingEnergy0.y, coolingEnergy) annotation (Line(points={{89,-46},{
-          120,-46},{120,-34}},   color={0,0,127}));
-  connect(heatingEnergy0.y, heatingEnergy) annotation (Line(points={{87,-8},{94,
-          -8},{94,8},{120,8}},                                           color={
-          0,0,127}));
   connect(port_a, fan.port_a) annotation (Line(points={{-104,-74},{-104,-42},{-72,
           -42}},           color={0,127,255}));
   connect(hea.port_b, port_b) annotation (Line(points={{-14,-42},{56,-42},{56,-74},

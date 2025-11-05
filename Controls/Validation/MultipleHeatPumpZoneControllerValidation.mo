@@ -1,7 +1,7 @@
 within cdl_models.Controls.Validation;
 model MultipleHeatPumpZoneControllerValidation
    extends Modelica.Icons.Example;
-  MultipleHeatPumpZoneController multipleHeatPumpZoneController
+  CCC_test.cdl.MultipleHeatPumpZoneController multipleHeatPumpZoneController
     annotation (Placement(transformation(extent={{-36,-6},{18,14}})));
   Buildings.Controls.OBC.CDL.Integers.Sources.Constant conInt2[4](k={1,1,0,0})
     "Integer inputs"

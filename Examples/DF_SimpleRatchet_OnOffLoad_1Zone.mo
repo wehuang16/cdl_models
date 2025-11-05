@@ -23,10 +23,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-100,-84},{-80,-64}})));
   ThermalZones.building_1_zone building_1_zone
     annotation (Placement(transformation(extent={{58,-84},{78,-62}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionCoo
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionCoo
     annotation (Placement(transformation(extent={{78,80},{98,100}})));
-  ThermalZones.BaseClasses.custom_air_conditioner_OnOff_timer
-    custom_air_conditioner_OnOff_timer
+  HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer
     annotation (Placement(transformation(extent={{76,-4},{96,16}})));
   Controls.single_zone_ratchet   single_zone_ratchet(
     TZonHeaSetNomOcc=THeaSetOcc,
@@ -45,7 +44,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{206,-128},{226,-108}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionHea
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionHea
     annotation (Placement(transformation(extent={{132,116},{152,136}})));
   Buildings.Controls.OBC.CDL.Discrete.UnitDelay uniDel1(
                                                        samplePeriod=10,
@@ -53,7 +52,8 @@ replaceable package MediumAir = Buildings.Media.Air;
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={146,48})));
-  ThermalZones.BaseClasses.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer_baseline
+  HVAC.custom_air_conditioner_OnOff_timer
+    custom_air_conditioner_OnOff_timer_baseline
     annotation (Placement(transformation(extent={{168,-172},{188,-152}})));
   ThermalZones.building_1_zone building_1_zone_baseline
     annotation (Placement(transformation(extent={{186,-214},{206,-192}})));
@@ -71,9 +71,9 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-118,-282},{-98,-262}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con7(k=TCooSetUnocc)
     annotation (Placement(transformation(extent={{-160,-292},{-140,-272}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionHea_baseline
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionHea_baseline
     annotation (Placement(transformation(extent={{-16,-218},{4,-198}})));
-  ThermalZones.BaseClasses.thermostatSetpointResolution thermostatSetpointResolutionCoo_baseline
+  HVAC.thermostatSetpointResolution thermostatSetpointResolutionCoo_baseline
     annotation (Placement(transformation(extent={{-4,-286},{16,-266}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con2(k=0.5556)
     annotation (Placement(transformation(extent={{-98,-344},{-78,-324}})));
@@ -115,8 +115,8 @@ equation
      Line(points={{100,90},{110,90},{110,42},{98,42}}, color={0,0,127}));
   connect(uniDel.y, custom_air_conditioner_OnOff_timer.TCooSet) annotation (
       Line(points={{74,42},{60,42},{60,14.4},{74,14.4}}, color={0,0,127}));
-  connect(uniDel.y, single_zone_ratchet.TZonCooSetCur) annotation (Line(points=
-          {{74,42},{8,42},{8,75.7091},{20.6429,75.7091}}, color={0,0,127}));
+  connect(uniDel.y, single_zone_ratchet.TZonCooSetCur) annotation (Line(points={{74,42},
+          {8,42},{8,75.7091},{20.6429,75.7091}},          color={0,0,127}));
   connect(con1.y, thermostatSetpointResolutionHea.temRes) annotation (Line(
         points={{60,120},{122,120},{122,118.6},{130,118.6}}, color={0,0,127}));
   connect(single_zone_ratchet.TZonHeaSetCom, thermostatSetpointResolutionHea.setpointCommand)
@@ -125,8 +125,8 @@ equation
   connect(thermostatSetpointResolutionHea.actualSetpoint, uniDel1.u)
     annotation (Line(points={{154,126},{166,126},{166,48},{158,48}}, color={0,0,
           127}));
-  connect(uniDel1.y, single_zone_ratchet.TZonHeaSetCur) annotation (Line(points
-        ={{134,48},{76,48},{76,78.1818},{20.5071,78.1818}}, color={0,0,127}));
+  connect(uniDel1.y, single_zone_ratchet.TZonHeaSetCur) annotation (Line(points={{134,48},
+          {76,48},{76,78.1818},{20.5071,78.1818}},          color={0,0,127}));
   connect(uniDel1.y, custom_air_conditioner_OnOff_timer.THeaSet) annotation (
       Line(points={{134,48},{126,48},{126,24},{58,24},{58,3.6},{74,3.6}}, color
         ={0,0,127}));
@@ -146,9 +146,9 @@ equation
         color={0,0,127}));
   connect(weaDat1.weaBus, building_1_zone_baseline.weaBus) annotation (Line(
       points={{-80,-74},{52,-74},{52,-178},{176,-178},{176,-206.96},{185.4,-206.96}},
-
       color={255,204,51},
       thickness=0.5));
+
   connect(con4.y, THeaSet.u1)
     annotation (Line(points={{-152,-166},{-116,-166}}, color={0,0,127}));
   connect(con6.y, THeaSet.u3) annotation (Line(points={{-146,-204},{-124,-204},

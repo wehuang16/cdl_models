@@ -1,4 +1,4 @@
-within cdl_models.Controls;
+within cdl_models.HVAC.Subsequences;
 model SeparateHeatingCoolingThermalEnergy
   Modelica.Blocks.Interfaces.RealOutput HeatingThermalEnergy annotation (
       Placement(transformation(
