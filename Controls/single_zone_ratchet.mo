@@ -22,7 +22,7 @@ model single_zone_ratchet
     "Sample period of the demand flexibility control";
           parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount
     "Sample period of rebound";
-  Subsequences.single_zone_ratchet_heating single_zone_ratchet_heating(
+  cdl_models.Controls.Subsequences.single_zone_ratchet_heating single_zone_ratchet_heating(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -144,7 +144,7 @@ model single_zone_ratchet
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature cooling setpoint input")));
-  Subsequences.single_zone_ratchet_cooling single_zone_ratchet_cooling(
+  cdl_models.Controls.Subsequences.single_zone_ratchet_cooling single_zone_ratchet_cooling(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
