@@ -1,5 +1,5 @@
 within cdl_models.Controls;
-model multiple_zone_ratchet
+model Controller
 
   parameter Integer nZones=4;
   parameter Real loadShedHourStart=16;
@@ -388,4 +388,4 @@ equation
             -220},{280,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-220},{280,
             100}})));
-end multiple_zone_ratchet;
+end Controller;
