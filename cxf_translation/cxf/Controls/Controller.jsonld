@@ -769,7 +769,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling",
-      "@type": "http://example.org#Subsequences.single_zone_ratchet_cooling",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_cooling",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{192,-140},{242,-112}})))",
       "S231P:hasInstance": [
@@ -858,7 +858,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating",
-      "@type": "http://example.org#Subsequences.single_zone_ratchet_heating",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{204,-12},{254,16}})))",
       "S231P:hasInstance": [
@@ -1017,7 +1017,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat",
-      "@type": "http://example.org#Subsequences.temDifSelectionMax",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMax",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{160,-50},{180,-30}})))",
       "S231P:hasInstance": [
@@ -1054,7 +1054,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb",
-      "@type": "http://example.org#Subsequences.temDifSelectionMax",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMax",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{148,90},{168,110}})))",
       "S231P:hasInstance": [
@@ -1085,7 +1085,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb",
-      "@type": "http://example.org#Subsequences.temDifSelectionMin",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{126,-108},{146,-88}})))",
       "S231P:hasInstance": [
@@ -1116,7 +1116,7 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat",
-      "@type": "http://example.org#Subsequences.temDifSelectionMin",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "Placement(transformation(extent={{144,162},{164,182}})))",
       "S231P:hasInstance": [

@@ -1,5 +1,5 @@
 within cdl_models.Controls;
-model Controller
+block Controller
 
   parameter Integer nZones=4;
   parameter Real loadShedHourStart=16;
@@ -17,22 +17,22 @@ model Controller
     "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd";
     parameter Real TRat=1
     "Ratcheting temperature (defined as >0)";
-               parameter Real TReb=1
+    parameter Real TReb=1
     "rebound temperature (defined as >0)";
       parameter Real samplePeriodRatchet(unit="s")=loadShedDurationTypical*0.3333*TRat/loadShedTempAmount/nZones
     "Sample period of the demand flexibility control";
           parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount/nZones
     "Sample period of rebound";
-  Subsequences.single_zone_ratchet_heating single_zone_ratchet_heating[nZones](
+ cdl_models.Controls.Subsequences.single_zone_ratchet_heating single_zone_ratchet_heating[nZones](
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
     TReb=TReb)
     annotation (Placement(transformation(extent={{204,-12},{254,16}})));
-  Subsequences.temDifSelectionMin temDifSelectionMinHeaRat(nZones=nZones)
+  cdl_models.Controls.Subsequences.temDifSelectionMin temDifSelectionMinHeaRat(nZones=nZones)
     annotation (Placement(transformation(extent={{144,162},{164,182}})));
-  Subsequences.temDifSelectionMax temDifSelectionMaxHeaReb(nZones=nZones)
+  cdl_models.Controls.Subsequences.temDifSelectionMax temDifSelectionMaxHeaReb(nZones=nZones)
     annotation (Placement(transformation(extent={{148,90},{168,110}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon[nZones](
     final unit="K",
@@ -136,9 +136,9 @@ model Controller
     annotation (Placement(transformation(extent={{-8,-196},{12,-176}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt[nZones]
     annotation (Placement(transformation(extent={{-24,44},{-4,64}})));
-  Subsequences.temDifSelectionMin temDifSelectionMinCooReb(nZones=nZones)
+  cdl_models.Controls.Subsequences.temDifSelectionMin temDifSelectionMinCooReb(nZones=nZones)
     annotation (Placement(transformation(extent={{126,-108},{146,-88}})));
-  Subsequences.temDifSelectionMax temDifSelectionMaxCooRat(nZones=nZones)
+  cdl_models.Controls.Subsequences.temDifSelectionMax temDifSelectionMaxCooRat(nZones=nZones)
     annotation (Placement(transformation(extent={{160,-50},{180,-30}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonCooSetCom[nZones](
     final unit="K",
@@ -168,7 +168,7 @@ model Controller
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature cooling setpoint input")));
-  Subsequences.single_zone_ratchet_cooling single_zone_ratchet_cooling[nZones](
+  cdl_models.Controls.Subsequences.single_zone_ratchet_cooling single_zone_ratchet_cooling[nZones](
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
