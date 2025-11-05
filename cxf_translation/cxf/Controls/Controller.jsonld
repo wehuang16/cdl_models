@@ -11,9 +11,6 @@
       "@type": "S231P:Block",
       "S231P:containsBlock": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1"
-        },
-        {
           "@id": "http://example.org#cdl_models.Controls.Controller.con"
         },
         {
@@ -32,12 +29,6 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.con5"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.con6"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.con7"
-        },
-        {
           "@id": "http://example.org#cdl_models.Controls.Controller.loaShe"
         },
         {
@@ -47,40 +38,10 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3"
-        },
-        {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt1"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetMax"
@@ -95,7 +56,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom"
         }
       ],
-      "S231P:diagram": "coordinateSystem(extent={{-100,-220},{280,100}},preserveAspectRatio=false)",
+      "S231P:diagram": "coordinateSystem(extent={{-280,-220},{280,220}},preserveAspectRatio=false)",
       "S231P:hasInput": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.occSta"
@@ -138,9 +99,6 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.loaSheHeaAct"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.nZones"
-        },
-        {
           "@id": "http://example.org#cdl_models.Controls.Controller.reboundDuration"
         },
         {
@@ -171,47 +129,14 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNomUnocc"
         }
       ],
-      "S231P:icon": "coordinateSystem(extent={{-100,-220},{280,100}},preserveAspectRatio=false)",
+      "S231P:icon": "coordinateSystem(extent={{-280,-220},{280,220}},preserveAspectRatio=false)",
       "S231P:label": "Controller"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{34,24},{54,44}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1.nout"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1.u"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1.y"
-        }
-      ],
-      "S231P:label": "booScaRep1"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1.nout",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1.y",
-      "S231P:isConnectedTo": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.logSwi2.u1"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3.u1"
-        }
-      ]
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{18,-70},{38,-50}})))",
+      "S231P:graphics": "Placement(transformation(extent={{6,-58},{26,-38}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.con.k"
@@ -220,10 +145,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.con.y"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "con[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "con"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con.k",
@@ -244,7 +166,7 @@
       "@id": "http://example.org#cdl_models.Controls.Controller.con1",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{26,72},{46,92}})))",
+      "S231P:graphics": "Placement(transformation(extent={{0,158},{20,178}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.con1.k"
@@ -253,10 +175,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.con1.y"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "con1[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "con1"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con1.k",
@@ -272,7 +191,7 @@
       "@id": "http://example.org#cdl_models.Controls.Controller.con2",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-86,56},{-66,76}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-4,-176},{16,-156}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.con2.k"
@@ -281,10 +200,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.con2.y"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "con2[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "con2"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con2.k",
@@ -300,7 +216,7 @@
       "@id": "http://example.org#cdl_models.Controls.Controller.con3",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-246,-150},{-226,-130}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-260,-142},{-240,-122}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.con3.k"
@@ -328,9 +244,9 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con4",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-254,-70},{-234,-50}})))",
+      "S231P:graphics": "Placement(transformation(extent={{118,98},{138,118}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.con4.k"
@@ -343,19 +259,24 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con4.k",
-      "S231P:value": "TZonHeaSetNomOcc"
+      "S231P:value": true
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con4.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u1"
-      }
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.ratSig"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.rebSig"
+        }
+      ]
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con5",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-232,-210},{-212,-190}})))",
+      "S231P:graphics": "Placement(transformation(extent={{114,-114},{134,-94}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.con5.k"
@@ -368,63 +289,18 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con5.k",
-      "S231P:value": "TZonCooSetNomOcc"
+      "S231P:value": true
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.con5.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u1"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.con6",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-248,-108},{-228,-88}})))",
-      "S231P:hasInstance": [
+      "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.con6.k"
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.ratSig"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.con6.y"
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.rebSig"
         }
-      ],
-      "S231P:label": "con6"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.con6.k",
-      "S231P:value": "TZonHeaSetNomUnocc"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.con6.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u3"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.con7",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-220,-246},{-200,-226}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.con7.k"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.con7.y"
-        }
-      ],
-      "S231P:label": "con7"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.con7.k",
-      "S231P:value": "TZonCooSetNomUnocc"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.con7.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u3"
-      }
+      ]
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.loadShedDurationTypical",
@@ -437,7 +313,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "loadShedDurationTypical",
-      "S231P:value": 7200
+      "S231P:value": "(loadShedHourEnd -loadShedHourStart)*3600"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.loadShedHourEnd",
@@ -473,7 +349,7 @@
       "@id": "http://example.org#cdl_models.Controls.Controller.loaShe",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-94,18},{-74,38}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-208,108},{-188,128}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.period"
@@ -504,9 +380,14 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.y%5B1%5D",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.booScaRep1.u"
-      }
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.logSwi2.u1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3.u1"
+        }
+      ]
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.loaSheCooAct",
@@ -532,7 +413,7 @@
       "@id": "http://example.org#cdl_models.Controls.Controller.logSwi2",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Switch",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{138,18},{158,38}})))",
+      "S231P:graphics": "Placement(transformation(extent={{118,136},{138,156}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.logSwi2.u1"
@@ -547,10 +428,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.logSwi2.y"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "logSwi2[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "logSwi2"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.logSwi2.y",
@@ -562,7 +440,7 @@
       "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Switch",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{114,-166},{134,-146}})))",
+      "S231P:graphics": "Placement(transformation(extent={{114,-82},{134,-62}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3.u1"
@@ -577,10 +455,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3.y"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "logSwi3[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "logSwi3"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3.y",
@@ -589,142 +464,20 @@
       }
     },
     {
-      "@id": "http://example.org#cdl_models.Controls.Controller.nZones",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Integer"
-      },
-      "S231P:label": "nZones",
-      "S231P:value": 4
-    },
-    {
       "@id": "http://example.org#cdl_models.Controls.Controller.occSta",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "occupancy status",
-      "S231P:graphics": "Placement(transformation(extent={{-140,62},{-100,102}})),iconTransformation(extent={{-140,58},{-100,98}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-320,134},{-280,174}})),iconTransformation(extent={{-320,134},{-280,174}})))",
       "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u2"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u2"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u"
         }
       ],
       "S231P:label": "occSta"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-32,-84},{-12,-64}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep.nout"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep.u"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep.y"
-        }
-      ],
-      "S231P:label": "reaScaRep"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep.nout",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonHeaSetMin"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-22,-114},{-2,-94}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1.nout"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1.u"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1.y"
-        }
-      ],
-      "S231P:label": "reaScaRep1"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1.nout",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonHeaSetNom"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-14,-150},{6,-130}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2.nout"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2.u"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2.y"
-        }
-      ],
-      "S231P:label": "reaScaRep2"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2.nout",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetMax"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-8,-196},{12,-176}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3.nout"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3.u"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3.y"
-        }
-      ],
-      "S231P:label": "reaScaRep3"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3.nout",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetNom"
-      }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.reboundDuration",
@@ -751,7 +504,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "samplePeriodRatchet",
-      "S231P:value": "loadShedDurationTypical*0.3333*TRat/loadShedTempAmount/nZones"
+      "S231P:value": "loadShedDurationTypical*0.3333*TRat/loadShedTempAmount"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.samplePeriodRebound",
@@ -765,7 +518,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "samplePeriodRebound",
-      "S231P:value": "reboundDuration*TReb/loadShedTempAmount/nZones"
+      "S231P:value": "reboundDuration*TReb/loadShedTempAmount"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling",
@@ -778,12 +531,6 @@
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.ratSig"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.reachTZonCooSetMax"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.reachTZonCooSetNom"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.rebSig"
@@ -819,16 +566,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetNom"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "single_zone_ratchet_cooling[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.reachTZonCooSetNom",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.ignoreFlag"
-      }
+      "S231P:label": "single_zone_ratchet_cooling"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.samplePeriodRatchet",
@@ -869,12 +607,6 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.ratSig"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.reachTZonHeaSetMin"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.reachTZonHeaSetNom"
-        },
-        {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.rebSig"
         },
         {
@@ -908,22 +640,7 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonSetHeaCom"
         }
       ],
-      "S231P:isArray": true,
-      "S231P:label": "single_zone_ratchet_heating[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.reachTZonHeaSetMin",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.ignoreFlag"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.reachTZonHeaSetNom",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.ignoreFlag"
-      }
+      "S231P:label": "single_zone_ratchet_heating"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.samplePeriodRatchet",
@@ -952,200 +669,6 @@
       }
     },
     {
-      "@id": "http://example.org#cdl_models.Controls.Controller.subt",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-24,44},{-4,64}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt.u1"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt.u2"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt.y"
-        }
-      ],
-      "S231P:isArray": true,
-      "S231P:label": "subt[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.subt.y",
-      "S231P:isConnectedTo": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.TZonTemDif"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.TZonTemDif"
-        }
-      ]
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.subt1",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-18,-46},{2,-26}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt1.u1"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt1.u2"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt1.y"
-        }
-      ],
-      "S231P:isArray": true,
-      "S231P:label": "subt1[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.subt1.y",
-      "S231P:isConnectedTo": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.TZonTemDif"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.TZonTemDif"
-        }
-      ]
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat",
-      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMax",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{160,-50},{180,-30}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.actionFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.ignoreFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.nZones"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.TZonTemDif"
-        }
-      ],
-      "S231P:label": "temDifSelectionMaxCooRat"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.actionFlag",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.ratSig"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.ignoreFlag",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.reachTZonCooSetMax"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxCooRat.nZones",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb",
-      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMax",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{148,90},{168,110}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.actionFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.ignoreFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.nZones"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.TZonTemDif"
-        }
-      ],
-      "S231P:label": "temDifSelectionMaxHeaReb"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.actionFlag",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.rebSig"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMaxHeaReb.nZones",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb",
-      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{126,-108},{146,-88}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.actionFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.ignoreFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.nZones"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.TZonTemDif"
-        }
-      ],
-      "S231P:label": "temDifSelectionMinCooReb"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.actionFlag",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.rebSig"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinCooReb.nZones",
-      "S231P:value": "nZones"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat",
-      "@type": "http://example.org#cdl_models.Controls.Subsequences.temDifSelectionMin",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{144,162},{164,182}})))",
-      "S231P:hasInstance": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.actionFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.ignoreFlag"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.nZones"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.TZonTemDif"
-        }
-      ],
-      "S231P:label": "temDifSelectionMinHeaRat"
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.actionFlag",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.ratSig"
-      }
-    },
-    {
-      "@id": "http://example.org#cdl_models.Controls.Controller.temDifSelectionMinHeaRat.nZones",
-      "S231P:value": "nZones"
-    },
-    {
       "@id": "http://example.org#cdl_models.Controls.Controller.TRat",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
@@ -1154,7 +677,10 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TRat",
-      "S231P:value": 1
+      "S231P:value": {
+        "@value": "0.5556",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TRatThreshold",
@@ -1165,7 +691,10 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TRatThreshold",
-      "S231P:value": 1
+      "S231P:value": {
+        "@value": "1.1111",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TReb",
@@ -1176,7 +705,10 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TReb",
-      "S231P:value": 1
+      "S231P:value": {
+        "@value": "0.5556",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZon",
@@ -1189,28 +721,19 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Current zone room air temperature",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-14},{-100,26}})),iconTransformation(extent={{-142,-34},{-102,6}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-320,58},{-280,98}})),iconTransformation(extent={{-322,42},{-282,82}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:isArray": true,
       "S231P:isConnectedTo": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZon"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZon"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt.u1"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt1.u1"
         }
       ],
-      "S231P:label": "TZon[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "TZon"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCom",
@@ -1227,10 +750,7 @@
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:isArray": true,
-      "S231P:label": "TZonCooSetCom[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "TZonCooSetCom"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCur",
@@ -1243,28 +763,20 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Current zone temperature setpoint",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-78},{-100,-38}})),iconTransformation(extent={{-140,-100},{-100,-60}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-320,-6},{-280,34}})),iconTransformation(extent={{-320,-24},{-280,16}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:isArray": true,
-      "S231P:isConnectedTo": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetCur"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt1.u2"
-        }
-      ],
-      "S231P:label": "TZonCooSetCur[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetCur"
+      },
+      "S231P:label": "TZonCooSetCur"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetMax",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Add",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-172,-178},{-152,-158}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-188,-142},{-168,-122}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetMax.u1"
@@ -1281,23 +793,23 @@
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetMax.y",
       "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep2.u"
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetMax"
       }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Conversions.BooleanToReal",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-178,-236},{-158,-216}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-200},{-220,-180}})))",
       "S231P:hasInstance": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u1"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.realFalse"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u2"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.realTrue"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u3"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.y"
@@ -1306,10 +818,18 @@
       "S231P:label": "TZonCooSetNom"
     },
     {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.realFalse",
+      "S231P:value": "TZonCooSetNomUnocc"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.realTrue",
+      "S231P:value": "TZonCooSetNomOcc"
+    },
+    {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.y",
       "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep3.u"
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.TZonCooSetNom"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetMax.u2"
@@ -1327,7 +847,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TZonCooSetNomOcc",
-      "S231P:value": "273.15 +25"
+      "S231P:value": "273.15 +25.5556"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNomUnocc",
@@ -1340,7 +860,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TZonCooSetNomUnocc",
-      "S231P:value": "273.15 +32"
+      "S231P:value": "273.15 +32.2222"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCom",
@@ -1357,10 +877,7 @@
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:isArray": true,
-      "S231P:label": "TZonHeaSetCom[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:label": "TZonHeaSetCom"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCur",
@@ -1373,28 +890,20 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Current zone temperature setpoint",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-46},{-100,-6}})),iconTransformation(extent={{-142,-66},{-102,-26}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-320,26},{-280,66}})),iconTransformation(extent={{-322,10},{-282,50}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:isArray": true,
-      "S231P:isConnectedTo": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonHeaSetCur"
-        },
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.subt.u2"
-        }
-      ],
-      "S231P:label": "TZonHeaSetCur[nZones]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nZones)"
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonHeaSetCur"
+      },
+      "S231P:label": "TZonHeaSetCur"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetMin",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-184,-120},{-164,-100}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-190,-84},{-170,-64}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetMin.u1"
@@ -1411,23 +920,23 @@
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetMin.y",
       "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep.u"
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonHeaSetMin"
       }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Conversions.BooleanToReal",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-194,-78},{-174,-58}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-42},{-220,-22}})))",
       "S231P:hasInstance": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u1"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.realFalse"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u2"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.realTrue"
         },
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u3"
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.y"
@@ -1436,10 +945,18 @@
       "S231P:label": "TZonHeaSetNom"
     },
     {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.realFalse",
+      "S231P:value": "TZonHeaSetNomUnocc"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.realTrue",
+      "S231P:value": "TZonHeaSetNomOcc"
+    },
+    {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.y",
       "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#cdl_models.Controls.Controller.reaScaRep1.u"
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.TZonHeaSetNom"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetMin.u1"
@@ -1457,7 +974,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TZonHeaSetNomOcc",
-      "S231P:value": "273.15 +20"
+      "S231P:value": "273.15 +22.2222"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNomUnocc",
@@ -1470,7 +987,7 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "TZonHeaSetNomUnocc",
-      "S231P:value": "273.15 +12"
+      "S231P:value": "273.15 +15.5556"
     }
   ]
 }
