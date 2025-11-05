@@ -35,8 +35,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,
     TZonCooSetNomUnocc=TCooSetUnocc,
-    loadShedDurationTypical(displayUnit="h"),
-    loadShedTempAmount=5)
+    loadShedDurationTypical(displayUnit="h"))
                annotation (Placement(transformation(extent={{22,60},{60,92}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1[5](k={0.5556,0.5556,0.5556,
         0.5556,0.5556})

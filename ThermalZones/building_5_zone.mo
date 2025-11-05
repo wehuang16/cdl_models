@@ -19,11 +19,11 @@ model building_5_zone
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={110,2})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a[nZones](redeclare package Medium =
-        MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_a port_a[nZones](redeclare package Medium
+      = MediumAir)
     annotation (Placement(transformation(extent={{-108,48},{-88,68}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b[nZones](redeclare package Medium =
-        MediumAir)
+  Modelica.Fluid.Interfaces.FluidPort_b port_b[nZones](redeclare package Medium
+      = MediumAir)
     annotation (Placement(transformation(extent={{92,48},{112,68}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition2(
     table=[0,200; 12,350; 14,450; 16,350; 18,200; 24,200],
