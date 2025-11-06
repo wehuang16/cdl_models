@@ -1,7 +1,8 @@
 within cdl_models.Controls;
 block Controller
 
- parameter Real loadShedHourStart=16;
+
+  parameter Real loadShedHourStart=16;
   parameter Real loadShedHourEnd=21;
   parameter Real TZonHeaSetNomOcc(unit="K")=273.15+22.2222;
   parameter Real TZonHeaSetNomUnocc(unit="K")=273.15+15.5556;
@@ -27,7 +28,8 @@ block Controller
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
-    TReb=TReb)
+    TReb=TReb,
+    reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{204,-12},{254,16}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon(
     final unit="K",
@@ -93,8 +95,7 @@ block Controller
           extent={{282,32},{322,72}}), iconTransformation(extent={{280,18},{320,
             58}})),
             __cdl(semantic(
-          metadataLanguage="Brick 1.3 text/turtle"
-            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+          metadataLanguage="Brick 1.3 text/turtle" "@prefix brick: <https://brickschema.org/schema/Brick#> .
             @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -112,7 +113,7 @@ block Controller
                 sh:minCount 1 ;
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input")));
+          "<cdl_instance_name> is a temperature heating setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1(k=
         loaSheHeaAct)
     annotation (Placement(transformation(extent={{0,158},{20,178}})));
@@ -149,15 +150,16 @@ block Controller
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
-    TReb=TReb)
+    TReb=TReb,
+    reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{192,-140},{242,-112}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetCur(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Current zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-320,-6},{-280,34}}),   iconTransformation(extent={{-320,-24},
-            {-280,16}})),
+          extent={{-320,-6},{-280,34}}),   iconTransformation(extent={{-322,-24},
+            {-282,16}})),
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .
@@ -300,15 +302,15 @@ equation
           {-6,184},{108,184},{108,154},{116,154}}, color={255,0,255}));
   connect(loaShe.y[1], logSwi3.u1) annotation (Line(points={{-186,118},{-37,118},
           {-37,-64},{112,-64}}, color={255,0,255}));
-  connect(con4.y, single_zone_ratchet_heating.ratSig) annotation (Line(points={{
-          140,108},{186,108},{186,10.54},{202,10.54}}, color={255,0,255}));
-  connect(con4.y, single_zone_ratchet_heating.rebSig) annotation (Line(points={{
-          140,108},{186,108},{186,10},{198,10},{198,8.3},{202,8.3}}, color={255,
-          0,255}));
-  connect(con5.y, single_zone_ratchet_cooling.ratSig) annotation (Line(points={{
-          136,-104},{180,-104},{180,-117.46},{190,-117.46}}, color={255,0,255}));
-  connect(con5.y, single_zone_ratchet_cooling.rebSig) annotation (Line(points={{
-          136,-104},{180,-104},{180,-118},{186,-118},{186,-119.7},{190,-119.7}},
+  connect(con4.y, single_zone_ratchet_heating.ratSig) annotation (Line(points={
+          {140,108},{186,108},{186,10.54},{202,10.54}}, color={255,0,255}));
+  connect(con4.y, single_zone_ratchet_heating.rebSig) annotation (Line(points={
+          {140,108},{186,108},{186,10},{198,10},{198,8.3},{202,8.3}}, color={
+          255,0,255}));
+  connect(con5.y, single_zone_ratchet_cooling.ratSig) annotation (Line(points={
+          {136,-104},{180,-104},{180,-117.46},{190,-117.46}}, color={255,0,255}));
+  connect(con5.y, single_zone_ratchet_cooling.rebSig) annotation (Line(points={
+          {136,-104},{180,-104},{180,-118},{186,-118},{186,-119.7},{190,-119.7}},
         color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},
             {280,220}})),                                        Diagram(
