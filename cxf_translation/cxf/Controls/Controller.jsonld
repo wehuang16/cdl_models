@@ -38,6 +38,9 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.logSwi3"
         },
         {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta"
+        },
+        {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling"
         },
         {
@@ -58,9 +61,6 @@
       ],
       "S231P:diagram": "coordinateSystem(extent={{-280,-220},{280,220}},preserveAspectRatio=false)",
       "S231P:hasInput": [
-        {
-          "@id": "http://example.org#cdl_models.Controls.Controller.occSta"
-        },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZon"
         },
@@ -97,6 +97,12 @@
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.loaSheHeaAct"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourEnd"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourStart"
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.reboundDuration"
@@ -465,10 +471,39 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.occSta",
-      "@type": "S231P:BooleanInput",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "occupancy status",
-      "S231P:graphics": "Placement(transformation(extent={{-320,134},{-280,174}})),iconTransformation(extent={{-320,134},{-280,174}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-276,164},{-256,184}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.period"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.table"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.timeScale"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.y%5B1%5D"
+        }
+      ],
+      "S231P:label": "occSta"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.period",
+      "S231P:value": 86400
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.table",
+      "S231P:value": "[0,0;occStaHourStart,1;occStaHourEnd,0;24,0]"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.timeScale",
+      "S231P:value": 3600
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.y%5B1%5D",
       "S231P:isConnectedTo": [
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNom.u"
@@ -476,8 +511,27 @@
         {
           "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNom.u"
         }
-      ],
-      "S231P:label": "occSta"
+      ]
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourEnd",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "occStaHourEnd",
+      "S231P:value": 20
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourStart",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "occStaHourStart",
+      "S231P:value": 7
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.reboundDuration",
