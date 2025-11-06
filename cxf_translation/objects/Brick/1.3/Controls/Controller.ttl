@@ -1,0 +1,49 @@
+@prefix : <#>.
+@prefix brick: <https://brickschema.org/schema/Brick#>.
+@prefix hpfs: <http://hpflex/shapes#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix ref: <https://brickschema.org/schema/Brick/ref#>.
+@prefix unit: <http://qudt.org/vocab/unit/>.
+
+hpfs:occSta
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Occupancy_Sensor;
+    sh:property hpfs:occupancy_ref.
+hpfs:occupancy_ref
+a sh:PropertyShape; sh:minCount 1; sh:path ref:hasExternalReference.
+hpfs:temperature_Kelvin
+    a sh:PropertyShape;
+    sh:hasValue unit:Kelvin;
+    sh:minCount 1;
+    sh:path qudt:hasUnit.
+hpfs:temperature_ref
+a sh:PropertyShape; sh:minCount 1; sh:path ref:hasExternalReference.
+hpfs:temperature-setpoint_Kelvin
+    a sh:PropertyShape;
+    sh:hasValue unit:Kelvin;
+    sh:minCount 1;
+    sh:path qudt:hasUnit.
+hpfs:temperature-setpoint_ref
+a sh:PropertyShape; sh:minCount 1; sh:path ref:hasExternalReference.
+hpfs:TZon
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Zone_Air_Temperature_Sensor;
+    sh:property hpfs:temperature_Kelvin, hpfs:temperature_ref.
+hpfs:TZonCooSetCom
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Cooling_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
+hpfs:TZonCooSetCur
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Cooling_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
+hpfs:TZonHeaSetCom
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Heating_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
+hpfs:TZonHeaSetCur
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Heating_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
