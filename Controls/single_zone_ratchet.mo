@@ -27,7 +27,8 @@ model single_zone_ratchet
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
-    TReb=TReb)
+    TReb=TReb,
+    reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{204,-12},{254,16}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon(
     final unit="K",
@@ -93,8 +94,7 @@ model single_zone_ratchet
           extent={{282,32},{322,72}}), iconTransformation(extent={{280,18},{320,
             58}})),
             __cdl(semantic(
-          metadataLanguage="Brick 1.3 text/turtle"
-            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+          metadataLanguage="Brick 1.3 text/turtle" "@prefix brick: <https://brickschema.org/schema/Brick#> .
             @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -112,7 +112,7 @@ model single_zone_ratchet
                 sh:minCount 1 ;
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input")));
+          "<cdl_instance_name> is a temperature heating setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1(k=
         loaSheHeaAct)
     annotation (Placement(transformation(extent={{0,158},{20,178}})));
@@ -149,15 +149,16 @@ model single_zone_ratchet
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
-    TReb=TReb)
+    TReb=TReb,
+    reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{192,-140},{242,-112}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetCur(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Current zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-320,-6},{-280,34}}),   iconTransformation(extent={{-320,-24},
-            {-280,16}})),
+          extent={{-320,-6},{-280,34}}),   iconTransformation(extent={{-322,-24},
+            {-282,16}})),
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .

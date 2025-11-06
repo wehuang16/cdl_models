@@ -6,58 +6,61 @@ model temDifSelectionMin
     annotation (Placement(transformation(extent={{-140,16},{-100,56}}),
         iconTransformation(extent={{-140,26},{-100,66}})));
   Buildings.Controls.OBC.CDL.Reals.MultiMin mulMin(nin=nZones)
-    annotation (Placement(transformation(extent={{-12,-26},{8,-6}})));
+    annotation (Placement(transformation(extent={{32,-30},{52,-10}})));
   Buildings.Controls.OBC.CDL.Reals.Greater gre[nZones]
-    annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+    annotation (Placement(transformation(extent={{92,20},{112,40}})));
   Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep(nout=
         nZones)
-    annotation (Placement(transformation(extent={{28,-30},{48,-10}})));
+    annotation (Placement(transformation(extent={{64,-30},{84,-10}})));
   Buildings.Controls.OBC.CDL.Logical.Not not1[nZones]
-    annotation (Placement(transformation(extent={{28,20},{48,40}})));
+    annotation (Placement(transformation(extent={{138,20},{158,40}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput actionFlag[nZones]
-    annotation (Placement(transformation(extent={{100,-20},{140,20}}),
-        iconTransformation(extent={{100,-20},{140,20}})));
+    annotation (Placement(transformation(extent={{190,-18},{230,22}}),
+        iconTransformation(extent={{190,-18},{230,22}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput ignoreFlag[nZones]
     annotation (Placement(transformation(extent={{-142,-90},{-102,-50}}),
         iconTransformation(extent={{-140,-78},{-100,-38}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi[nZones]
-    annotation (Placement(transformation(extent={{-68,28},{-48,48}})));
+    annotation (Placement(transformation(extent={{-56,30},{-36,50}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con[nZones](k=1000)
-    annotation (Placement(transformation(extent={{-182,66},{-162,86}})));
+    annotation (Placement(transformation(extent={{-88,62},{-68,82}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant const[nZones](k=1:1:nZones)
-    annotation (Placement(transformation(extent={{-88,-66},{-68,-46}})));
+    annotation (Placement(transformation(extent={{-78,-70},{-58,-50}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai[nZones](k=0.000001)
-    annotation (Placement(transformation(extent={{-36,-70},{-16,-50}})));
+    annotation (Placement(transformation(extent={{-46,-70},{-26,-50}})));
   Buildings.Controls.OBC.CDL.Reals.Add add2[nZones]
-    annotation (Placement(transformation(extent={{-48,-18},{-28,2}})));
+    annotation (Placement(transformation(extent={{-14,-16},{6,4}})));
 equation
-  connect(mulMin.y, reaScaRep.u) annotation (Line(points={{10,-16},{18,-16},{18,
-          -20},{26,-20}},color={0,0,127}));
-  connect(reaScaRep.y, gre.u2) annotation (Line(points={{50,-20},{58,-20},{58,
-          14},{-12,14},{-12,22}},
-                     color={0,0,127}));
+  connect(mulMin.y, reaScaRep.u) annotation (Line(points={{54,-20},{62,-20}},
+                         color={0,0,127}));
+  connect(reaScaRep.y, gre.u2) annotation (Line(points={{86,-20},{90,-20},{90,
+          22}},      color={0,0,127}));
   connect(gre.y, not1.u)
-    annotation (Line(points={{12,30},{26,30}}, color={255,0,255}));
-  connect(not1.y, actionFlag) annotation (Line(points={{50,30},{94,30},{94,0},{
-          120,0}}, color={255,0,255}));
-  connect(ignoreFlag, swi.u2) annotation (Line(points={{-122,-70},{-122,12},{-80,
-          12},{-80,38},{-70,38}}, color={255,0,255}));
-  connect(con.y, swi.u1) annotation (Line(points={{-160,76},{-78,76},{-78,46},{
-          -70,46}}, color={0,0,127}));
-  connect(TZonTemDif, swi.u3) annotation (Line(points={{-120,36},{-120,10},{
-          -78,10},{-78,30},{-70,30}}, color={0,0,127}));
-  connect(const.y, gai.u) annotation (Line(points={{-66,-56},{-48,-56},{-48,-60},
-          {-38,-60}}, color={0,0,127}));
-  connect(gai.y, add2.u2) annotation (Line(points={{-14,-60},{-6,-60},{-6,-30},
-          {-50,-30},{-50,-14}}, color={0,0,127}));
-  connect(swi.y, add2.u1) annotation (Line(points={{-46,38},{-38,38},{-38,6},{
-          -50,6},{-50,-2}}, color={0,0,127}));
+    annotation (Line(points={{114,30},{136,30}},
+                                               color={255,0,255}));
+  connect(ignoreFlag, swi.u2) annotation (Line(points={{-122,-70},{-94,-70},{
+          -94,40},{-58,40}},      color={255,0,255}));
+  connect(con.y, swi.u1) annotation (Line(points={{-66,72},{-58,72},{-58,48}},
+                    color={0,0,127}));
+  connect(TZonTemDif, swi.u3) annotation (Line(points={{-120,36},{-62,36},{-62,
+          32},{-58,32}},              color={0,0,127}));
+  connect(const.y, gai.u) annotation (Line(points={{-56,-60},{-48,-60}},
+                      color={0,0,127}));
+  connect(gai.y, add2.u2) annotation (Line(points={{-24,-60},{-18,-60},{-18,-12},
+          {-16,-12}},           color={0,0,127}));
+  connect(swi.y, add2.u1) annotation (Line(points={{-34,40},{-20,40},{-20,0},{
+          -16,0}},          color={0,0,127}));
   connect(add2.y, gre.u1)
-    annotation (Line(points={{-26,-8},{-26,30},{-12,30}}, color={0,0,127}));
-  connect(add2.y, mulMin.u) annotation (Line(points={{-26,-8},{-26,8},{-20,8},{
-          -20,-16},{-14,-16}}, color={0,0,127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)),
+    annotation (Line(points={{8,-6},{22,-6},{22,-4},{80,-4},{80,30},{90,30}},
+                                                          color={0,0,127}));
+  connect(add2.y, mulMin.u) annotation (Line(points={{8,-6},{22,-6},{22,-20},{
+          30,-20}},            color={0,0,127}));
+  connect(not1.y, actionFlag) annotation (Line(points={{160,30},{184,30},{184,2},
+          {210,2}}, color={255,0,255}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{190,100}})),                                  Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{190,
+            100}})),
     Documentation(info="<html>
 hello
 </html>"));

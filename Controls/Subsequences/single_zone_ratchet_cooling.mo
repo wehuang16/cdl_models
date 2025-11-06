@@ -11,6 +11,7 @@ model single_zone_ratchet_cooling
     "Ratcheting temperature";
                parameter Real TReb=-1
     "rebound temperature";
+     parameter Real reboundDuration(unit="s")=3600;
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput loaShe
     "Load shed event flag" annotation (Placement(transformation(extent={{-240,32},
@@ -50,15 +51,15 @@ model single_zone_ratchet_cooling
         iconTransformation(extent={{300,-156},{340,-116}})));
   Buildings.Controls.OBC.CDL.Discrete.Sampler sam(samplePeriod=
         samplePeriodRatchet)
-    annotation (Placement(transformation(extent={{206,58},{226,78}})));
+    annotation (Placement(transformation(extent={{184,60},{204,80}})));
   Buildings.Controls.OBC.CDL.Reals.Add add
     annotation (Placement(transformation(extent={{70,34},{90,54}})));
   Buildings.Controls.OBC.CDL.Discrete.Sampler sam1(samplePeriod=
         samplePeriodRebound)
-    annotation (Placement(transformation(extent={{206,12},{226,32}})));
+    annotation (Placement(transformation(extent={{184,14},{204,34}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi1
     "Switch to zero adjustment when window is open"
-    annotation (Placement(transformation(extent={{252,32},{272,52}})));
+    annotation (Placement(transformation(extent={{226,34},{246,54}})));
   Buildings.Controls.OBC.CDL.Conversions.BooleanToReal
                                           booToRea1(realTrue=-TReb,realFalse=0)
     annotation (Placement(transformation(extent={{-70,-70},{-50,-50}})));
@@ -69,16 +70,16 @@ model single_zone_ratchet_cooling
     "Switch to zero adjustment when window is open"
     annotation (Placement(transformation(extent={{20,34},{40,54}})));
   Buildings.Controls.OBC.CDL.Reals.Max max1
-    annotation (Placement(transformation(extent={{156,34},{176,54}})));
+    annotation (Placement(transformation(extent={{140,34},{160,54}})));
   Buildings.Controls.OBC.CDL.Reals.Min min1
-    annotation (Placement(transformation(extent={{116,34},{136,54}})));
+    annotation (Placement(transformation(extent={{100,34},{120,54}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt
-    annotation (Placement(transformation(extent={{152,-42},{172,-22}})));
+    annotation (Placement(transformation(extent={{-172,-40},{-152,-20}})));
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr(t=-1*TRatThreshold,
       h=0)
-    annotation (Placement(transformation(extent={{-274,118},{-254,138}})));
+    annotation (Placement(transformation(extent={{-140,-40},{-120,-20}})));
   Buildings.Controls.OBC.CDL.Logical.And and2
-    annotation (Placement(transformation(extent={{-138,18},{-118,38}})));
+    annotation (Placement(transformation(extent={{-86,18},{-66,38}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetMax(
     final unit="K",
     displayUnit="degC",
@@ -101,38 +102,45 @@ model single_zone_ratchet_cooling
     annotation (Placement(transformation(extent={{138,-252},{158,-232}})));
   Buildings.Controls.OBC.CDL.Logical.Not not4
     annotation (Placement(transformation(extent={{180,-252},{200,-232}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not1
+    annotation (Placement(transformation(extent={{-98,76},{-78,96}})));
+  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime=reboundDuration)
+    annotation (Placement(transformation(extent={{-138,74},{-118,94}})));
+  Buildings.Controls.OBC.CDL.Logical.Not not2
+    annotation (Placement(transformation(extent={{-178,74},{-158,94}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch swi2
+    annotation (Placement(transformation(extent={{260,-16},{280,4}})));
 equation
-  connect(sam.y, swi1.u1) annotation (Line(points={{228,68},{242,68},{242,50},{
-          250,50}},
+  connect(sam.y, swi1.u1) annotation (Line(points={{206,70},{220,70},{220,52},{
+          224,52}},
                 color={0,0,127}));
-  connect(sam1.y, swi1.u3) annotation (Line(points={{228,22},{242,22},{242,34},
-          {250,34}},color={0,0,127}));
-  connect(swi1.y, TZonCooSetCom)
-    annotation (Line(points={{274,42},{320,42}}, color={0,0,127}));
+  connect(sam1.y, swi1.u3) annotation (Line(points={{206,24},{220,24},{220,36},
+          {224,36}},color={0,0,127}));
   connect(loaShe, swi6.u2) annotation (Line(points={{-220,52},{-96,52},{-96,8},
           {2,8},{2,44},{18,44}}, color={255,0,255}));
   connect(swi6.y, add.u1) annotation (Line(points={{42,44},{60,44},{60,50},{68,
           50}}, color={0,0,127}));
-  connect(add.y, min1.u1) annotation (Line(points={{92,44},{104,44},{104,50},{
-          114,50}}, color={0,0,127}));
-  connect(max1.u1, min1.y) annotation (Line(points={{154,50},{146,50},{146,44},
-          {138,44}}, color={0,0,127}));
-  connect(sam.u, max1.y) annotation (Line(points={{204,68},{192,68},{192,44},{
-          178,44}}, color={0,0,127}));
-  connect(max1.y, sam1.u) annotation (Line(points={{178,44},{192,44},{192,22},{
-          204,22}}, color={0,0,127}));
-  connect(TZon, subt.u1) annotation (Line(points={{-220,-58},{-170,-58},{-170,
-          -26},{150,-26}}, color={0,0,127}));
-  connect(swi1.u2, loaShe) annotation (Line(points={{250,42},{186,42},{186,28},
-          {2,28},{2,8},{-96,8},{-96,52},{-220,52}}, color={255,0,255}));
-  connect(subt.u2, TZonCooSetCur) annotation (Line(points={{150,-38},{62,-38},{62,
-          -118},{-166,-118},{-166,-90},{-220,-90}}, color={0,0,127}));
+  connect(add.y, min1.u1) annotation (Line(points={{92,44},{98,44},{98,50}},
+                    color={0,0,127}));
+  connect(max1.u1, min1.y) annotation (Line(points={{138,50},{130,50},{130,44},
+          {122,44}}, color={0,0,127}));
+  connect(sam.u, max1.y) annotation (Line(points={{182,70},{172,70},{172,44},{
+          162,44}}, color={0,0,127}));
+  connect(max1.y, sam1.u) annotation (Line(points={{162,44},{172,44},{172,24},{
+          182,24}}, color={0,0,127}));
+  connect(TZon, subt.u1) annotation (Line(points={{-220,-58},{-184,-58},{-184,
+          -24},{-174,-24}},color={0,0,127}));
+  connect(swi1.u2, loaShe) annotation (Line(points={{224,44},{176,44},{176,50},
+          {170,50},{170,80},{-68,80},{-68,52},{-220,52}},
+                                                    color={255,0,255}));
+  connect(subt.u2, TZonCooSetCur) annotation (Line(points={{-174,-36},{-182,-36},
+          {-182,-90},{-220,-90}},                   color={0,0,127}));
   connect(add.u2, TZonCooSetCur) annotation (Line(points={{68,38},{50,38},{50,-116},
           {-178,-116},{-178,-90},{-220,-90}}, color={0,0,127}));
-  connect(subt.y, greThr.u) annotation (Line(points={{174,-32},{194,-32},{194,
-          154},{-286,154},{-286,128},{-276,128}}, color={0,0,127}));
-  connect(ratSig, and2.u2) annotation (Line(points={{-220,22},{-148,22},{-148,
-          20},{-140,20}}, color={255,0,255}));
+  connect(subt.y, greThr.u) annotation (Line(points={{-150,-30},{-142,-30}},
+                                                  color={0,0,127}));
+  connect(ratSig, and2.u2) annotation (Line(points={{-220,22},{-98,22},{-98,20},
+          {-88,20}},      color={255,0,255}));
   connect(les.u1, TZonCooSetCur) annotation (Line(points={{136,-132},{124,-132},
           {124,-96},{52,-96},{52,-116},{-168,-116},{-168,-92},{-220,-92},{-220,-90}},
         color={0,0,127}));
@@ -143,29 +151,44 @@ equation
           -224},{-120,-216},{98,-216},{98,-140},{136,-140}}, color={0,0,127}));
   connect(les.y, not3.u)
     annotation (Line(points={{160,-132},{178,-132}}, color={255,0,255}));
-  connect(TZonCooSetNom, gre2.u2) annotation (Line(points={{-216,-264},{-216,
-          116},{-248,116},{-248,-292},{136,-292},{136,-250}}, color={0,0,127}));
+  connect(TZonCooSetNom, gre2.u2) annotation (Line(points={{-216,-264},{104,
+          -264},{104,-250},{136,-250}},                       color={0,0,127}));
   connect(gre2.y, not4.u)
     annotation (Line(points={{160,-242},{178,-242}}, color={255,0,255}));
   connect(not3.y, reachTZonCooSetMax) annotation (Line(points={{202,-132},{288,-132},
           {288,-94},{320,-94}}, color={255,0,255}));
   connect(not4.y, reachTZonCooSetNom) annotation (Line(points={{202,-242},{292,-242},
           {292,-136},{320,-136}}, color={255,0,255}));
-  connect(and2.y, booToRea.u) annotation (Line(points={{-116,28},{-60,28},{-60,
-          62},{-48,62}}, color={255,0,255}));
+  connect(and2.y, booToRea.u) annotation (Line(points={{-64,28},{-54,28},{-54,
+          54},{-56,54},{-56,62},{-48,62}},
+                         color={255,0,255}));
   connect(booToRea.y, swi6.u1) annotation (Line(points={{-24,62},{8,62},{8,52},
           {18,52}}, color={0,0,127}));
-  connect(greThr.y, and2.u1) annotation (Line(points={{-252,128},{-190,128},{
-          -190,28},{-140,28}}, color={255,0,255}));
+  connect(greThr.y, and2.u1) annotation (Line(points={{-118,-30},{-102,-30},{
+          -102,28},{-88,28}},  color={255,0,255}));
   connect(booToRea1.y, swi6.u3) annotation (Line(points={{-48,-60},{-38,-60},{
           -38,32},{8,32},{8,36},{18,36}}, color={0,0,127}));
   connect(rebSig, booToRea1.u) annotation (Line(points={{-220,-10},{-106,-10},{
           -106,-60},{-72,-60}}, color={255,0,255}));
   connect(TZonCooSetMax, min1.u2) annotation (Line(points={{-216,-224},{-120,
-          -224},{-120,-216},{98,-216},{98,36},{106,36},{106,38},{114,38}},
+          -224},{-120,-216},{98,-216},{98,38}},
         color={0,0,127}));
-  connect(TZonCooSetNom, max1.u2) annotation (Line(points={{-216,-264},{-31,
-          -264},{-31,38},{154,38}}, color={0,0,127}));
+  connect(TZonCooSetNom, max1.u2) annotation (Line(points={{-216,-264},{128,
+          -264},{128,38},{138,38}}, color={0,0,127}));
+  connect(loaShe, not2.u) annotation (Line(points={{-220,52},{-190,52},{-190,84},
+          {-180,84}}, color={255,0,255}));
+  connect(not2.y, truDel.u)
+    annotation (Line(points={{-156,84},{-140,84}}, color={255,0,255}));
+  connect(truDel.y, not1.u) annotation (Line(points={{-116,84},{-108,84},{-108,
+          86},{-100,86}}, color={255,0,255}));
+  connect(swi2.y, TZonCooSetCom) annotation (Line(points={{282,-6},{294,-6},{
+          294,42},{320,42}}, color={0,0,127}));
+  connect(swi1.y, swi2.u1)
+    annotation (Line(points={{248,44},{258,44},{258,2}}, color={0,0,127}));
+  connect(not1.y, swi2.u2) annotation (Line(points={{-76,86},{216,86},{216,-6},
+          {258,-6}}, color={255,0,255}));
+  connect(TZonCooSetNom, swi2.u3) annotation (Line(points={{-216,-264},{104,
+          -264},{104,-250},{128,-250},{128,-14},{258,-14}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
             -300},{300,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-200,-300},{300,

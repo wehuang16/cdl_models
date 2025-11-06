@@ -21,7 +21,7 @@ final parameter Modelica.Units.SI.Volume VRoo= AFlo*hRoo "Room volume";
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
-        origin={296,210})));
+        origin={334,210})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
         MediumAir)
     annotation (Placement(transformation(extent={{84,74},{104,94}})));
@@ -117,7 +117,7 @@ final parameter Modelica.Units.SI.Volume VRoo= AFlo*hRoo "Room volume";
         rotation=0,
         origin={90,-62})));
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=C)
-    annotation (Placement(transformation(extent={{358,22},{378,42}})));
+    annotation (Placement(transformation(extent={{224,-12},{244,8}})));
 equation
   connect(qRadGai_flow.y,multiplex3_1. u1[1])  annotation (Line(
       points={{183,76},{192,76},{192,43},{200,43}},
@@ -141,14 +141,15 @@ equation
           -14},{293,-14},{293,13}}, color={0,127,255}));
   connect(roo.heaPorAir, temperatureSensor.port) annotation (Line(points={{307,
           22},{310,22},{310,50},{286,50},{286,156}}, color={191,0,0}));
-  connect(TZon, temperatureSensor.T) annotation (Line(points={{296,210},{296,
-          172},{312,172},{312,156},{307,156}}, color={0,0,127}));
+  connect(TZon, temperatureSensor.T) annotation (Line(points={{334,210},{334,
+          156},{307,156}},                     color={0,0,127}));
   connect(preHeaFlo.port, roo.heaPorAir) annotation (Line(points={{230,-56},{
-          274,-56},{274,50},{307,50},{307,22}}, color={191,0,0}));
+          308,-56},{308,-48},{307,-48},{307,22}},
+                                                color={191,0,0}));
   connect(preHeaFlo.Q_flow, CustomHeatFlow) annotation (Line(points={{210,-56},
           {102,-56},{102,-62},{90,-62}}, color={0,0,127}));
-  connect(heatCapacitor.port, roo.heaPorAir) annotation (Line(points={{368,22},
-          {368,-16},{274,-16},{274,50},{307,50},{307,22}}, color={191,0,0}));
+  connect(heatCapacitor.port, roo.heaPorAir) annotation (Line(points={{234,-12},
+          {234,-18},{274,-18},{274,22},{307,22}},          color={191,0,0}));
   connect(weaBus, roo.weaBus) annotation (Line(
       points={{100,138},{325.9,138},{325.9,39.9}},
       color={255,204,51},

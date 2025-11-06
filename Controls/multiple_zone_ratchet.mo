@@ -28,7 +28,8 @@ model multiple_zone_ratchet
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
-    TReb=TReb)
+    TReb=TReb,
+    reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{204,-12},{254,16}})));
   Subsequences.temDifSelectionMin temDifSelectionMinHeaRat(nZones=nZones)
     annotation (Placement(transformation(extent={{118,96},{138,116}})));
@@ -173,7 +174,8 @@ model multiple_zone_ratchet
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
     TRat=TRat,
-    TReb=TReb)
+    TReb=TReb,
+    reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{192,-140},{242,-112}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetCur[nZones](
     final unit="K",
@@ -266,9 +268,9 @@ equation
   connect(TZon, subt.u1) annotation (Line(points={{-300,78},{-252,78},{-252,48},
           {-110,48},{-110,84},{-66,84}}, color={0,0,127}));
   connect(subt.y, temDifSelectionMinHeaRat.TZonTemDif) annotation (Line(points={{-42,78},
-          {16,78},{16,110.6},{116,110.6}},           color={0,0,127}));
+          {16,78},{16,110.6},{116.621,110.6}},       color={0,0,127}));
   connect(subt.y, temDifSelectionMaxHeaReb.TZonTemDif) annotation (Line(points={{-42,78},
-          {94,78},{94,80.6},{114,80.6}},                 color={0,0,127}));
+          {94,78},{94,80.6},{114.621,80.6}},             color={0,0,127}));
   connect(single_zone_ratchet_cooling.TZonCooSetCom, TZonCooSetCom) annotation (
      Line(points={{244,-116.06},{276,-116.06},{276,-124},{302,-124}}, color={0,
           0,127}));
@@ -310,33 +312,35 @@ equation
           {-36,-130},{144,-130},{144,-128},{182,-128},{182,-125.3},{190,-125.3}},
         color={0,0,127}));
   connect(temDifSelectionMinHeaRat.actionFlag, single_zone_ratchet_heating.ratSig)
-    annotation (Line(points={{140,106},{192,106},{192,10.54},{202,10.54}},
+    annotation (Line(points={{139.379,106.2},{192,106.2},{192,10.54},{202,10.54}},
         color={255,0,255}));
   connect(temDifSelectionMaxHeaReb.actionFlag, single_zone_ratchet_heating.rebSig)
-    annotation (Line(points={{138,76},{186,76},{186,8.3},{202,8.3}},   color={
+    annotation (Line(points={{137.379,76},{186,76},{186,8.3},{202,8.3}},
+                                                                       color={
           255,0,255}));
   connect(single_zone_ratchet_heating.reachTZonHeaSetMin,
-    temDifSelectionMinHeaRat.ignoreFlag) annotation (Line(points={{256,2.42},{264,
-          2.42},{264,124},{100,124},{100,100.2},{116,100.2}},
+    temDifSelectionMinHeaRat.ignoreFlag) annotation (Line(points={{256,2.42},{
+          264,2.42},{264,124},{100,124},{100,100.2},{116.621,100.2}},
                                    color={255,0,255}));
   connect(single_zone_ratchet_heating.reachTZonHeaSetNom,
-    temDifSelectionMaxHeaReb.ignoreFlag) annotation (Line(points={{256,-0.52},{266,
-          -0.52},{266,0},{274,0},{274,-30},{94,-30},{94,70.2},{114,70.2}},
+    temDifSelectionMaxHeaReb.ignoreFlag) annotation (Line(points={{256,-0.52},{
+          266,-0.52},{266,0},{274,0},{274,-30},{94,-30},{94,70.2},{114.621,70.2}},
                                                       color={255,0,255}));
   connect(temDifSelectionMaxCooRat.actionFlag, single_zone_ratchet_cooling.ratSig)
-    annotation (Line(points={{138,-108},{182,-108},{182,-117.46},{190,-117.46}},
-                                                         color={255,0,255}));
+    annotation (Line(points={{137.379,-108},{182,-108},{182,-117.46},{190,
+          -117.46}},                                     color={255,0,255}));
   connect(temDifSelectionMinCooReb.actionFlag, single_zone_ratchet_cooling.rebSig)
-    annotation (Line(points={{138,-148},{146,-148},{146,-122},{182,-122},{182,-119.7},
-          {190,-119.7}},
+    annotation (Line(points={{137.379,-147.8},{146,-147.8},{146,-122},{182,-122},
+          {182,-119.7},{190,-119.7}},
         color={255,0,255}));
   connect(single_zone_ratchet_cooling.reachTZonCooSetNom,
     temDifSelectionMinCooReb.ignoreFlag) annotation (Line(points={{244,-128.52},
-          {244,-128},{248,-128},{248,-162},{106,-162},{106,-153.8},{114,-153.8}},
-                                       color={255,0,255}));
+          {244,-128},{248,-128},{248,-162},{106,-162},{106,-153.8},{114.621,
+          -153.8}},                    color={255,0,255}));
   connect(temDifSelectionMaxCooRat.ignoreFlag, single_zone_ratchet_cooling.reachTZonCooSetMax)
-    annotation (Line(points={{114,-113.8},{106,-113.8},{106,-92},{254,-92},{254,
-          -125.58},{244,-125.58}}, color={255,0,255}));
+    annotation (Line(points={{114.621,-113.8},{106,-113.8},{106,-92},{254,-92},
+          {254,-125.58},{244,-125.58}},
+                                   color={255,0,255}));
   connect(TZonHeaSetCur, subt.u2) annotation (Line(points={{-300,46},{-148,46},{
           -148,72},{-66,72}},                     color={0,0,127}));
   connect(TZon, subt1.u1) annotation (Line(points={{-300,78},{-252,78},{-252,50},
@@ -345,10 +349,10 @@ equation
           {-252,-88},{-196,-88},{-196,-116},{-76,-116},{-76,-104},{-68,-104}},
                                 color={0,0,127}));
   connect(subt1.y, temDifSelectionMaxCooRat.TZonTemDif)
-    annotation (Line(points={{-44,-98},{102,-98},{102,-103.4},{114,-103.4}},
+    annotation (Line(points={{-44,-98},{102,-98},{102,-103.4},{114.621,-103.4}},
                                                              color={0,0,127}));
   connect(subt1.y, temDifSelectionMinCooReb.TZonTemDif) annotation (Line(points={{-44,-98},
-          {16,-98},{16,-144},{88,-144},{88,-143.4},{114,-143.4}},
+          {16,-98},{16,-144},{88,-144},{88,-143.4},{114.621,-143.4}},
                                                       color={0,0,127}));
   connect(booScaRep1.y, logSwi3.u1) annotation (Line(points={{-136,118},{70,118},
           {70,-64},{112,-64}},
