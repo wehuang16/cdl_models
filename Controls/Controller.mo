@@ -4,6 +4,8 @@ block Controller
 
   parameter Real loadShedHourStart=16;
   parameter Real loadShedHourEnd=21;
+    parameter Real occStaHourStart=7;
+  parameter Real occStaHourEnd=20;
   parameter Real TZonHeaSetNomOcc(unit="K")=273.15+22.2222;
   parameter Real TZonHeaSetNomUnocc(unit="K")=273.15+15.5556;
   parameter Real TZonCooSetNomOcc(unit="K")=273.15+25.5556;
@@ -193,26 +195,6 @@ block Controller
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con2(k=
         loaSheCooAct)
     annotation (Placement(transformation(extent={{-4,-176},{16,-156}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput occSta "occupancy status"
-    annotation (Placement(transformation(extent={{-320,134},{-280,174}}),
-        iconTransformation(extent={{-320,134},{-280,174}})),
-            __cdl(semantic(
-          metadataLanguage="Brick 1.3 text/turtle"
-            "@prefix brick: <https://brickschema.org/schema/Brick#> .
-            @prefix hpfs: <http://hpflex/shapes#> .
-            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-            @prefix sh: <http://www.w3.org/ns/shacl#> .
-            @prefix qudt: <http://qudt.org/schema/qudt/> .
-            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-            @prefix unit: <http://qudt.org/vocab/unit/> .
-            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Occupancy_Sensor ;
-              sh:property hpfs:occupancy_ref .
-            hpfs:occupancy_ref a sh:PropertyShape ;
-                sh:minCount 1 ;
-                sh:path ref:hasExternalReference .",
-          naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable loaShe(
     table=[0,0; loadShedHourStart,1; loadShedHourEnd,0; 24,0],
     timeScale=3600,
@@ -236,6 +218,11 @@ block Controller
     annotation (Placement(transformation(extent={{118,98},{138,118}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con5(k=true)
     annotation (Placement(transformation(extent={{114,-114},{134,-94}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occSta(
+    table=[0,0; occStaHourStart,1; occStaHourEnd,0; 24,0],
+    timeScale=3600,
+    period=86400)
+    annotation (Placement(transformation(extent={{-276,164},{-256,184}})));
 equation
   connect(TZon,single_zone_ratchet_heating. TZon) annotation (Line(points={{-300,78},
           {-256,78},{-256,80},{-210,80},{-210,-2},{112,-2},{112,6},{194,6},{194,
@@ -282,10 +269,6 @@ equation
           0,127}));
   connect(con3.y, TZonCooSetMax.u1) annotation (Line(points={{-238,-132},{-200,-132},
           {-200,-126},{-190,-126}}, color={0,0,127}));
-  connect(occSta, TZonHeaSetNom.u) annotation (Line(points={{-300,154},{-270,154},
-          {-270,-32},{-242,-32}}, color={255,0,255}));
-  connect(occSta, TZonCooSetNom.u) annotation (Line(points={{-300,154},{-270,154},
-          {-270,-190},{-242,-190}}, color={255,0,255}));
   connect(TZonHeaSetNom.y, single_zone_ratchet_heating.TZonHeaSetNom)
     annotation (Line(points={{-218,-32},{200,-32},{200,-18},{194,-18},{194,-2.2},
           {202,-2.2}}, color={0,0,127}));
@@ -311,6 +294,11 @@ equation
           {136,-104},{180,-104},{180,-117.46},{190,-117.46}}, color={255,0,255}));
   connect(con5.y, single_zone_ratchet_cooling.rebSig) annotation (Line(points={
           {136,-104},{180,-104},{180,-118},{186,-118},{186,-119.7},{190,-119.7}},
+        color={255,0,255}));
+  connect(occSta.y[1], TZonHeaSetNom.u) annotation (Line(points={{-254,174},{-240,
+          174},{-240,-16},{-250,-16},{-250,-32},{-242,-32}}, color={255,0,255}));
+  connect(occSta.y[1], TZonCooSetNom.u) annotation (Line(points={{-254,174},{-240,
+          174},{-240,-16},{-250,-16},{-250,-116},{-266,-116},{-266,-190},{-242,-190}},
         color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},
             {280,220}})),                                        Diagram(
