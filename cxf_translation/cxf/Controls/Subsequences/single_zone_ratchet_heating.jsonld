@@ -44,6 +44,12 @@
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not2"
         },
         {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not3"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not4"
+        },
+        {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.sam"
         },
         {
@@ -56,7 +62,13 @@
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi1"
         },
         {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2"
+        },
+        {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi6"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel"
         }
       ],
       "S231P:diagram": "coordinateSystem(extent={{-200,-300},{300,100}},preserveAspectRatio=false)",
@@ -96,6 +108,9 @@
       ],
       "S231P:hasParameter": [
         {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.reboundDuration"
+        },
+        {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.samplePeriodRatchet"
         },
         {
@@ -118,7 +133,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.add",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Add",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{70,34},{90,54}})))",
+      "S231P:graphics": "Placement(transformation(extent={{60,34},{80,54}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.add.u1"
@@ -148,7 +163,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.and2",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-138,18},{-118,38}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-90,18},{-70,38}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.and2.u1"
@@ -172,7 +187,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.booToRea",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Conversions.BooleanToReal",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-56,34},{-36,54}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-44,34},{-24,54}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.booToRea.realFalse"
@@ -290,7 +305,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.lesThr",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-268,184},{-248,204}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-38},{-120,-18}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.lesThr.h"
@@ -327,16 +342,21 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Load shed event flag",
       "S231P:graphics": "Placement(transformation(extent={{-240,32},{-200,72}})),iconTransformation(extent={{-240,32},{-200,72}})))",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi6.u2"
-      },
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not3.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi6.u2"
+        }
+      ],
       "S231P:label": "loaShe"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.max1",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Max",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{156,34},{176,54}})))",
+      "S231P:graphics": "Placement(transformation(extent={{126,34},{146,54}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.max1.u1"
@@ -366,7 +386,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.min1",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Min",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{116,34},{136,54}})))",
+      "S231P:graphics": "Placement(transformation(extent={{92,34},{112,54}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.min1.u1"
@@ -423,6 +443,48 @@
       }
     },
     {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not3",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Not",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-174,70},{-154,90}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not3.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not3.y"
+        }
+      ],
+      "S231P:label": "not3"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not3.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel.u"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not4",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Not",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-94,72},{-74,92}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not4.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not4.y"
+        }
+      ],
+      "S231P:label": "not4"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not4.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.u2"
+      }
+    },
+    {
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.ratSig",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
@@ -447,6 +509,19 @@
       "S231P:label": "reachTZonHeaSetNom"
     },
     {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.reboundDuration",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "reboundDuration",
+      "S231P:value": 3600
+    },
+    {
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.rebSig",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
@@ -460,7 +535,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.sam",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Discrete.Sampler",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{206,58},{226,78}})))",
+      "S231P:graphics": "Placement(transformation(extent={{188,56},{208,76}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.sam.samplePeriod"
@@ -494,7 +569,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.sam1",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Discrete.Sampler",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{206,12},{226,32}})))",
+      "S231P:graphics": "Placement(transformation(extent={{188,10},{208,30}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.sam1.samplePeriod"
@@ -550,7 +625,7 @@
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.subt",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{152,-42},{172,-22}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-172,-38},{-152,-18}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.subt.u1"
@@ -581,7 +656,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Switch to zero adjustment when window is open",
-      "S231P:graphics": "Placement(transformation(extent={{252,32},{272,52}})))",
+      "S231P:graphics": "Placement(transformation(extent={{224,28},{244,48}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi1.u1"
@@ -606,6 +681,33 @@
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{254,6},{274,26}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.u1"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.u2"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.u3"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.y"
+        }
+      ],
+      "S231P:label": "swi2"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.y",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.TZonSetHeaCom"
       }
@@ -673,6 +775,34 @@
       },
       "S231P:label": "TReb",
       "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-134,70},{-114,90}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel.delayTime"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel.u"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel.y"
+        }
+      ],
+      "S231P:label": "truDel"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel.delayTime",
+      "S231P:value": "reboundDuration"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.truDel.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.not4.u"
+      }
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.TZon",
@@ -765,6 +895,9 @@
         },
         {
           "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.min1.u2"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_heating.swi2.u3"
         }
       ],
       "S231P:label": "TZonHeaSetNom"

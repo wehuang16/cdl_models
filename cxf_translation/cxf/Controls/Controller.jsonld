@@ -533,6 +533,9 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.ratSig"
         },
         {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.reboundDuration"
+        },
+        {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.rebSig"
         },
         {
@@ -567,6 +570,10 @@
         }
       ],
       "S231P:label": "single_zone_ratchet_cooling"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.reboundDuration",
+      "S231P:value": "reboundDuration"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_cooling.samplePeriodRatchet",
@@ -607,6 +614,9 @@
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.ratSig"
         },
         {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.reboundDuration"
+        },
+        {
           "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.rebSig"
         },
         {
@@ -641,6 +651,10 @@
         }
       ],
       "S231P:label": "single_zone_ratchet_heating"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.reboundDuration",
+      "S231P:value": "reboundDuration"
     },
     {
       "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_heating.samplePeriodRatchet",
@@ -763,7 +777,7 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Current zone temperature setpoint",
-      "S231P:graphics": "Placement(transformation(extent={{-320,-6},{-280,34}})),iconTransformation(extent={{-320,-24},{-280,16}})))",
+      "S231P:graphics": "Placement(transformation(extent={{-320,-6},{-280,34}})),iconTransformation(extent={{-322,-24},{-282,16}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
