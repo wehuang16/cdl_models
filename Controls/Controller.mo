@@ -201,7 +201,7 @@ block Controller
     period=86400)
     annotation (Placement(transformation(extent={{-208,108},{-188,128}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con3(k=loadShedTempAmount)
-    annotation (Placement(transformation(extent={{-260,-142},{-240,-122}})));
+    annotation (Placement(transformation(extent={{-236,-142},{-216,-122}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract TZonHeaSetMin
     annotation (Placement(transformation(extent={{-190,-84},{-170,-64}})));
   Buildings.Controls.OBC.CDL.Reals.Add TZonCooSetMax
@@ -222,11 +222,11 @@ block Controller
     table=[0,0; occStaHourStart,1; occStaHourEnd,0; 24,0],
     timeScale=3600,
     period=86400)
-    annotation (Placement(transformation(extent={{-276,164},{-256,184}})));
+    annotation (Placement(transformation(extent={{-282,164},{-262,184}})));
 equation
   connect(TZon,single_zone_ratchet_heating. TZon) annotation (Line(points={{-300,78},
-          {-256,78},{-256,80},{-210,80},{-210,-2},{112,-2},{112,6},{194,6},{194,
-          4.94},{202,4.94}},                    color={0,0,127}));
+          {-210,78},{-210,-2},{112,-2},{112,6},{194,6},{194,4.94},{202,4.94}},
+                                                color={0,0,127}));
   connect(single_zone_ratchet_cooling.TZonCooSetCom, TZonCooSetCom) annotation (
      Line(points={{244,-116.06},{276,-116.06},{276,-124},{302,-124}}, color={0,
           0,127}));
@@ -245,14 +245,15 @@ equation
           {110,0},{110,138},{116,138}},
                                       color={255,0,255}));
   connect(TZon, single_zone_ratchet_cooling.TZon) annotation (Line(points={{-300,78},
-          {-286,78},{-286,46},{-64,46},{-64,-4},{86,-4},{86,-122},{152,-122},{152,
-          -123.06},{190,-123.06}},            color={0,0,127}));
+          {4,78},{4,2},{152,2},{152,-123.06},{190,-123.06}},
+                                              color={0,0,127}));
   connect(TZonHeaSetCur, single_zone_ratchet_heating.TZonHeaSetCur) annotation (
      Line(points={{-300,46},{-148,46},{-148,-8},{-2,-8},{-2,2.7},{202,2.7}},
         color={0,0,127}));
   connect(TZonCooSetCur, single_zone_ratchet_cooling.TZonCooSetCur) annotation (
-     Line(points={{-300,14},{-252,14},{-252,-88},{-196,-88},{-196,-116},{-36,-116},
-          {-36,-130},{144,-130},{144,-128},{182,-128},{182,-125.3},{190,-125.3}},
+     Line(points={{-300,14},{-266,14},{-266,-86},{-196,-86},{-196,-116},{-36,
+          -116},{-36,-130},{144,-130},{144,-128},{182,-128},{182,-125.3},{190,
+          -125.3}},
         color={0,0,127}));
   connect(con.y, logSwi3.u3) annotation (Line(points={{28,-48},{36,-48},{36,-80},
           {112,-80}},             color={255,0,255}));
@@ -262,13 +263,15 @@ equation
   connect(TZonHeaSetNom.y, TZonHeaSetMin.u1) annotation (Line(points={{-218,-32},
           {-202,-32},{-202,-68},{-192,-68}},                         color={0,0,
           127}));
-  connect(con3.y, TZonHeaSetMin.u2) annotation (Line(points={{-238,-132},{-200,-132},
-          {-200,-80},{-192,-80}},   color={0,0,127}));
+  connect(con3.y, TZonHeaSetMin.u2) annotation (Line(points={{-214,-132},{-198,
+          -132},{-198,-90},{-200,-90},{-200,-80},{-192,-80}},
+                                    color={0,0,127}));
   connect(TZonCooSetNom.y, TZonCooSetMax.u2) annotation (Line(points={{-218,-190},
           {-208,-190},{-208,-138},{-190,-138}},                         color={0,
           0,127}));
-  connect(con3.y, TZonCooSetMax.u1) annotation (Line(points={{-238,-132},{-200,-132},
-          {-200,-126},{-190,-126}}, color={0,0,127}));
+  connect(con3.y, TZonCooSetMax.u1) annotation (Line(points={{-214,-132},{-198,
+          -132},{-198,-126},{-190,-126}},
+                                    color={0,0,127}));
   connect(TZonHeaSetNom.y, single_zone_ratchet_heating.TZonHeaSetNom)
     annotation (Line(points={{-218,-32},{200,-32},{200,-18},{194,-18},{194,-2.2},
           {202,-2.2}}, color={0,0,127}));
@@ -295,10 +298,10 @@ equation
   connect(con5.y, single_zone_ratchet_cooling.rebSig) annotation (Line(points={
           {136,-104},{180,-104},{180,-118},{186,-118},{186,-119.7},{190,-119.7}},
         color={255,0,255}));
-  connect(occSta.y[1], TZonHeaSetNom.u) annotation (Line(points={{-254,174},{-240,
-          174},{-240,-16},{-250,-16},{-250,-32},{-242,-32}}, color={255,0,255}));
-  connect(occSta.y[1], TZonCooSetNom.u) annotation (Line(points={{-254,174},{-240,
-          174},{-240,-16},{-250,-16},{-250,-116},{-266,-116},{-266,-190},{-242,-190}},
+  connect(occSta.y[1], TZonHeaSetNom.u) annotation (Line(points={{-260,174},{
+          -250,174},{-250,-32},{-242,-32}},                  color={255,0,255}));
+  connect(occSta.y[1], TZonCooSetNom.u) annotation (Line(points={{-260,174},{
+          -252,174},{-252,172},{-250,172},{-250,-190},{-242,-190}},
         color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},
             {280,220}})),                                        Diagram(
