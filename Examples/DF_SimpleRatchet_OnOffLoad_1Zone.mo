@@ -25,13 +25,13 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{46,-14},{66,8}})));
   HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer
     annotation (Placement(transformation(extent={{80,38},{100,58}})));
-  Controls.single_zone_ratchet   single_zone_ratchet(
+  Controls.single_zone_ratchet_archived_11022025 single_zone_ratchet(
     TZonHeaSetNomOcc=THeaSetOcc,
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,
     TZonCooSetNomUnocc=TCooSetUnocc,
     loadShedDurationTypical(displayUnit="h"))
-               annotation (Placement(transformation(extent={{-50,36},{-12,68}})));
+    annotation (Placement(transformation(extent={{-50,36},{-12,68}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{140,42},{160,62}})));
@@ -42,7 +42,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   HVAC.custom_air_conditioner_OnOff_timer
     custom_air_conditioner_OnOff_timer_baseline
     annotation (Placement(transformation(extent={{72,-54},{92,-34}})));
-  Controls.single_zone_ratchet single_zone_ratchet_baseline(
+  Controls.single_zone_ratchet_archived_11022025 single_zone_ratchet_baseline(
     TZonHeaSetNomOcc=THeaSetOcc,
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,

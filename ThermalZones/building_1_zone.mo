@@ -6,10 +6,13 @@ model building_1_zone
       Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=273.15+50, X_a=
             0.4);
 
-  Subsequences.ModelicaRoom modelicaRoom(C=250*1014.54*1.2)
+  Subsequences.ModelicaRoom modelicaRoom(
+    C=3500*1014.54*1.2,
+    hRoo=2.74,
+    AFlo=160)
     annotation (Placement(transformation(extent={{-24,18},{18,48}})));
   Modelica.Blocks.Sources.CombiTimeTable customHeatAddition1(
-    table=[0,0; 12,150; 14,250; 16,150; 18,0.0; 24,0.0],
+    table=[0,0; 12,300; 14,500; 16,300; 18,0.0; 24,0.0],
     smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
     timeScale=3600)

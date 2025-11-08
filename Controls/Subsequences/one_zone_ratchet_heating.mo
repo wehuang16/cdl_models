@@ -1,5 +1,5 @@
 within cdl_models.Controls.Subsequences;
-model single_zone_ratchet_heating
+model one_zone_ratchet_heating
 
       parameter Real samplePeriodRatchet(unit="s")=300
     "Sample period of the demand flexibility control";
@@ -196,4 +196,4 @@ equation
             -300},{300,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-200,-300},{300,
             100}})));
-end single_zone_ratchet_heating;
+end one_zone_ratchet_heating;

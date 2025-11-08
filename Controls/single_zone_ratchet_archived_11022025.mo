@@ -1,7 +1,6 @@
 within cdl_models.Controls;
-model multiple_zone_ratchet
+model single_zone_ratchet_archived_11022025
 
-  parameter Integer nZones=4;
   parameter Real loadShedHourStart=16;
   parameter Real loadShedHourEnd=21;
   parameter Real TZonHeaSetNomOcc(unit="K")=273.15+22.2222;
@@ -19,11 +18,12 @@ model multiple_zone_ratchet
     "Ratcheting temperature (defined as >0)";
                parameter Real TReb=0.5556
     "rebound temperature (defined as >0)";
-      parameter Real samplePeriodRatchet(unit="s")=loadShedDurationTypical*0.3333*TRat/loadShedTempAmount/nZones
+      parameter Real samplePeriodRatchet(unit="s")=loadShedDurationTypical*0.3333*TRat/loadShedTempAmount
     "Sample period of the demand flexibility control";
-          parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount/nZones
+          parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount
     "Sample period of rebound";
-  Subsequences.one_zone_ratchet_heating single_zone_ratchet_heating[nZones](
+  cdl_models.Controls.Subsequences.one_zone_ratchet_heating
+    single_zone_ratchet_heating(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -31,11 +31,7 @@ model multiple_zone_ratchet
     TReb=TReb,
     reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{204,-12},{254,16}})));
-  Subsequences.temDifSelectionMin temDifSelectionMinHeaRat(nZones=nZones)
-    annotation (Placement(transformation(extent={{118,96},{138,116}})));
-  Subsequences.temDifSelectionMax temDifSelectionMaxHeaReb(nZones=nZones)
-    annotation (Placement(transformation(extent={{116,66},{136,86}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon[nZones](
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
@@ -63,7 +59,7 @@ model multiple_zone_ratchet
               sh:path ref:hasExternalReference .",
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature reading input that should be hardwired to the zone air temperature sensor")));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetCur[nZones](
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetCur(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
@@ -91,7 +87,7 @@ model multiple_zone_ratchet
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature heating setpoint input")));
-  Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonHeaSetCom[nZones](
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonHeaSetCom(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
@@ -99,8 +95,7 @@ model multiple_zone_ratchet
           extent={{282,32},{322,72}}), iconTransformation(extent={{280,18},{320,
             58}})),
             __cdl(semantic(
-          metadataLanguage="Brick 1.3 text/turtle"
-            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+          metadataLanguage="Brick 1.3 text/turtle" "@prefix brick: <https://brickschema.org/schema/Brick#> .
             @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -118,30 +113,11 @@ model multiple_zone_ratchet
                 sh:minCount 1 ;
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input")));
-  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1[nZones](k=
+          "<cdl_instance_name> is a temperature heating setpoint input")));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1(k=
         loaSheHeaAct)
     annotation (Placement(transformation(extent={{0,158},{20,178}})));
-  Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator booScaRep1(nout=
-        nZones) annotation (Placement(transformation(extent={{-158,108},{-138,128}})));
-  Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep(nout=nZones)
-    annotation (Placement(transformation(extent={{-130,-84},{-110,-64}})));
-  Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep1(nout=
-        nZones)
-    annotation (Placement(transformation(extent={{-130,-42},{-110,-22}})));
-  Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep2(nout=
-        nZones)
-    annotation (Placement(transformation(extent={{-130,-142},{-110,-122}})));
-  Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator reaScaRep3(nout=
-        nZones)
-    annotation (Placement(transformation(extent={{-128,-200},{-108,-180}})));
-  Buildings.Controls.OBC.CDL.Reals.Subtract subt[nZones]
-    annotation (Placement(transformation(extent={{-64,68},{-44,88}})));
-  Subsequences.temDifSelectionMin temDifSelectionMinCooReb(nZones=nZones)
-    annotation (Placement(transformation(extent={{116,-158},{136,-138}})));
-  Subsequences.temDifSelectionMax temDifSelectionMaxCooRat(nZones=nZones)
-    annotation (Placement(transformation(extent={{116,-118},{136,-98}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonCooSetCom[nZones](
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonCooSetCom(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
@@ -169,7 +145,8 @@ model multiple_zone_ratchet
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature cooling setpoint input")));
-  Subsequences.one_zone_ratchet_cooling single_zone_ratchet_cooling[nZones](
+  cdl_models.Controls.Subsequences.one_zone_ratchet_cooling
+    single_zone_ratchet_cooling(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -177,13 +154,13 @@ model multiple_zone_ratchet
     TReb=TReb,
     reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{192,-140},{242,-112}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetCur[nZones](
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetCur(
     final unit="K",
     displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Current zone temperature setpoint" annotation (Placement(transformation(
-          extent={{-320,-6},{-280,34}}),   iconTransformation(extent={{-320,-24},
-            {-280,16}})),
+          extent={{-320,-6},{-280,34}}),   iconTransformation(extent={{-322,-24},
+            {-282,16}})),
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .
@@ -206,25 +183,22 @@ model multiple_zone_ratchet
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature cooling setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi2
-                                                  [nZones]
     annotation (Placement(transformation(extent={{118,136},{138,156}})));
+
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi3
-                                                  [nZones]
     annotation (Placement(transformation(extent={{114,-82},{134,-62}})));
-  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con[nZones](k=false)
+
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con(k=false)
     annotation (Placement(transformation(extent={{6,-58},{26,-38}})));
-  Buildings.Controls.OBC.CDL.Reals.Subtract subt1
-                                                [nZones]
-    annotation (Placement(transformation(extent={{-66,-108},{-46,-88}})));
-  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con2[nZones](k=
+
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con2(k=
         loaSheCooAct)
     annotation (Placement(transformation(extent={{-4,-176},{16,-156}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput occSta "occupancy status"
     annotation (Placement(transformation(extent={{-320,134},{-280,174}}),
         iconTransformation(extent={{-320,134},{-280,174}})),
             __cdl(semantic(
-          metadataLanguage="Brick 1.3 text/turtle"
-            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+          metadataLanguage="Brick 1.3 text/turtle" "@prefix brick: <https://brickschema.org/schema/Brick#> .
             @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -238,7 +212,7 @@ model multiple_zone_ratchet
                 sh:minCount 1 ;
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input")));
+          "<cdl_instance_name> is a temperature heating setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable loaShe(
     table=[0,0; loadShedHourStart,1; loadShedHourEnd,0; 24,0],
     timeScale=3600,
@@ -258,19 +232,14 @@ model multiple_zone_ratchet
                                           TZonCooSetNom(realTrue=
         TZonCooSetNomOcc, realFalse=TZonCooSetNomUnocc)
     annotation (Placement(transformation(extent={{-240,-200},{-220,-180}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con4(k=true)
+    annotation (Placement(transformation(extent={{118,98},{138,118}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant con5(k=true)
+    annotation (Placement(transformation(extent={{114,-114},{134,-94}})));
 equation
-  connect(reaScaRep1.y,single_zone_ratchet_heating. TZonHeaSetNom) annotation (
-      Line(points={{-108,-32},{-34,-32},{-34,-18},{194,-18},{194,-2.2},{202,-2.2}},
-        color={0,0,127}));
   connect(TZon,single_zone_ratchet_heating. TZon) annotation (Line(points={{-300,78},
           {-256,78},{-256,80},{-210,80},{-210,-2},{112,-2},{112,6},{194,6},{194,
           4.94},{202,4.94}},                    color={0,0,127}));
-  connect(TZon, subt.u1) annotation (Line(points={{-300,78},{-252,78},{-252,48},
-          {-110,48},{-110,84},{-66,84}}, color={0,0,127}));
-  connect(subt.y, temDifSelectionMinHeaRat.TZonTemDif) annotation (Line(points={{-42,78},
-          {16,78},{16,110.6},{116.621,110.6}},       color={0,0,127}));
-  connect(subt.y, temDifSelectionMaxHeaReb.TZonTemDif) annotation (Line(points={{-42,78},
-          {94,78},{94,80.6},{114.621,80.6}},             color={0,0,127}));
   connect(single_zone_ratchet_cooling.TZonCooSetCom, TZonCooSetCom) annotation (
      Line(points={{244,-116.06},{276,-116.06},{276,-124},{302,-124}}, color={0,
           0,127}));
@@ -279,9 +248,6 @@ equation
   connect(con1.y, logSwi2.u2) annotation (Line(points={{22,168},{78,168},{78,146},
           {116,146}},
                     color={255,0,255}));
-  connect(booScaRep1.y, logSwi2.u1) annotation (Line(points={{-136,118},{74,118},
-          {74,154},{116,154}},
-                             color={255,0,255}));
   connect(logSwi2.y, single_zone_ratchet_heating.loaShe) annotation (Line(
         points={{140,146},{188,146},{188,14},{194,14},{194,12.64},{202,12.64}},
                                                             color={255,0,255}));
@@ -294,16 +260,6 @@ equation
   connect(TZon, single_zone_ratchet_cooling.TZon) annotation (Line(points={{-300,78},
           {-286,78},{-286,46},{-64,46},{-64,-4},{86,-4},{86,-122},{152,-122},{152,
           -123.06},{190,-123.06}},            color={0,0,127}));
-  connect(reaScaRep.y, single_zone_ratchet_heating.TZonHeaSetMin) annotation (
-      Line(points={{-108,-74},{62,-74},{62,0.32},{202,0.32}},
-        color={0,0,127}));
-  connect(reaScaRep2.y, single_zone_ratchet_cooling.TZonCooSetMax) annotation (
-      Line(points={{-108,-132},{-106,-132.58},{190,-132.58}},
-                     color={0,0,127}));
-  connect(reaScaRep3.y, single_zone_ratchet_cooling.TZonCooSetNom) annotation (
-      Line(points={{-106,-190},{184,-190},{184,-140},{182,-140},{182,-135.1},{190.2,
-          -135.1}},                                                   color={0,
-          0,127}));
   connect(TZonHeaSetCur, single_zone_ratchet_heating.TZonHeaSetCur) annotation (
      Line(points={{-300,46},{-148,46},{-148,-8},{-2,-8},{-2,2.7},{202,2.7}},
         color={0,0,127}));
@@ -311,84 +267,52 @@ equation
      Line(points={{-300,14},{-252,14},{-252,-88},{-196,-88},{-196,-116},{-36,-116},
           {-36,-130},{144,-130},{144,-128},{182,-128},{182,-125.3},{190,-125.3}},
         color={0,0,127}));
-  connect(temDifSelectionMinHeaRat.actionFlag, single_zone_ratchet_heating.ratSig)
-    annotation (Line(points={{139.379,106.2},{192,106.2},{192,10.54},{202,10.54}},
-        color={255,0,255}));
-  connect(temDifSelectionMaxHeaReb.actionFlag, single_zone_ratchet_heating.rebSig)
-    annotation (Line(points={{137.379,76},{186,76},{186,8.3},{202,8.3}},
-                                                                       color={
-          255,0,255}));
-  connect(single_zone_ratchet_heating.reachTZonHeaSetMin,
-    temDifSelectionMinHeaRat.ignoreFlag) annotation (Line(points={{256,2.42},{
-          264,2.42},{264,124},{100,124},{100,100.2},{116.621,100.2}},
-                                   color={255,0,255}));
-  connect(single_zone_ratchet_heating.reachTZonHeaSetNom,
-    temDifSelectionMaxHeaReb.ignoreFlag) annotation (Line(points={{256,-0.52},{
-          266,-0.52},{266,0},{274,0},{274,-30},{94,-30},{94,70.2},{114.621,70.2}},
-                                                      color={255,0,255}));
-  connect(temDifSelectionMaxCooRat.actionFlag, single_zone_ratchet_cooling.ratSig)
-    annotation (Line(points={{137.379,-108},{182,-108},{182,-117.46},{190,
-          -117.46}},                                     color={255,0,255}));
-  connect(temDifSelectionMinCooReb.actionFlag, single_zone_ratchet_cooling.rebSig)
-    annotation (Line(points={{137.379,-147.8},{146,-147.8},{146,-122},{182,-122},
-          {182,-119.7},{190,-119.7}},
-        color={255,0,255}));
-  connect(single_zone_ratchet_cooling.reachTZonCooSetNom,
-    temDifSelectionMinCooReb.ignoreFlag) annotation (Line(points={{244,-128.52},
-          {244,-128},{248,-128},{248,-162},{106,-162},{106,-153.8},{114.621,
-          -153.8}},                    color={255,0,255}));
-  connect(temDifSelectionMaxCooRat.ignoreFlag, single_zone_ratchet_cooling.reachTZonCooSetMax)
-    annotation (Line(points={{114.621,-113.8},{106,-113.8},{106,-92},{254,-92},
-          {254,-125.58},{244,-125.58}},
-                                   color={255,0,255}));
-  connect(TZonHeaSetCur, subt.u2) annotation (Line(points={{-300,46},{-148,46},{
-          -148,72},{-66,72}},                     color={0,0,127}));
-  connect(TZon, subt1.u1) annotation (Line(points={{-300,78},{-252,78},{-252,50},
-          {-76,50},{-76,-92},{-68,-92}}, color={0,0,127}));
-  connect(TZonCooSetCur, subt1.u2) annotation (Line(points={{-300,14},{-252,14},
-          {-252,-88},{-196,-88},{-196,-116},{-76,-116},{-76,-104},{-68,-104}},
-                                color={0,0,127}));
-  connect(subt1.y, temDifSelectionMaxCooRat.TZonTemDif)
-    annotation (Line(points={{-44,-98},{102,-98},{102,-103.4},{114.621,-103.4}},
-                                                             color={0,0,127}));
-  connect(subt1.y, temDifSelectionMinCooReb.TZonTemDif) annotation (Line(points={{-44,-98},
-          {16,-98},{16,-144},{88,-144},{88,-143.4},{114.621,-143.4}},
-                                                      color={0,0,127}));
-  connect(booScaRep1.y, logSwi3.u1) annotation (Line(points={{-136,118},{70,118},
-          {70,-64},{112,-64}},
-                             color={255,0,255}));
   connect(con.y, logSwi3.u3) annotation (Line(points={{28,-48},{36,-48},{36,-80},
           {112,-80}},             color={255,0,255}));
   connect(con2.y, logSwi3.u2) annotation (Line(points={{18,-166},{94,-166},{94,-72},
           {112,-72}},
         color={255,0,255}));
-  connect(loaShe.y[1], booScaRep1.u) annotation (Line(points={{-186,118},{-160,118}},
-                           color={255,0,255}));
-  connect(TZonHeaSetNom.y, reaScaRep1.u) annotation (Line(points={{-218,-32},{-132,
-          -32}},
-        color={0,0,127}));
   connect(TZonHeaSetNom.y, TZonHeaSetMin.u1) annotation (Line(points={{-218,-32},
           {-202,-32},{-202,-68},{-192,-68}},                         color={0,0,
           127}));
   connect(con3.y, TZonHeaSetMin.u2) annotation (Line(points={{-238,-132},{-200,-132},
           {-200,-80},{-192,-80}},   color={0,0,127}));
-  connect(TZonHeaSetMin.y, reaScaRep.u) annotation (Line(points={{-168,-74},{-132,
-          -74}},
-        color={0,0,127}));
-  connect(TZonCooSetNom.y, reaScaRep3.u) annotation (Line(points={{-218,-190},{-130,
-          -190}},                                              color={0,0,127}));
   connect(TZonCooSetNom.y, TZonCooSetMax.u2) annotation (Line(points={{-218,-190},
           {-208,-190},{-208,-138},{-190,-138}},                         color={0,
           0,127}));
   connect(con3.y, TZonCooSetMax.u1) annotation (Line(points={{-238,-132},{-200,-132},
           {-200,-126},{-190,-126}}, color={0,0,127}));
-  connect(TZonCooSetMax.y, reaScaRep2.u) annotation (Line(points={{-166,-132},{-132,
-          -132}},                       color={0,0,127}));
   connect(occSta, TZonHeaSetNom.u) annotation (Line(points={{-300,154},{-270,154},
           {-270,-32},{-242,-32}}, color={255,0,255}));
   connect(occSta, TZonCooSetNom.u) annotation (Line(points={{-300,154},{-270,154},
           {-270,-190},{-242,-190}}, color={255,0,255}));
+  connect(TZonHeaSetNom.y, single_zone_ratchet_heating.TZonHeaSetNom)
+    annotation (Line(points={{-218,-32},{200,-32},{200,-18},{194,-18},{194,-2.2},
+          {202,-2.2}}, color={0,0,127}));
+  connect(TZonCooSetNom.y, single_zone_ratchet_cooling.TZonCooSetNom)
+    annotation (Line(points={{-218,-190},{-208,-190},{-208,-184},{144,-184},{144,
+          -156},{180,-156},{180,-135.1},{190.2,-135.1}}, color={0,0,127}));
+  connect(TZonCooSetMax.y, single_zone_ratchet_cooling.TZonCooSetMax)
+    annotation (Line(points={{-166,-132},{-164,-132.58},{190,-132.58}}, color={0,
+          0,127}));
+  connect(TZonHeaSetMin.y, single_zone_ratchet_heating.TZonHeaSetMin)
+    annotation (Line(points={{-168,-74},{-120,-74},{-120,0},{190,0},{190,0.32},{
+          202,0.32}}, color={0,0,127}));
+  connect(loaShe.y[1], logSwi2.u1) annotation (Line(points={{-186,118},{-6,118},
+          {-6,184},{108,184},{108,154},{116,154}}, color={255,0,255}));
+  connect(loaShe.y[1], logSwi3.u1) annotation (Line(points={{-186,118},{-37,118},
+          {-37,-64},{112,-64}}, color={255,0,255}));
+  connect(con4.y, single_zone_ratchet_heating.ratSig) annotation (Line(points={
+          {140,108},{186,108},{186,10.54},{202,10.54}}, color={255,0,255}));
+  connect(con4.y, single_zone_ratchet_heating.rebSig) annotation (Line(points={
+          {140,108},{186,108},{186,10},{198,10},{198,8.3},{202,8.3}}, color={
+          255,0,255}));
+  connect(con5.y, single_zone_ratchet_cooling.ratSig) annotation (Line(points={
+          {136,-104},{180,-104},{180,-117.46},{190,-117.46}}, color={255,0,255}));
+  connect(con5.y, single_zone_ratchet_cooling.rebSig) annotation (Line(points={
+          {136,-104},{180,-104},{180,-118},{186,-118},{186,-119.7},{190,-119.7}},
+        color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},
             {280,220}})),                                        Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},{280,220}})));
-end multiple_zone_ratchet;
+end single_zone_ratchet_archived_11022025;
