@@ -175,8 +175,9 @@ block single_zone_ratchet
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-174,142},{-154,162}})));
-  Subsequences.single_zone_ratchet_base single_zone_ratchet_base(loadShedHourStart=loadShedHourStart,
-loadShedHourEnd=loadShedHourEnd,
+  Subsequences.single_zone_ratchet_base single_zone_ratchet_base(
+    loadShedHourStart=loadShedHourStart,
+    loadShedHourEnd=loadShedHourEnd,
    TZonHeaSetNomOcc=TZonHeaSetNomOcc,
    TZonHeaSetNomUnocc=TZonHeaSetNomUnocc,
    TZonCooSetNomOcc=TZonCooSetNomOcc,
