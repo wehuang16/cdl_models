@@ -1,9 +1,9 @@
 within cdl_models.Controls;
 block Controller
-  parameter Real loadShedHourStart=16;
-  parameter Real loadShedHourEnd=21;
-    parameter Real occStaHourStart=7;
-  parameter Real occStaHourEnd=20;
+  parameter Real loadShedHourStart=0;
+  parameter Real loadShedHourEnd=5;
+    parameter Real occStaHourStart=15;
+  parameter Real occStaHourEnd=4;
   parameter Real TZonHeaSetNomOcc(unit="K")=273.15+22.2222;
   parameter Real TZonHeaSetNomUnocc(unit="K")=273.15+15.5556;
   parameter Real TZonCooSetNomOcc(unit="K")=273.15+25.5556;
@@ -170,7 +170,7 @@ block Controller
     period=86400)
     annotation (Placement(transformation(extent={{-184,182},{-164,202}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occSta(
-    table=[0,0; occStaHourStart,1; occStaHourEnd,0; 24,0],
+    table=[0,1; occStaHourEnd,0; occStaHourStart,1; 24,1],
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-174,142},{-154,162}})));

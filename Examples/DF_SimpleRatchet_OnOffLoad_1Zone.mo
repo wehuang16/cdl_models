@@ -12,20 +12,15 @@ replaceable package MediumAir = Buildings.Media.Air;
         parameter Real THeaSetUnocc(unit="K")=273.15+15.56
     "Zone heating temperature setpoint";
 
-  Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable occupancyMode(
-    table=[0,0; 7,1; 20,0; 24,0],
-    timeScale=3600,
-    period=86400)
-    annotation (Placement(transformation(extent={{-124,58},{-104,78}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam=
-        Modelica.Utilities.Files.loadResource(
-        "modelica://cdl_models/Resources/weatherdata/HAF_epw_modified_5mins.mos"))
+        Modelica.Utilities.Files.loadResource("modelica://cdl_models/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-130,-12},{-110,8}})));
-  ThermalZones.building_1_zone building_1_zone
+  cdl_models.ThermalZones.building_1_zone building_1_zone
     annotation (Placement(transformation(extent={{46,-14},{66,8}})));
-  HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer
+  cdl_models.HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer(
+      heater_thermal_power_nominal=3000, cooler_thermal_power_nominal=5000)
     annotation (Placement(transformation(extent={{80,38},{100,58}})));
-  CCC_test.cdl.single_zone_ratchet_archived_11022025 single_zone_ratchet(
+  cdl_models.Controls.Controller single_zone_ratchet(
     TZonHeaSetNomOcc=THeaSetOcc,
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,
@@ -35,15 +30,14 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{140,42},{160,62}})));
-  HVAC.setpoint_processing setpoint_processing
+  cdl_models.HVAC.setpoint_processing setpoint_processing
     annotation (Placement(transformation(extent={{10,38},{30,58}})));
-  ThermalZones.building_1_zone building_1_zone_baseline
+  cdl_models.ThermalZones.building_1_zone building_1_zone_baseline
     annotation (Placement(transformation(extent={{38,-106},{58,-84}})));
-  HVAC.custom_air_conditioner_OnOff_timer
-    custom_air_conditioner_OnOff_timer_baseline
+  cdl_models.HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer_baseline(
+      heater_thermal_power_nominal=3000, cooler_thermal_power_nominal=5000)
     annotation (Placement(transformation(extent={{72,-54},{92,-34}})));
-  CCC_test.cdl.single_zone_ratchet_archived_11022025
-    single_zone_ratchet_baseline(
+  cdl_models.Controls.Controller single_zone_ratchet_baseline(
     TZonHeaSetNomOcc=THeaSetOcc,
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,
@@ -52,7 +46,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     loaSheHeaAct=false,
     loaSheCooAct=false)
     annotation (Placement(transformation(extent={{-58,-56},{-20,-24}})));
-  HVAC.setpoint_processing setpoint_processing_baseline
+  cdl_models.HVAC.setpoint_processing setpoint_processing_baseline
     annotation (Placement(transformation(extent={{2,-54},{22,-34}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput totalElectricPower_baseline
     annotation (Placement(transformation(extent={{140,-50},{160,-30}})));
@@ -74,9 +68,6 @@ equation
       points={{-110,-2},{42,-2},{42,-6.96},{45.4,-6.96}},
       color={255,204,51},
       thickness=0.5));
-  connect(occupancyMode.y[1], single_zone_ratchet.occSta) annotation (Line(
-        points={{-102,68},{-94,68},{-94,63.2},{-51.3571,63.2}},
-                                                              color={255,0,255}));
 
   connect(totalElectricPower, custom_air_conditioner_OnOff_timer.electricPower)
     annotation (Line(points={{150,52},{106,52},{106,54.1333},{101.111,54.1333}},
@@ -106,8 +97,8 @@ equation
     building_1_zone_baseline.port_b) annotation (Line(points={{71.7778,-52.2667},
           {64,-52.2667},{64,-88.62},{58.2,-88.62}}, color={0,127,255}));
   connect(building_1_zone_baseline.TZon,
-    custom_air_conditioner_OnOff_timer_baseline.ZAT) annotation (Line(points={{
-          59,-94.78},{66,-94.78},{66,-43.3333},{71,-43.3333}}, color={0,0,127}));
+    custom_air_conditioner_OnOff_timer_baseline.ZAT) annotation (Line(points={{59,
+          -94.78},{66,-94.78},{66,-43.3333},{71,-43.3333}},    color={0,0,127}));
   connect(building_1_zone_baseline.TZon, single_zone_ratchet_baseline.TZon)
     annotation (Line(points={{59,-94.78},{66,-94.78},{66,-50},{36,-50},{36,-68},
           {-66,-68},{-66,-35.4909},{-59.4929,-35.4909}}, color={0,0,127}));
@@ -115,9 +106,6 @@ equation
       points={{-110,-2},{-68,-2},{-68,-98.96},{37.4,-98.96}},
       color={255,204,51},
       thickness=0.5));
-  connect(occupancyMode.y[1], single_zone_ratchet_baseline.occSta) annotation (
-      Line(points={{-102,68},{-94,68},{-94,64},{-62,64},{-62,-2},{-66,-2},{-66,
-          -28.8},{-59.3571,-28.8}}, color={255,0,255}));
   connect(totalElectricPower_baseline,
     custom_air_conditioner_OnOff_timer_baseline.electricPower) annotation (Line(
         points={{150,-40},{98,-40},{98,-37.8667},{93.1111,-37.8667}}, color={0,
@@ -141,16 +129,16 @@ equation
           -39.4},{32,-39.4},{32,-64},{-64,-64},{-64,-37.8182},{-59.4929,
           -37.8182}}, color={0,0,127}));
   connect(setpoint_processing_baseline.TZonCooSetPro,
-    single_zone_ratchet_baseline.TZonCooSetCur) annotation (Line(points={{24,
-          -48},{34,-48},{34,-66},{-64,-66},{-64,-40.2909},{-59.4929,-40.2909}},
+    single_zone_ratchet_baseline.TZonCooSetCur) annotation (Line(points={{24,-48},
+          {34,-48},{34,-66},{-64,-66},{-64,-40.2909},{-59.4929,-40.2909}},
         color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-140,
             -120},{140,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-140,-120},{140,
             100}})),
     experiment(
-    StartTime=0,
-      StopTime=172800,
+    StartTime=18403200,
+      StopTime=18576000,
       Interval=60,
       __Dymola_Algorithm="Dassl"));
 end DF_SimpleRatchet_OnOffLoad_1Zone;
