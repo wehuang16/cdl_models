@@ -115,7 +115,7 @@ model single_zone_ratchet_base
           naturalLanguage="en"
           "<cdl_instance_name> is a temperature heating setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con(k=loaSheHeaAct)
-    annotation (Placement(transformation(extent={{-86,162},{-66,182}})));
+    annotation (Placement(transformation(extent={{-110,162},{-90,182}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonCooSetCom(
     final unit="K",
     displayUnit="degC",
@@ -182,17 +182,17 @@ model single_zone_ratchet_base
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature cooling setpoint input")));
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi2
-    annotation (Placement(transformation(extent={{-6,144},{14,164}})));
+    annotation (Placement(transformation(extent={{-6,170},{14,190}})));
 
   Buildings.Controls.OBC.CDL.Logical.Switch logSwi3
-    annotation (Placement(transformation(extent={{-6,94},{14,114}})));
+    annotation (Placement(transformation(extent={{-6,78},{14,98}})));
 
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con1(k=false)
-    annotation (Placement(transformation(extent={{-86,118},{-66,138}})));
+    annotation (Placement(transformation(extent={{-110,118},{-90,138}})));
 
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant con2(k=
         loaSheCooAct)
-    annotation (Placement(transformation(extent={{-86,76},{-66,96}})));
+    annotation (Placement(transformation(extent={{-110,78},{-90,98}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput occSta "occupancy status"
     annotation (Placement(transformation(extent={{-238,78},{-198,118}}),
         iconTransformation(extent={{-238,78},{-198,118}})),
@@ -248,22 +248,21 @@ equation
           -107.72},{196,-107.72},{196,-108},{222,-108}}, color={0,0,127}));
   connect(ratHea.TZonSetHeaCom, TZonHeaSetCom) annotation (Line(points={{170,
           67.86},{196,67.86},{196,68},{222,68}}, color={0,0,127}));
-  connect(con.y, logSwi2.u2) annotation (Line(points={{-64,172},{-16,172},{-16,
-          154},{-8,154}}, color={255,0,255}));
-  connect(logSwi2.y, ratHea.loaShe) annotation (Line(points={{16,154},{106,154},
+  connect(con.y, logSwi2.u2) annotation (Line(points={{-88,172},{-46,172},{-46,
+          180},{-8,180}}, color={255,0,255}));
+  connect(logSwi2.y, ratHea.loaShe) annotation (Line(points={{16,180},{106,180},
           {106,78.64},{116,78.64}}, color={255,0,255}));
-  connect(logSwi3.y, ratCoo.loaShe) annotation (Line(points={{16,104},{24,104},
-          {24,-52},{108,-52},{108,-97.36},{118,-97.36}}, color={255,0,255}));
-  connect(con1.y, logSwi2.u3) annotation (Line(points={{-64,128},{-32,128},{-32,
-          146},{-8,146}}, color={255,0,255}));
+  connect(logSwi3.y, ratCoo.loaShe) annotation (Line(points={{16,88},{94,88},{
+          94,-97.36},{118,-97.36}},                      color={255,0,255}));
+  connect(con1.y, logSwi2.u3) annotation (Line(points={{-88,128},{-30,128},{-30,
+          172},{-8,172}}, color={255,0,255}));
   connect(TZonHeaSetCur, ratHea.TZonHeaSetCur) annotation (Line(points={{-218,
           -90},{-108,-90},{-108,68},{116,68},{116,68.28}}, color={0,0,127}));
   connect(TZonCooSetCur, ratCoo.TZonCooSetCur) annotation (Line(points={{-218,
           -176},{-90,-176},{-90,-107.3},{118,-107.3}}, color={0,0,127}));
-  connect(con1.y, logSwi3.u3) annotation (Line(points={{-64,128},{-32,128},{-32,
-          96},{-8,96}}, color={255,0,255}));
-  connect(con2.y, logSwi3.u2) annotation (Line(points={{-64,86},{-24,86},{-24,
-          104},{-8,104}},
+  connect(con1.y, logSwi3.u3) annotation (Line(points={{-88,128},{-30,128},{-30,
+          80},{-8,80}}, color={255,0,255}));
+  connect(con2.y, logSwi3.u2) annotation (Line(points={{-88,88},{-8,88}},
         color={255,0,255}));
   connect(TZonHeaSetNom.y, TZonHeaSetMin.u1) annotation (Line(points={{-64,-38},
           {-38,-38},{-38,-50},{-4,-50}},                             color={0,0,
@@ -287,10 +286,10 @@ equation
           -128},{28,-128},{28,-112.34},{118.2,-112.34}}, color={0,0,127}));
   connect(TZonHeaSetMin.y, ratHea.TZonHeaSetMin) annotation (Line(points={{20,
           -56},{40,-56},{40,63.24},{116,63.24}}, color={0,0,127}));
-  connect(loaShe, logSwi2.u1) annotation (Line(points={{-220,188},{-8,188},{-8,
-          162}}, color={255,0,255}));
-  connect(loaShe, logSwi3.u1) annotation (Line(points={{-220,188},{-46,188},{
-          -46,112},{-8,112}}, color={255,0,255}));
+  connect(loaShe, logSwi2.u1) annotation (Line(points={{-220,188},{-8,188}},
+                 color={255,0,255}));
+  connect(loaShe, logSwi3.u1) annotation (Line(points={{-220,188},{-62,188},{
+          -62,96},{-8,96}},   color={255,0,255}));
   connect(TZon, ratCoo.TZon) annotation (Line(points={{-220,-2},{80,-2},{80,
           -102},{118,-102},{118,-102.68}}, color={0,0,127}));
   connect(TZon, ratHea.TZon) annotation (Line(points={{-220,-2},{80,-2},{80,74},
