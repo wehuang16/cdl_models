@@ -52,7 +52,7 @@ model one_zone_ratchet_heating_single_zone
     "nominal zone temperature setpoint" annotation (Placement(transformation(
           extent={{-240,-256},{-200,-216}}), iconTransformation(extent={{-240,
             -256},{-200,-216}})));
-  one_zone_ratchet_heating one_zone_ratchet_heating1(
+  cdl_models.Controls.Subsequences.one_zone_ratchet_heating one_zone_ratchet_heating1(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,

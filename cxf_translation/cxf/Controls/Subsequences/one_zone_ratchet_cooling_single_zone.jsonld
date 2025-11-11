@@ -1,0 +1,362 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1"
+        }
+      ],
+      "S231P:diagram": "coordinateSystem(extent={{-200,-300},{300,100}},preserveAspectRatio=false)",
+      "S231P:hasInput": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.loaShe"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZon"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetMax"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetNom"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetCom"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.reboundDuration"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.samplePeriodRatchet"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.samplePeriodRebound"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TRat"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TRatThreshold"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TReb"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-200,-300},{300,100}},preserveAspectRatio=false)",
+      "S231P:label": "one_zone_ratchet_cooling_single_zone"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-176,-18},{-154,4}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4.k"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4.y"
+        }
+      ],
+      "S231P:label": "con4"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4.k",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.ratSig"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.loaShe",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Load shed event flag",
+      "S231P:graphics": "Placement(transformation(extent={{-240,32},{-200,72}})),iconTransformation(extent={{-240,32},{-200,72}})))",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.loaShe"
+      },
+      "S231P:label": "loaShe"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-64,-186},{188,20}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.loaShe"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.ratSig"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.reboundDuration"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.rebSig"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.samplePeriodRatchet"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.samplePeriodRebound"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TRat"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TRatThreshold"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TReb"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZon"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetCom"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetMax"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetNom"
+        }
+      ],
+      "S231P:label": "one_zone_ratchet_cooling1"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.reboundDuration",
+      "S231P:value": "reboundDuration"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.rebSig",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.con4.y"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.samplePeriodRatchet",
+      "S231P:value": "samplePeriodRatchet"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.samplePeriodRebound",
+      "S231P:value": "samplePeriodRebound"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TRat",
+      "S231P:value": "TRat"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TRatThreshold",
+      "S231P:value": "TRatThreshold"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TReb",
+      "S231P:value": "TReb"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetCom",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetCom"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.reboundDuration",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "reboundDuration",
+      "S231P:value": 3600
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.samplePeriodRatchet",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of the demand flexibility control",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriodRatchet",
+      "S231P:value": 300
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.samplePeriodRebound",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of rebound",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriodRebound",
+      "S231P:value": 900
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TRat",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Ratcheting temperature",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TRat",
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TRatThreshold",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TRatThreshold",
+      "S231P:value": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TReb",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "rebound temperature",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TReb",
+      "S231P:value": -1
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZon",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone room air temperature",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-44},{-200,-4}})),iconTransformation(extent={{-240,-44},{-200,-4}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZon"
+      },
+      "S231P:label": "TZon"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetCom",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Zone temperature setpoint command",
+      "S231P:graphics": "Placement(transformation(extent={{300,-116},{340,-76}})),iconTransformation(extent={{300,-116},{340,-76}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:label": "TZonCooSetCom"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetCur",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-110},{-200,-70}})),iconTransformation(extent={{-240,-110},{-200,-70}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetCur"
+      },
+      "S231P:label": "TZonCooSetCur"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetMax",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "thermal limit zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-236,-244},{-196,-204}})),iconTransformation(extent={{-238,-182},{-198,-142}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetMax"
+      },
+      "S231P:label": "TZonCooSetMax"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.TZonCooSetNom",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "nominal zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-236,-284},{-196,-244}})),iconTransformation(extent={{-238,-250},{-198,-210}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone.one_zone_ratchet_cooling1.TZonCooSetNom"
+      },
+      "S231P:label": "TZonCooSetNom"
+    }
+  ]
+}

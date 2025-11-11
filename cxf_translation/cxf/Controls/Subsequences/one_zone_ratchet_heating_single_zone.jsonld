@@ -1,0 +1,361 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.con4"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1"
+        }
+      ],
+      "S231P:diagram": "coordinateSystem(extent={{-200,-300},{300,100}},preserveAspectRatio=false)",
+      "S231P:hasInput": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.loaShe"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZon"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonHeaSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonHeaSetMin"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonHeaSetNom"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonSetHeaCom"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.reboundDuration"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.samplePeriodRatchet"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.samplePeriodRebound"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TRat"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TRatThreshold"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TReb"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-200,-300},{300,100}},preserveAspectRatio=false)",
+      "S231P:label": "one_zone_ratchet_heating_single_zone"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.con4",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-178,0},{-158,20}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.con4.k"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.con4.y"
+        }
+      ],
+      "S231P:label": "con4"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.con4.k",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.con4.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.ratSig"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.rebSig"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.loaShe",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Load shed event flag",
+      "S231P:graphics": "Placement(transformation(extent={{-240,32},{-200,72}})),iconTransformation(extent={{-240,32},{-200,72}})))",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.loaShe"
+      },
+      "S231P:label": "loaShe"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-64,-182},{242,60}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.loaShe"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.ratSig"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.reboundDuration"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.rebSig"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.samplePeriodRatchet"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.samplePeriodRebound"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TRat"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TRatThreshold"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TReb"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZon"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonHeaSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonHeaSetMin"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonHeaSetNom"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonSetHeaCom"
+        }
+      ],
+      "S231P:label": "one_zone_ratchet_heating1"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.reboundDuration",
+      "S231P:value": "reboundDuration"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.samplePeriodRatchet",
+      "S231P:value": "samplePeriodRatchet"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.samplePeriodRebound",
+      "S231P:value": "samplePeriodRebound"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TRat",
+      "S231P:value": "TRat"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TRatThreshold",
+      "S231P:value": "TRatThreshold"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TReb",
+      "S231P:value": "TReb"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonSetHeaCom",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonSetHeaCom"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.reboundDuration",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "reboundDuration",
+      "S231P:value": 3600
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.samplePeriodRatchet",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of the demand flexibility control",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriodRatchet",
+      "S231P:value": 300
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.samplePeriodRebound",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of rebound",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriodRebound",
+      "S231P:value": 900
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TRat",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Ratcheting temperature",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TRat",
+      "S231P:value": -1
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TRatThreshold",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TRatThreshold",
+      "S231P:value": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TReb",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "rebound temperature",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TReb",
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZon",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone room air temperature",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-42},{-200,-2}})),iconTransformation(extent={{-240,-42},{-200,-2}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZon"
+      },
+      "S231P:label": "TZon"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonHeaSetCur",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-116},{-200,-76}})),iconTransformation(extent={{-240,-116},{-200,-76}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonHeaSetCur"
+      },
+      "S231P:label": "TZonHeaSetCur"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonHeaSetMin",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "thermal limit zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-184},{-200,-144}})),iconTransformation(extent={{-240,-188},{-200,-148}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonHeaSetMin"
+      },
+      "S231P:label": "TZonHeaSetMin"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonHeaSetNom",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "nominal zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-240,-256},{-200,-216}})),iconTransformation(extent={{-240,-256},{-200,-216}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.one_zone_ratchet_heating1.TZonHeaSetNom"
+      },
+      "S231P:label": "TZonHeaSetNom"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone.TZonSetHeaCom",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Zone temperature setpoint command",
+      "S231P:graphics": "Placement(transformation(extent={{300,-122},{340,-82}})),iconTransformation(extent={{300,-122},{340,-82}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:label": "TZonSetHeaCom"
+    }
+  ]
+}

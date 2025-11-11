@@ -7,12 +7,36 @@
 @prefix ref: <https://brickschema.org/schema/Brick/ref#>.
 @prefix unit: <http://qudt.org/vocab/unit/>.
 
-hpfs:occSta
+hpfs:occupancy_ref
+a sh:PropertyShape; sh:minCount 1; sh:path ref:hasExternalReference.
+hpfs:single_zone_ratchet_base_loaShe
     a rdfs:Class, sh:NodeShape;
     sh:class brick:Occupancy_Sensor;
     sh:property hpfs:occupancy_ref.
-hpfs:occupancy_ref
-a sh:PropertyShape; sh:minCount 1; sh:path ref:hasExternalReference.
+hpfs:single_zone_ratchet_base_occSta
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Occupancy_Sensor;
+    sh:property hpfs:occupancy_ref.
+hpfs:single_zone_ratchet_base_TZon
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Zone_Air_Temperature_Sensor;
+    sh:property hpfs:temperature_Kelvin, hpfs:temperature_ref.
+hpfs:single_zone_ratchet_base_TZonCooSetCom
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Cooling_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
+hpfs:single_zone_ratchet_base_TZonCooSetCur
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Cooling_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
+hpfs:single_zone_ratchet_base_TZonHeaSetCom
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Heating_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
+hpfs:single_zone_ratchet_base_TZonHeaSetCur
+    a rdfs:Class, sh:NodeShape;
+    sh:class brick:Heating_Zone_Air_Temperature_Setpoint;
+    sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref.
 hpfs:temperature_Kelvin
     a sh:PropertyShape;
     sh:hasValue unit:Kelvin;
