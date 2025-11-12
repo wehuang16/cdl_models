@@ -33,24 +33,16 @@ block Controller
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .
-            @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
-            @prefix qudt: <http://qudt.org/schema/qudt/> .
-            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-            @prefix unit: <http://qudt.org/vocab/unit/> .
-            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Zone_Air_Temperature_Sensor ;
-              sh:property hpfs:temperature_Kelvin, hpfs:temperature_ref .
-            hpfs:temperature_Kelvin a sh:PropertyShape ;
-              sh:hasValue unit:Kelvin ;
-              sh:minCount 1 ;
-              sh:path qudt:hasUnit .
-            hpfs:temperature_ref a sh:PropertyShape ;
-              sh:minCount 1 ;
-              sh:path ref:hasExternalReference .",
+            @prefix s223: <http://data.ashrae.org/standard223#> .
+            @prefix obc: <urn:hpflex/shapes#> .
+            @prefix ctrl: <urn:mycontroller.urn#> .
+            
+            ctrl:<cdl_instance_name> a s223:FunctionInput ;
+              obc:binds obc:temp .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature reading input that should be hardwired to the zone air temperature sensor")));
+            "<cdl_instance_name> is a TZon.")));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonHeaSetCur(
     final unit="K",
     displayUnit="degC",
@@ -61,24 +53,16 @@ block Controller
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .
-            @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
-            @prefix qudt: <http://qudt.org/schema/qudt/> .
-            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-            @prefix unit: <http://qudt.org/vocab/unit/> .
-            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Heating_Zone_Air_Temperature_Setpoint ;
-              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
-            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
-              sh:hasValue unit:Kelvin ;
-              sh:minCount 1 ;
-              sh:path qudt:hasUnit .
-            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
-                sh:minCount 1 ;
-                sh:path ref:hasExternalReference .",
+            @prefix s223: <http://data.ashrae.org/standard223#> .
+            @prefix obc: <urn:hpflex/shapes#> .
+            @prefix ctrl: <urn:mycontroller.urn#> .
+            
+            ctrl:<cdl_instance_name> a s223:FunctionInput ;
+              obc:binds obc:heaset .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature heating setpoint input")));
+            "<cdl_instance_name> is a TZonHeaSetCur")));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonHeaSetCom(
     final unit="K",
     displayUnit="degC",
@@ -87,25 +71,18 @@ block Controller
           extent={{282,98},{322,138}}),iconTransformation(extent={{280,18},{320,
             58}})),
             __cdl(semantic(
-          metadataLanguage="Brick 1.3 text/turtle" "@prefix brick: <https://brickschema.org/schema/Brick#> .
-            @prefix hpfs: <http://hpflex/shapes#> .
+          metadataLanguage="Brick 1.3 text/turtle"
+          "@prefix brick: <https://brickschema.org/schema/Brick#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
-            @prefix qudt: <http://qudt.org/schema/qudt/> .
-            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-            @prefix unit: <http://qudt.org/vocab/unit/> .
-            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Heating_Zone_Air_Temperature_Setpoint ;
-              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
-            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
-              sh:hasValue unit:Kelvin ;
-              sh:minCount 1 ;
-              sh:path qudt:hasUnit .
-            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
-                sh:minCount 1 ;
-                sh:path ref:hasExternalReference .",
+            @prefix s223: <http://data.ashrae.org/standard223#> .
+            @prefix obc: <urn:hpflex/shapes#> .
+            @prefix ctrl: <urn:mycontroller.urn#> .
+            
+            ctrl:<cdl_instance_name> a s223:FunctionOutput ;
+              obc:binds obc:heaset .",
           naturalLanguage="en"
-          "<cdl_instance_name> is a temperature heating setpoint input")));
+          "<cdl_instance_name> is a TZonHeaSetCom")));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonCooSetCom(
     final unit="K",
     displayUnit="degC",
@@ -116,24 +93,16 @@ block Controller
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .
-            @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
-            @prefix qudt: <http://qudt.org/schema/qudt/> .
-            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-            @prefix unit: <http://qudt.org/vocab/unit/> .
-            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Cooling_Zone_Air_Temperature_Setpoint ;
-              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
-            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
-              sh:hasValue unit:Kelvin ;
-              sh:minCount 1 ;
-              sh:path qudt:hasUnit .
-            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
-                sh:minCount 1 ;
-                sh:path ref:hasExternalReference .",
+            @prefix s223: <http://data.ashrae.org/standard223#> .
+            @prefix obc: <urn:hpflex/shapes#> .
+            @prefix ctrl: <urn:mycontroller.urn#> .
+            
+            ctrl:<cdl_instance_name> a s223:FunctionOutput ;
+              obc:binds obc:cooset .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature cooling setpoint input")));
+            "<cdl_instance_name> is a TZonCooSetCom")));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZonCooSetCur(
     final unit="K",
     displayUnit="degC",
@@ -145,24 +114,16 @@ block Controller
             __cdl(semantic(
           metadataLanguage="Brick 1.3 text/turtle"
             "@prefix brick: <https://brickschema.org/schema/Brick#> .
-            @prefix hpfs: <http://hpflex/shapes#> .
             @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
             @prefix sh: <http://www.w3.org/ns/shacl#> .
-            @prefix qudt: <http://qudt.org/schema/qudt/> .
-            @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-            @prefix unit: <http://qudt.org/vocab/unit/> .
-            hpfs:<cdl_instance_name> a rdfs:Class, sh:NodeShape ;
-              sh:class brick:Cooling_Zone_Air_Temperature_Setpoint ;
-              sh:property hpfs:temperature-setpoint_Kelvin, hpfs:temperature-setpoint_ref .
-            hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
-              sh:hasValue unit:Kelvin ;
-              sh:minCount 1 ;
-              sh:path qudt:hasUnit .
-            hpfs:temperature-setpoint_ref a sh:PropertyShape ;
-                sh:minCount 1 ;
-                sh:path ref:hasExternalReference .",
+            @prefix s223: <http://data.ashrae.org/standard223#> .
+            @prefix obc: <urn:hpflex/shapes#> .
+            @prefix ctrl: <urn:mycontroller.urn#> .
+            
+            ctrl:<cdl_instance_name> a s223:FunctionInput ;
+              obc:binds obc:cooset .",
           naturalLanguage="en"
-            "<cdl_instance_name> is a temperature cooling setpoint input")));
+            "<cdl_instance_name> is a TZonCooSetCur")));
 
   Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable loaShe(
     table=[0,0; loadShedHourStart,1; loadShedHourEnd,0; 24,0],
@@ -212,5 +173,18 @@ equation
       Line(points={{-298,-132},{-97.27,-132},{-97.27,-33.8364}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},
             {280,220}})),                                        Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},{280,220}})));
+        coordinateSystem(preserveAspectRatio=false, extent={{-280,-220},{280,220}})),
+            __cdl(semantic(
+          metadataLanguage="Brick 1.3 text/turtle"
+            "@prefix brick: <https://brickschema.org/schema/Brick#> .
+            @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+            @prefix sh: <http://www.w3.org/ns/shacl#> .
+            @prefix s223: <http://data.ashrae.org/standard223#> .
+            @prefix obc: <urn:hpflex/shapes#> .
+            @prefix ctrl: <urn:mycontroller.urn#> .
+            
+            ctrl:<cdl_instance_name> obc:controls obc:zone ;
+              obc:uses ctrl:TZonHeaSetCur, ctrl:TZonCooSetCur, ctrl:occSta, ctrl:TZonHeaSetCom, ctrl:TZonCooSetCom, ctrl:TZon .",
+          naturalLanguage="en"
+            "<cdl_instance_name> is a Controller")));
 end Controller;
