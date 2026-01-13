@@ -20,7 +20,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   cdl_models.HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer(
       heater_thermal_power_nominal=3000, cooler_thermal_power_nominal=5000)
     annotation (Placement(transformation(extent={{80,38},{100,58}})));
-  cdl_models.Controls.Controller single_zone_ratchet(
+  Controls.single_zone_ratchet   single_zone_ratchet(
     TZonHeaSetNomOcc=THeaSetOcc,
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,
@@ -37,7 +37,7 @@ replaceable package MediumAir = Buildings.Media.Air;
   cdl_models.HVAC.custom_air_conditioner_OnOff_timer custom_air_conditioner_OnOff_timer_baseline(
       heater_thermal_power_nominal=3000, cooler_thermal_power_nominal=5000)
     annotation (Placement(transformation(extent={{72,-54},{92,-34}})));
-  cdl_models.Controls.Controller single_zone_ratchet_baseline(
+  Controls.single_zone_ratchet   single_zone_ratchet_baseline(
     TZonHeaSetNomOcc=THeaSetOcc,
     TZonHeaSetNomUnocc=THeaSetUnocc,
     TZonCooSetNomOcc=TCooSetOcc,
