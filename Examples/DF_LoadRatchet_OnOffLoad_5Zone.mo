@@ -77,7 +77,7 @@ equation
                      color={0,0,127}));
   connect(building_5_zone.TZon, multiple_zone_ratchet_load_response.TZon)
     annotation (Line(points={{27,13.22},{34,13.22},{34,84},{-16,84},{-16,88},{
-          -66,88},{-66,74.2769},{-59.4929,74.2769}}, color={0,0,127}));
+          -66,88},{-66,74.2769},{-59.3933,74.2769}}, color={0,0,127}));
   connect(weaDat1.weaBus,building_5_zone. weaBus) annotation (Line(
       points={{-114,20},{0,20},{0,9.04},{5.4,9.04}},
       color={255,204,51},
@@ -88,13 +88,13 @@ equation
   connect(mulSum.y,totalElectricPower)  annotation (Line(points={{126,68},{170,
           68}},                      color={0,0,127}));
   connect(occupancyMode.y[1], multiple_zone_ratchet_load_response.occSta)
-    annotation (Line(points={{-110,66},{-68,66},{-68,79.9385},{-59.3571,79.9385}},
+    annotation (Line(points={{-110,66},{-68,66},{-68,79.9385},{-59.2667,79.9385}},
         color={255,0,255}));
   connect(multiple_zone_ratchet_load_response.TZonHeaSetCom,
-    setpoint_processing.TZonHeaSetCom) annotation (Line(points={{-18.6429,72.8},
+    setpoint_processing.TZonHeaSetCom) annotation (Line(points={{-21.2667,72.8},
           {-14,72.8},{-14,75},{-4,75}}, color={0,0,127}));
   connect(multiple_zone_ratchet_load_response.TZonCooSetCom,
-    setpoint_processing.TZonCooSetCom) annotation (Line(points={{-18.6429,
+    setpoint_processing.TZonCooSetCom) annotation (Line(points={{-21.2667,
           62.4615},{-14,62.4615},{-14,65.8},{-4,65.8}}, color={0,0,127}));
   connect(setpoint_processing.TZonHeaSetPro, custom_air_conditioner_OnOff_timer.THeaSet)
     annotation (Line(points={{20,74.6},{50,74.6},{50,75.4667},{54.8889,75.4667}},
@@ -102,12 +102,12 @@ equation
   connect(custom_air_conditioner_OnOff_timer.TCooSet, setpoint_processing.TZonCooSetPro)
     annotation (Line(points={{54.8889,65.8667},{52,66},{20,66}}, color={0,0,127}));
   connect(setpoint_processing.TZonHeaSetPro,
-    multiple_zone_ratchet_load_response.TZonHeaSetCur) annotation (Line(points=
-          {{20,74.6},{28,74.6},{28,90},{-70,90},{-70,72.3077},{-59.4929,72.3077}},
+    multiple_zone_ratchet_load_response.TZonHeaSetCur) annotation (Line(points={{20,74.6},
+          {28,74.6},{28,90},{-70,90},{-70,72.3077},{-59.3933,72.3077}},
         color={0,0,127}));
   connect(setpoint_processing.TZonCooSetPro,
-    multiple_zone_ratchet_load_response.TZonCooSetCur) annotation (Line(points=
-          {{20,66},{28,66},{28,46},{-62,46},{-62,70.2154},{-59.3571,70.2154}},
+    multiple_zone_ratchet_load_response.TZonCooSetCur) annotation (Line(points={{20,66},
+          {28,66},{28,46},{-62,46},{-62,70.2154},{-59.2667,70.2154}},
         color={0,0,127}));
   connect(custom_air_conditioner_OnOff_timer_baseline.port_b,
     building_5_zone_baseline.port_a) annotation (Line(points={{76.3333,-42.1333},
@@ -121,7 +121,7 @@ equation
           -90.78},{34,-90.78},{34,-33.3333},{55,-33.3333}},    color={0,0,127}));
   connect(building_5_zone_baseline.TZon, multiple_zone_ratchet_load_response1.TZon)
     annotation (Line(points={{27,-90.78},{34,-90.78},{34,-20},{-16,-20},{-16,
-          -16},{-66,-16},{-66,-29.7231},{-59.4929,-29.7231}}, color={0,0,127}));
+          -16},{-66,-16},{-66,-29.7231},{-59.3933,-29.7231}}, color={0,0,127}));
   connect(weaDat1.weaBus, building_5_zone_baseline.weaBus) annotation (Line(
       points={{-114,20},{-74,20},{-74,-94.96},{5.4,-94.96}},
       color={255,204,51},
@@ -133,13 +133,13 @@ equation
     annotation (Line(points={{126,-36},{170,-36}}, color={0,0,127}));
   connect(occupancyMode.y[1], multiple_zone_ratchet_load_response1.occSta)
     annotation (Line(points={{-110,66},{-68,66},{-68,-18},{-64,-18},{-64,
-          -24.0615},{-59.3571,-24.0615}}, color={255,0,255}));
+          -24.0615},{-59.2667,-24.0615}}, color={255,0,255}));
   connect(multiple_zone_ratchet_load_response1.TZonHeaSetCom,
     setpoint_processing_baseline.TZonHeaSetCom) annotation (Line(points={{
-          -18.6429,-31.2},{-14,-31.2},{-14,-29},{-4,-29}}, color={0,0,127}));
+          -21.2667,-31.2},{-14,-31.2},{-14,-29},{-4,-29}}, color={0,0,127}));
   connect(multiple_zone_ratchet_load_response1.TZonCooSetCom,
     setpoint_processing_baseline.TZonCooSetCom) annotation (Line(points={{
-          -18.6429,-41.5385},{-14,-41.5385},{-14,-38.2},{-4,-38.2}}, color={0,0,
+          -21.2667,-41.5385},{-14,-41.5385},{-14,-38.2},{-4,-38.2}}, color={0,0,
           127}));
   connect(setpoint_processing_baseline.TZonHeaSetPro,
     custom_air_conditioner_OnOff_timer_baseline.THeaSet) annotation (Line(
@@ -149,24 +149,24 @@ equation
     setpoint_processing_baseline.TZonCooSetPro) annotation (Line(points={{54.8889,
           -38.1333},{52,-38},{20,-38}},         color={0,0,127}));
   connect(setpoint_processing_baseline.TZonHeaSetPro,
-    multiple_zone_ratchet_load_response1.TZonHeaSetCur) annotation (Line(points
-        ={{20,-29.4},{28,-29.4},{28,-14},{-70,-14},{-70,-31.6923},{-59.4929,
+    multiple_zone_ratchet_load_response1.TZonHeaSetCur) annotation (Line(points={{20,
+          -29.4},{28,-29.4},{28,-14},{-70,-14},{-70,-31.6923},{-59.3933,
           -31.6923}}, color={0,0,127}));
   connect(setpoint_processing_baseline.TZonCooSetPro,
-    multiple_zone_ratchet_load_response1.TZonCooSetCur) annotation (Line(points
-        ={{20,-38},{28,-38},{28,-58},{-62,-58},{-62,-33.7846},{-59.3571,
-          -33.7846}}, color={0,0,127}));
+    multiple_zone_ratchet_load_response1.TZonCooSetCur) annotation (Line(points={{20,-38},
+          {28,-38},{28,-58},{-62,-58},{-62,-33.7846},{-59.2667,-33.7846}},
+                      color={0,0,127}));
   connect(mulSum.y, multiple_zone_ratchet_load_response.Pel) annotation (Line(
-        points={{126,68},{130,68},{130,40},{-78,40},{-78,57.9077},{-59.3571,
+        points={{126,68},{130,68},{130,40},{-78,40},{-78,57.9077},{-59.2667,
           57.9077}}, color={0,0,127}));
   connect(mulSum_baseline.y, multiple_zone_ratchet_load_response1.Pel)
     annotation (Line(points={{126,-36},{138,-36},{138,-70},{-70,-70},{-70,
-          -46.0923},{-59.3571,-46.0923}}, color={0,0,127}));
+          -46.0923},{-59.2667,-46.0923}}, color={0,0,127}));
   connect(con.y, multiple_zone_ratchet_load_response.Pel_limit) annotation (
-      Line(points={{-106,-24},{-82,-24},{-82,54.3385},{-59.3571,54.3385}},
+      Line(points={{-106,-24},{-82,-24},{-82,54.3385},{-59.2667,54.3385}},
         color={0,0,127}));
   connect(con.y, multiple_zone_ratchet_load_response1.Pel_limit) annotation (
-      Line(points={{-106,-24},{-102,-24},{-102,-50},{-59.3571,-50},{-59.3571,
+      Line(points={{-106,-24},{-102,-24},{-102,-50},{-59.2667,-50},{-59.2667,
           -49.6615}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-140,
             -100},{160,100}})),                                  Diagram(
