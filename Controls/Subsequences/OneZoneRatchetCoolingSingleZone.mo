@@ -1,5 +1,5 @@
 within cdl_models.Controls.Subsequences;
-model one_zone_ratchet_cooling_single_zone
+block OneZoneRatchetCoolingSingleZone "one_zone_ratchet_cooling_single_zone"
 
       parameter Real samplePeriodRatchet(unit="s")=300
     "Sample period of the demand flexibility control";
@@ -52,7 +52,8 @@ model one_zone_ratchet_cooling_single_zone
     "nominal zone temperature setpoint" annotation (Placement(transformation(
           extent={{-236,-284},{-196,-244}}), iconTransformation(extent={{-238,
             -250},{-198,-210}})));
-  cdl_models.Controls.Subsequences.one_zone_ratchet_cooling one_zone_ratchet_cooling1(
+  cdl_models.Controls.Subsequences.OneZoneRatchetCooling
+    one_zone_ratchet_cooling1(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -83,8 +84,9 @@ equation
           -151.8,-7},{-92,-7},{-92,-20.17},{-74.08,-20.17}}, color={255,0,255}));
   connect(one_zone_ratchet_cooling1.rebSig, con4.y) annotation (Line(points={{
           -74.08,-36.65},{-136,-36.65},{-136,-7},{-151.8,-7}}, color={255,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
-            -300},{300,100}})),                                  Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-200,-300},{300,
-            100}})));
-end one_zone_ratchet_cooling_single_zone;
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,-300},
+            {300,100}},
+        grid={2,2})),                                            Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-200,-300},{300,100}},
+        grid={2,2})));
+end OneZoneRatchetCoolingSingleZone;

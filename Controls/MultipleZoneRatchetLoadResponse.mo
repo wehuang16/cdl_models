@@ -23,7 +23,7 @@ block MultipleZoneRatchetLoadResponse "multiple zone ratchet load response"
     "Sample period of the demand flexibility control";
           parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount/nZones
     "Sample period of rebound";
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.OneZoneRatchetHeating single_zone_ratchet_heating[nZones](
+  Subsequences.OneZoneRatchetHeating single_zone_ratchet_heating[nZones](
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -31,11 +31,11 @@ block MultipleZoneRatchetLoadResponse "multiple zone ratchet load response"
     TReb=TReb,
     reboundDuration=reboundDuration)
     annotation (Placement(transformation(extent={{250,-12},{300,16}})));
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.SelectSmallestTemperatureDifferenceOld
-    temDifSelectionMinHeaRat(nZones=nZones)
+  Subsequences.SelectSmallestTemperatureDifferenceOld temDifSelectionMinHeaRat(
+      nZones=nZones)
     annotation (Placement(transformation(extent={{118,96},{138,116}})));
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.SelectLargestTemperatureDifferenceOld
-    temDifSelectionMaxHeaReb(nZones=nZones)
+  Subsequences.SelectLargestTemperatureDifferenceOld temDifSelectionMaxHeaReb(
+      nZones=nZones)
     annotation (Placement(transformation(extent={{116,66},{136,86}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon[nZones](
     final unit="K",
@@ -139,11 +139,11 @@ block MultipleZoneRatchetLoadResponse "multiple zone ratchet load response"
     annotation (Placement(transformation(extent={{-128,-200},{-108,-180}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract subt[nZones]
     annotation (Placement(transformation(extent={{-64,68},{-44,88}})));
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.SelectSmallestTemperatureDifferenceOld
-    temDifSelectionMinCooReb(nZones=nZones)
+  Subsequences.SelectSmallestTemperatureDifferenceOld temDifSelectionMinCooReb(
+      nZones=nZones)
     annotation (Placement(transformation(extent={{116,-158},{136,-138}})));
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.SelectLargestTemperatureDifferenceOld
-    temDifSelectionMaxCooRat(nZones=nZones)
+  Subsequences.SelectLargestTemperatureDifferenceOld temDifSelectionMaxCooRat(
+      nZones=nZones)
     annotation (Placement(transformation(extent={{116,-118},{136,-98}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZonCooSetCom[nZones](
     final unit="K",
@@ -173,7 +173,7 @@ block MultipleZoneRatchetLoadResponse "multiple zone ratchet load response"
                 sh:path ref:hasExternalReference .",
           naturalLanguage="en"
             "<cdl_instance_name> is a temperature cooling setpoint input")));
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.OneZoneRatchetCooling single_zone_ratchet_cooling[nZones](
+  Subsequences.OneZoneRatchetCooling single_zone_ratchet_cooling[nZones](
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,

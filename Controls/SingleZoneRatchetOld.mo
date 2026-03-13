@@ -175,7 +175,7 @@ block SingleZoneRatchetOld "single zone ratchet"
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-174,142},{-154,162}})));
-  Buildings.Controls.OBC.DemandFlexibility.Subsequences.SingleZoneRatchetBase single_zone_ratchet_base(
+  Subsequences.SingleZoneRatchetBase single_zone_ratchet_base(
     loadShedHourStart=loadShedHourStart,
     loadShedHourEnd=loadShedHourEnd,
     TZonHeaSetNomOcc=TZonHeaSetNomOcc,

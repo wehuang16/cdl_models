@@ -1,5 +1,5 @@
 within cdl_models.Controls.Subsequences;
-model single_zone_ratchet_base
+block SingleZoneRatchetBase "single_zone_ratchet_base"
 
   parameter Real loadShedHourStart=16;
   parameter Real loadShedHourEnd=21;
@@ -22,7 +22,7 @@ model single_zone_ratchet_base
     "Sample period of the demand flexibility control";
           parameter Real samplePeriodRebound(unit="s")=reboundDuration*TReb/loadShedTempAmount
     "Sample period of rebound";
-  cdl_models.Controls.Subsequences.one_zone_ratchet_heating_single_zone ratHea(
+  cdl_models.Controls.Subsequences.OneZoneRatchetHeatingSingleZone ratHea(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -61,7 +61,7 @@ model single_zone_ratchet_base
     "Zone temperature setpoint command" annotation (Placement(transformation(
           extent={{202,-128},{242,-88}}),  iconTransformation(extent={{200,-118},
             {240,-78}})));
-  cdl_models.Controls.Subsequences.one_zone_ratchet_cooling_single_zone ratCoo(
+  cdl_models.Controls.Subsequences.OneZoneRatchetCoolingSingleZone ratCoo(
     samplePeriodRatchet=samplePeriodRatchet,
     samplePeriodRebound=samplePeriodRebound,
     TRatThreshold=TRatThreshold,
@@ -160,8 +160,9 @@ equation
           -102},{118,-102},{118,-102.68}}, color={0,0,127}));
   connect(TZon, ratHea.TZon) annotation (Line(points={{-220,-2},{80,-2},{80,74},
           {116,74},{116,73.46}}, color={0,0,127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,
-            -220},{200,220}})),                                  Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-200,-220},{200,
-            220}})));
-end single_zone_ratchet_base;
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,-220},
+            {200,220}},
+        grid={2,2})),                                            Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-200,-220},{200,220}},
+        grid={2,2})));
+end SingleZoneRatchetBase;
