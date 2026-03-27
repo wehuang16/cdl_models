@@ -21,10 +21,9 @@ replaceable package MediumAir = Buildings.Media.Air;
         ModelicaServices.ExternalReferences.loadResource(
         "modelica://cdl_models/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-134,10},{-114,30}})));
-  Buildings.Examples.DemandFlexibility.ThermalZones.Building5Zone
-    building_5_zone
+  Move.DemandFlexibility.ThermalZones.Building5Zone building_5_zone
     annotation (Placement(transformation(extent={{6,2},{26,24}})));
-  Buildings.Examples.DemandFlexibility.HVAC.CustomAirConditionerOnOffTimer
+  Move.DemandFlexibility.HVAC.CustomAirConditionerOnOffTimer
     custom_air_conditioner_OnOff_timer[5]
     annotation (Placement(transformation(extent={{56,60},{76,80}})));
   cdl_models.Controls.MultipleZoneRatchetLoadResponse
@@ -41,13 +40,11 @@ replaceable package MediumAir = Buildings.Media.Air;
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput
                                         totalElectricPower
     annotation (Placement(transformation(extent={{160,58},{180,78}})));
-  Buildings.Examples.DemandFlexibility.HVAC.SetpointProcessing
-    setpoint_processing[5]
+  Move.DemandFlexibility.HVAC.SetpointProcessing setpoint_processing[5]
     annotation (Placement(transformation(extent={{-2,60},{18,80}})));
-  Buildings.Examples.DemandFlexibility.ThermalZones.Building5Zone
-    building_5_zone_baseline
+  Move.DemandFlexibility.ThermalZones.Building5Zone building_5_zone_baseline
     annotation (Placement(transformation(extent={{6,-102},{26,-80}})));
-  Buildings.Examples.DemandFlexibility.HVAC.CustomAirConditionerOnOffTimer
+  Move.DemandFlexibility.HVAC.CustomAirConditionerOnOffTimer
     custom_air_conditioner_OnOff_timer_baseline[5]
     annotation (Placement(transformation(extent={{56,-44},{76,-24}})));
   cdl_models.Controls.MultipleZoneRatchetLoadResponse
@@ -63,8 +60,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-58,-52},{-20,-20}})));
   Buildings.Controls.OBC.CDL.Reals.MultiSum mulSum_baseline(nin=5)
     annotation (Placement(transformation(extent={{104,-46},{124,-26}})));
-  Buildings.Examples.DemandFlexibility.HVAC.SetpointProcessing
-    setpoint_processing_baseline[5]
+  Move.DemandFlexibility.HVAC.SetpointProcessing setpoint_processing_baseline[5]
     annotation (Placement(transformation(extent={{-2,-44},{18,-24}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput totalElectricPowerBaseline
     annotation (Placement(transformation(extent={{160,-46},{180,-26}})));
