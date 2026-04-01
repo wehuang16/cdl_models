@@ -86,7 +86,7 @@ equation
   connect(have_pri, setReb.have_pri) annotation (Line(points={{-170,80},{-74,80},
           {-74,-98},{78,-98},{78,-97.8462},{180.667,-97.8462}},
                               color={255,0,255}));
-  connect(setShe.reach_uSetNom,reach_TSetNom)  annotation (Line(points={{183.333,
+  connect(setShe.reach_uSetOrg,reach_TSetNom)  annotation (Line(points={{183.333,
           -29.2308},{198,-29.2308},{198,-86},{210,-86},{210,-150},{270,-150}},
                                                  color={255,0,255}));
   connect(setShe.reach_uSetTar,reach_TSetTarShe)
@@ -98,7 +98,7 @@ equation
   connect(TSetCur, setShe.uSetCur) annotation (Line(points={{-170,-34},{140,-34},
           {140,-21.3846},{160.667,-21.3846}},
                                   color={0,0,127}));
-  connect(TSetNom, setPre.uSetNom) annotation (Line(points={{-172,-184},{-126,
+  connect(TSetNom,setPre.uSetOrg)  annotation (Line(points={{-172,-184},{-126,
           -184},{-126,86},{168,86},{168,86.0741},{168.667,86.0741}},
                                                 color={0,0,127}));
   connect(TSetTarShe, setShe.uSetTar) annotation (Line(points={{-172,-136},{
@@ -157,10 +157,10 @@ equation
           168,93.4815},{168,94},{-84,94},{-84,-34},{-170,-34}}, color={0,0,127}));
   connect(setNom.u, TSetNom) annotation (Line(points={{168,58},{-106,58},{-106,
           -184},{-172,-184}}, color={0,0,127}));
-  connect(TSetNom, setReb.uSetNom) annotation (Line(points={{-172,-184},{-28,
+  connect(TSetNom,setReb.uSetOrg)  annotation (Line(points={{-172,-184},{-28,
           -184},{-28,-110},{76,-110},{76,-110.154},{180.667,-110.154}}, color={
           0,0,127}));
-  connect(TSetNom, setShe.uSetNom) annotation (Line(points={{-172,-184},{-28,
+  connect(TSetNom,setShe.uSetOrg)  annotation (Line(points={{-172,-184},{-28,
           -184},{-28,-30.1538},{160.667,-30.1538}}, color={0,0,127}));
   connect(setShe.ySetCom, singleTemperatureSetpointModeSelection.uShe)
     annotation (Line(points={{183.333,-24},{192,-24},{192,-70},{214.261,-70},{

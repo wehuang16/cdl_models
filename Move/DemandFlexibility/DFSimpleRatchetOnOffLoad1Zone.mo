@@ -157,7 +157,7 @@ equation
     annotation (Line(points={{-128,54.6},{-128,50},{-52,50},{-52,44.8},{
           -43.7391,44.8}},
         color={0,0,127}));
-  connect(zoneSetpointSource.TSetNomHea, singleZoneSetpointControl.TSetNomHea)
+  connect(zoneSetpointSource.TSetOrgHea, singleZoneSetpointControl.TSetNomHea)
     annotation (Line(points={{-128,51.8},{-128,52},{-54,52},{-54,41.4},{
           -43.7391,41.4}},
         color={0,0,127}));
@@ -168,7 +168,7 @@ equation
     annotation (Line(points={{-128,45.4},{-128,46},{-52,46},{-52,33.8},{
           -43.7391,33.8}},
         color={0,0,127}));
-  connect(zoneSetpointSource.TSetNomCoo, singleZoneSetpointControl.TSetNomCoo)
+  connect(zoneSetpointSource.TSetOrgCoo, singleZoneSetpointControl.TSetNomCoo)
     annotation (Line(points={{-128,41.8},{-128,40},{-54,40},{-54,30.4},{
           -43.7391,30.4}},
         color={0,0,127}));
@@ -203,7 +203,7 @@ equation
   connect(zoneSetpointSource_baseline.TSetTarSheHea,
     singleZoneSetpointControl_baseline.TSetTarSheHea) annotation (Line(points={{-82,
           -41.4},{-52,-41.4},{-52,-49.2},{-43.7391,-49.2}},color={0,0,127}));
-  connect(zoneSetpointSource_baseline.TSetNomHea,
+  connect(zoneSetpointSource_baseline.TSetOrgHea,
     singleZoneSetpointControl_baseline.TSetNomHea) annotation (Line(points={{-82,
           -44.2},{-50,-44.2},{-50,-52.6},{-43.7391,-52.6}},
                                                        color={0,0,127}));
@@ -213,7 +213,7 @@ equation
   connect(zoneSetpointSource_baseline.TSetTarSheCoo,
     singleZoneSetpointControl_baseline.TSetTarSheCoo) annotation (Line(points={{-82,
           -50.6},{-58,-50.6},{-58,-60.2},{-43.7391,-60.2}},color={0,0,127}));
-  connect(zoneSetpointSource_baseline.TSetNomCoo,
+  connect(zoneSetpointSource_baseline.TSetOrgCoo,
     singleZoneSetpointControl_baseline.TSetNomCoo) annotation (Line(points={{-82,
           -54.2},{-82,-68},{-52,-68},{-52,-63.6},{-43.7391,-63.6}},
                                                                color={0,0,127}));

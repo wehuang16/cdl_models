@@ -68,10 +68,10 @@ equation
           -68},{244,-68},{244,-70},{270,-70}},         color={0,0,127}));
   connect(setNom.u,uSetNom)  annotation (Line(points={{158,58},{148,58},{148,
           -82},{-170,-82}},   color={0,0,127}));
-  connect(uSetNom, setReb.uSetNom) annotation (Line(points={{-170,-82},{48,-82},
+  connect(uSetNom,setReb.uSetOrg)  annotation (Line(points={{-170,-82},{48,-82},
           {48,-110},{162,-110},{162,-110.154},{160.667,-110.154}},      color={
           0,0,127}));
-  connect(uSetNom, setShe.uSetNom) annotation (Line(points={{-170,-82},{148,-82},
+  connect(uSetNom,setShe.uSetOrg)  annotation (Line(points={{-170,-82},{148,-82},
           {148,-30.1538},{160.667,-30.1538}},       color={0,0,127}));
   connect(setShe.ySetCom, chillerTemperatureModeSelection.uShe) annotation (
       Line(points={{183.333,-24},{192,-24},{192,-70},{214.261,-70},{214.261,

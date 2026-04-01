@@ -48,7 +48,7 @@ equation
           -68},{244,-68},{244,-70},{270,-70}},         color={0,0,127}));
   connect(setNom.u,uSetNom)  annotation (Line(points={{168,58},{-106,58},{-106,
           -184},{-172,-184}}, color={0,0,127}));
-  connect(uSetNom, setShe.uSetNom) annotation (Line(points={{-172,-184},{64,
+  connect(uSetNom,setShe.uSetOrg)  annotation (Line(points={{-172,-184},{64,
           -184},{64,-27.9259},{160.667,-27.9259}},  color={0,0,127}));
   connect(setShe.ySetCom, chillerTemperatureModeSelection.uShe) annotation (
       Line(points={{183.333,-22.8889},{192,-22.8889},{192,-70},{214.261,-70},{

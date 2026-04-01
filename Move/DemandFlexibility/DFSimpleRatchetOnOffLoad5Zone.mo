@@ -140,7 +140,7 @@ equation
   connect(zoneSetpointSource.TSetTarSheHea, multipleZoneSetpointControl.TSetTarSheHea)
     annotation (Line(points={{-158,78.6},{-158,76},{-76,76},{-76,78},{-68.2,78},
           {-68.2,76.7714}}, color={0,0,127}));
-  connect(zoneSetpointSource.TSetNomHea, multipleZoneSetpointControl.TSetNomHea)
+  connect(zoneSetpointSource.TSetOrgHea, multipleZoneSetpointControl.TSetNomHea)
     annotation (Line(points={{-158,75.8},{-158,78},{-68.2,78},{-68.2,73.3714}},
         color={0,0,127}));
   connect(zoneSetpointSource.TSetTarPreCoo, multipleZoneSetpointControl.TSetTarPreCoo)
@@ -149,7 +149,7 @@ equation
   connect(zoneSetpointSource.TSetTarSheCoo, multipleZoneSetpointControl.TSetTarSheCoo)
     annotation (Line(points={{-158,69.4},{-158,72},{-78,72},{-78,62},{-68.4,62},
           {-68.4,60.0952}}, color={0,0,127}));
-  connect(zoneSetpointSource.TSetNomCoo, multipleZoneSetpointControl.TSetNomCoo)
+  connect(zoneSetpointSource.TSetOrgCoo, multipleZoneSetpointControl.TSetNomCoo)
     annotation (Line(points={{-158,65.8},{-158,58},{-76,58},{-76,62},{-68.4,62},
           {-68.4,57.019}}, color={0,0,127}));
   connect(setpoint_processing.yTSetHea, multipleZoneSetpointControl.TSetCurHea)
@@ -171,7 +171,7 @@ equation
     multipleZoneSetpointControl_baseline.TSetTarSheHea) annotation (Line(points
         ={{-100,-33.4},{-80,-33.4},{-80,-23.2286},{-70.2,-23.2286}}, color={0,0,
           127}));
-  connect(zoneSetpointSource_baseline.TSetNomHea,
+  connect(zoneSetpointSource_baseline.TSetOrgHea,
     multipleZoneSetpointControl_baseline.TSetNomHea) annotation (Line(points={{
           -100,-36.2},{-78,-36.2},{-78,-26.6286},{-70.2,-26.6286}}, color={0,0,
           127}));
@@ -182,7 +182,7 @@ equation
     multipleZoneSetpointControl_baseline.TSetTarSheCoo) annotation (Line(points
         ={{-100,-42.6},{-84,-42.6},{-84,-39.9048},{-70.4,-39.9048}}, color={0,0,
           127}));
-  connect(zoneSetpointSource_baseline.TSetNomCoo,
+  connect(zoneSetpointSource_baseline.TSetOrgCoo,
     multipleZoneSetpointControl_baseline.TSetNomCoo) annotation (Line(points={{
           -100,-46.2},{-100,-46},{-78,-46},{-78,-42.981},{-70.4,-42.981}},
         color={0,0,127}));
