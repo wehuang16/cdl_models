@@ -1,0 +1,8 @@
+within cdl_models.Move.ZoneSetpointControl0.Subsequences.Validation;
+model SelectLargestTemperatureDifference
+  extends Modelica.Icons.Example;
+   annotation (experiment(
+      StopTime=172800,
+      Interval=60,
+      __Dymola_Algorithm="Dassl"));
+end SelectLargestTemperatureDifference;
