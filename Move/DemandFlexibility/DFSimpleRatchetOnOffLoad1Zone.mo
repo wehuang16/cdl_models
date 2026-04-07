@@ -37,7 +37,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{2,-54},{22,-34}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput totalElectricPowerBaseline
     annotation (Placement(transformation(extent={{140,-50},{160,-30}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.SingleZone singleZoneSetpointControl(
+  ZoneSetpointControl.SingleZone singleZoneSetpointControl(
     delChaSheHea=-0.5556,
     delChaRebHea=0.5556,
     delSheThoHea=0.2778,
@@ -52,8 +52,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-142,68},{-122,88}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.ZoneSetpointSource
-    zoneSetpointSource(
+  ZoneSetpointControl.ZoneSetpointSource zoneSetpointSource(
     TSetNomHeaOcc=THeaSetOcc,
     TSetNomHeaUno=THeaSetUno,
     TSetNomCooOcc=TCooSetOcc,
@@ -61,7 +60,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     occStaHouSta=6,
     occStaHouEnd=19)
     annotation (Placement(transformation(extent={{-150,40},{-130,60}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.SingleZone singleZoneSetpointControl_baseline(
+  ZoneSetpointControl.SingleZone singleZoneSetpointControl_baseline(
     demFleHeaAct=false,
     demFleCooAct=false,
     delChaSheHea=-0.5556,
@@ -78,8 +77,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-160,-76},{-140,-56}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.ZoneSetpointSource
-    zoneSetpointSource_baseline(
+  ZoneSetpointControl.ZoneSetpointSource zoneSetpointSource_baseline(
     TSetNomHeaOcc=THeaSetOcc,
     TSetNomHeaUno=THeaSetUno,
     TSetNomCooOcc=TCooSetOcc,

@@ -39,7 +39,7 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{-2,-44},{18,-24}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput totalElectricPowerBaseline
     annotation (Placement(transformation(extent={{160,-46},{180,-26}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.MultipleZones multipleZoneSetpointControl(
+  ZoneSetpointControl.MultipleZones multipleZoneSetpointControl(
     nZon=5,
     delChaSheHea=-0.5556,
     delChaRebHea=0.5556,
@@ -53,10 +53,10 @@ replaceable package MediumAir = Buildings.Media.Air;
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-108,116},{-88,136}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.ZoneSetpointSource
-    zoneSetpointSource[5](occStaHouSta=6, occStaHouEnd=19)
+  ZoneSetpointControl.ZoneSetpointSource zoneSetpointSource[5](occStaHouSta=6,
+      occStaHouEnd=19)
     annotation (Placement(transformation(extent={{-180,64},{-160,84}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.MultipleZones multipleZoneSetpointControl_baseline(
+  ZoneSetpointControl.MultipleZones multipleZoneSetpointControl_baseline(
     nZon=5,
     demFleHeaAct=false,
     demFleCooAct=false,
@@ -72,8 +72,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-140,-14},{-120,6}})));
-  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.ZoneSetpointSource
-    zoneSetpointSource_baseline[5](occStaHouSta=6, occStaHouEnd=19)
+  ZoneSetpointControl.ZoneSetpointSource zoneSetpointSource_baseline[5](
+      occStaHouSta=6, occStaHouEnd=19)
     annotation (Placement(transformation(extent={{-122,-48},{-102,-28}})));
 equation
   connect(custom_air_conditioner_OnOff_timer.port_b, building_5_zone.port_a)

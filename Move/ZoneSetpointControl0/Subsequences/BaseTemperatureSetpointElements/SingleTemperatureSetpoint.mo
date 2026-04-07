@@ -20,11 +20,9 @@ block SingleTemperatureSetpoint
     "Sample period for ratchet";
         parameter Real samPerReb(unit="s")=300
     "Sample period for rebound";
-  Buildings.Controls.OBC.DemandFlexibility.Generic.SetpointMultipleStepChange setShe(delCha=
-        delChaShe, samPer=samPerShe)
+  Generic.SetpointMultipleStepChange setShe(delCha=delChaShe, samPer=samPerShe)
     annotation (Placement(transformation(extent={{162,-34},{182,-14}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.SetpointMultipleStepChange setReb(delCha=
-        delChaReb, samPer=samPerReb)
+  Generic.SetpointMultipleStepChange setReb(delCha=delChaReb, samPer=samPerReb)
     annotation (Placement(transformation(extent={{182,-114},{202,-94}})));
   Buildings.Controls.OBC.DemandFlexibility.Generic.SetpointSingleStepChange setPre(samPer=
         samPerPre)

@@ -1,55 +1,57 @@
 within cdl_models.Move.Generic;
-block SetpointMultipleStepChange
+block SetpointMultipleStepChange "Multiple-step setpoint change"
 
-   parameter Real delCha=1
-    "Change amount";
-
-    parameter Real samPer(unit="s")=300
+  parameter Real delSet=1
+    "setpoint change amount";
+  parameter Real samPer(unit="s")=300
     "Sample period";
-  Buildings.Controls.OBC.CDL.Discrete.Sampler sam(samplePeriod=samPer)
-    annotation (Placement(transformation(extent={{166,-10},{186,10}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uSetTar "setpoint target"
     annotation (Placement(transformation(extent={{-140,-46},{-100,-6}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput uSetNom "nominal setpoint"
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput uSetBas "baseline setpoint"
     annotation (Placement(transformation(extent={{-140,-100},{-100,-60}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealOutput ySetCom "setpoint command"
-    annotation (Placement(transformation(extent={{200,-20},{240,20}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput have_pri "have priority"
-    annotation (Placement(transformation(extent={{-140,60},{-100,100}}),
-        iconTransformation(extent={{-140,60},{-100,100}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uSetCur "current setpoint"
     annotation (Placement(transformation(extent={{-140,14},{-100,54}})));
-  Buildings.Controls.OBC.CDL.Reals.Add add
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput ySetCom "setpoint command"
+    annotation (Placement(transformation(extent={{200,-20},{240,20}})));
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput
+                           have_pri "have priority"
+    annotation (Placement(transformation(extent={{-140,60},{-100,100}}),
+        iconTransformation(extent={{-140,60},{-100,100}})));
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_uSetTar annotation (Placement(
+        transformation(extent={{200,60},{240,100}}),iconTransformation(extent={{200,56},
+            {240,96}})));
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_uSetBas annotation (Placement(
+        transformation(extent={{200,-92},{240,-52}}), iconTransformation(extent={{200,-88},
+            {240,-48}})));
+  Buildings.Controls.OBC.CDL.Discrete.Sampler                        sam(samplePeriod=samPer)
+    annotation (Placement(transformation(extent={{166,-10},{186,10}})));
+  Buildings.Controls.OBC.CDL.Reals.Add                        add
     annotation (Placement(transformation(extent={{-48,-62},{-28,-42}})));
-  Buildings.Controls.OBC.CDL.Reals.Min min1
+  Buildings.Controls.OBC.CDL.Reals.Min                        min1
     annotation (Placement(transformation(extent={{86,36},{106,56}})));
-  Buildings.Controls.OBC.CDL.Reals.Max max1
+  Buildings.Controls.OBC.CDL.Reals.Max                        max1
     annotation (Placement(transformation(extent={{46,8},{66,28}})));
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=delCha)
+  Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=delSet)
     annotation (Placement(transformation(extent={{-86,-68},{-66,-48}})));
   Buildings.Controls.OBC.CDL.Reals.Switch swi
     annotation (Placement(transformation(extent={{38,-70},{58,-50}})));
-  Buildings.Controls.OBC.CDL.Reals.Min min2
+  Buildings.Controls.OBC.CDL.Reals.Min                        min2
     annotation (Placement(transformation(extent={{88,-32},{108,-12}})));
-  Buildings.Controls.OBC.CDL.Reals.Max max2
+  Buildings.Controls.OBC.CDL.Reals.Max                        max2
     annotation (Placement(transformation(extent={{132,-10},{152,10}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_uSetTar annotation
-    (Placement(transformation(extent={{200,60},{240,100}}), iconTransformation(
-          extent={{200,56},{240,96}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_uSetNom annotation
-    (Placement(transformation(extent={{200,-92},{240,-52}}), iconTransformation(
-          extent={{200,-88},{240,-48}})));
-  ExactEqualReal exactEqualReal
+  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.ExactEqualReal
+    exactEqualReal
     annotation (Placement(transformation(extent={{48,98},{68,118}})));
-  ExactEqualReal exactEqualReal1
+  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.ExactEqualReal
+    exactEqualReal1
     annotation (Placement(transformation(extent={{54,-122},{74,-102}})));
 equation
   connect(con.y, add.u2) annotation (Line(points={{-64,-58},{-50,-58}},
                                 color={0,0,127}));
-  connect(uSetNom, min1.u2) annotation (Line(points={{-120,-80},{-88,-80},{-88,
+  connect(uSetBas, min1.u2) annotation (Line(points={{-120,-80},{-88,-80},{-88,
           -100},{16,-100},{16,-8},{78,-8},{78,40},{84,40}},
                      color={0,0,127}));
-  connect(uSetNom, max1.u2) annotation (Line(points={{-120,-80},{-88,-80},{-88,
+  connect(uSetBas, max1.u2) annotation (Line(points={{-120,-80},{-88,-80},{-88,
           -100},{16,-100},{16,12},{44,12}},
                      color={0,0,127}));
   connect(have_pri, swi.u2) annotation (Line(points={{-120,80},{-10,80},{-10,
@@ -67,14 +69,14 @@ equation
                              color={0,0,127}));
   connect(max2.y, sam.u) annotation (Line(points={{154,0},{164,0}},
                                 color={0,0,127}));
-  connect(reach_uSetNom, reach_uSetNom)
+  connect(reach_uSetBas,reach_uSetBas)
     annotation (Line(points={{220,-72},{220,-72}}, color={255,0,255}));
   connect(exactEqualReal.yEquFla, reach_uSetTar)
     annotation (Line(points={{70,108},{194,108},{194,80},{220,80}},
                                                            color={255,0,255}));
-  connect(uSetNom, exactEqualReal1.u2) annotation (Line(points={{-120,-80},{-88,
+  connect(uSetBas, exactEqualReal1.u2) annotation (Line(points={{-120,-80},{-88,
           -80},{-88,-118},{52,-118}},                   color={0,0,127}));
-  connect(exactEqualReal1.yEquFla, reach_uSetNom) annotation (Line(points={{76,-112},
+  connect(exactEqualReal1.yEquFla,reach_uSetBas)  annotation (Line(points={{76,-112},
           {194,-112},{194,-72},{220,-72}},   color={255,0,255}));
   connect(max1.y, min2.u1) annotation (Line(points={{68,18},{72,18},{72,-16},{
           86,-16}}, color={0,0,127}));
@@ -99,20 +101,45 @@ equation
         extent={{-100,-130},{200,130}},
         grid={2,2})),
     Documentation(info="<html>
-<p>This block serves to change the setpoint between the nominal setpoint 
-uSetNom and the target setpoint <code>uSetTar</code> in multiple smaller steps. Each smaller step is taken every 
-samPer seconds. The amount of change in each smaller step is delCha, with positive values indicating 
-setpoint increase while negative values indicating setpoint decrease.</p>
-<p>This block provides the freedom to account for both <code>uSetNom</code> &gt;= 
-<code>uSetTar</code> and <code>uSetNom</code> &lt; <code>uSetTar</code> cases, because we want to use the same block for both heating 
-setpoint and cooling setpoint, and for both load shed and load rebound, for example. Setpoint 
-increase and decrease is entirely determined by the <code>delCha</code> value.</p>
-<p>The have_pri input specifies whether the setpoint 
-change operation will be executed or not every samPer seconds. This is useful in multiple-zone 
-or multiple-equipment scenarios where we want to prioritize which zone or equipment will go 
-through the setpoint change.</p>
-<p>Outputs include the new setpoint that we want the equipment 
-or zone to have, as well as boolean flags that specify whether the current setpoint has reached 
-the nominal setpoint or the target setpoint. </p>
+<p>This block serves to change the current setpoint <code>uSetCur</code>
+ between the baseline setpoint <code>uSetBas</code>
+ and the target setpoint <code>uSetTar</code> in
+ multiple smaller steps. The amount of change in each smaller step is represented
+ by the parameter <code>delSet</code>, with positive value indicating setpoint increase while
+ negative value indicating setpoint decrease. Each smaller step is taken every
+ <code>samPer</code> seconds. The resultant
+ setpoint will be outputted as the <code>ySetCom</code>
+ output variable, which represents the new setpoint that a zone or a piece of equipment
+ shall have. This in turn changes the value of the current setpoint <code>uSetCur</code> from outside
+ this block, completing a full control loop.</p>
+<p>This block provides the freedom to account for both <code>uSetBas &gt;= uSetTar</code> and <code>uSetBas
+ &lt; uSetTar</code> cases. Setpoint increase and decrease is entirely determined by the <code>delSet</code>
+ parameter.</p>
+<p><br>The <code>have_pri</code> boolean input variable
+ specifies whether the setpoint change operation will be executed or not. This is useful
+ in multiple-zone or multiple-equipment scenarios where there is a need to prioritize
+ which zone or equipment will go through the setpoint step change. When the 
+<code>have_pri</code> input variable is set 
+to <code>false</code> from a previous 
+<code>true</code> value, the resultant 
+setpoint <code>ySetCom</code> will stay at the current <code>uSetCur</code> value and will not be 
+reverted to the previous value before the setpoint step change. Therefore, 
+the changes to the current setpoint <code>uSetCur</code>
+ is unidirectional (either more positive or more negative), and reversing these 
+unidirectional changes to the current setpoint <code>uSetCur</code> needs to happen outside 
+of this block. </p>
+<p>Output variables also include boolean flags that specify whether the 
+current setpoint has reached the baseline setpoint 
+<code>uSetBas</code> or the target 
+setpoint <code>uSetTar</code>. </p>
+</html>",
+        revisions="<html>
+<ul>
+<li>
+April 03, 2026, by Weiping Huang:<br/>
+First implementation.
+</li>
+
+</ul>
 </html>"));
 end SetpointMultipleStepChange;
