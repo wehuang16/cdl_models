@@ -39,11 +39,9 @@ block SetpointMultipleStepChange "Multiple-step setpoint change"
     annotation (Placement(transformation(extent={{88,-32},{108,-12}})));
   Buildings.Controls.OBC.CDL.Reals.Max                        max2
     annotation (Placement(transformation(extent={{132,-10},{152,10}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.ExactEqualReal
-    exactEqualReal
+  Subsequences.RealNumberEqual exactEqualReal
     annotation (Placement(transformation(extent={{48,98},{68,118}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.ExactEqualReal
-    exactEqualReal1
+  Subsequences.RealNumberEqual exactEqualReal1
     annotation (Placement(transformation(extent={{54,-122},{74,-102}})));
 equation
   connect(con.y, add.u2) annotation (Line(points={{-64,-58},{-50,-58}},

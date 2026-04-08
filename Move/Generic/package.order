@@ -1,4 +1,3 @@
-ExactEqualReal
 SelectSmallestValues
 SelectLargestValues
 SetpointSingleStepChange
@@ -8,4 +7,5 @@ GeneralModeSelectionBool
 TemperatureSetpointResolution
 SingleTemperatureSetpointMock
 DualTemperatureSetpointMock
+Subsequences
 Validation

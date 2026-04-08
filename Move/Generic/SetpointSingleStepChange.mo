@@ -39,9 +39,9 @@ block SetpointSingleStepChange
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_uSetNom annotation
     (Placement(transformation(extent={{200,-94},{240,-54}}), iconTransformation(
           extent={{200,-94},{240,-54}})));
-  ExactEqualReal exactEqualReal
+  Subsequences.RealNumberEqual exactEqualReal
     annotation (Placement(transformation(extent={{18,94},{38,114}})));
-  ExactEqualReal exactEqualReal1
+  Subsequences.RealNumberEqual exactEqualReal1
     annotation (Placement(transformation(extent={{144,-112},{164,-92}})));
 equation
   connect(uSetNom,max1. u2) annotation (Line(points={{-120,-68},{-78,-68},{-78,

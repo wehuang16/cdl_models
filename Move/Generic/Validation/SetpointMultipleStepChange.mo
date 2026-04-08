@@ -9,8 +9,8 @@ model SetpointMultipleStepChange "Multiple-step setpoint change"
     annotation (Placement(transformation(extent={{-72,-68},{-52,-48}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con1(k=273.15 + 20)
     annotation (Placement(transformation(extent={{-78,-102},{-58,-82}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.Subsequences.SingleTemperatureSetpointBAS
-    singleTemperatureSetpointMock annotation (Placement(transformation(
+  Subsequences.SingleTemperatureSetpointBAS singleTemperatureSetpointMock
+    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={36,-18})));

@@ -1,24 +1,27 @@
-within cdl_models.Move.Generic;
-block ExactEqualReal
-  parameter Real alwDev(min=0)=0.01
-    "allowed deviations for equality";
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput u1
+within cdl_models.Move.Generic.Subsequences;
+block RealNumberEqual "Exact equal block for real numbers"
+  parameter Real alwDev(min=1E-6)=0.01
+    "Allowed deviation for equality";
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput u1 "Input real number 1"
     annotation (Placement(transformation(extent={{-140,40},{-100,80}})));
-  Buildings.Controls.OBC.CDL.Interfaces.RealInput u2
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput u2 "Input real number 2"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
-  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput yEquFla "equal flag"
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput yEquFla "Equal flag"
     annotation (Placement(transformation(extent={{100,-20},{140,20}})));
-  Buildings.Controls.OBC.CDL.Reals.Add add2
+  Buildings.Controls.OBC.CDL.Reals.Add add2 "Input u2 plus allowed deviation"
     annotation (Placement(transformation(extent={{-36,4},{-16,24}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract sub
+    "Input u2 minus allowed deviation"
     annotation (Placement(transformation(extent={{-36,-76},{-16,-56}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=alwDev)
+    "Allowed deviation constant"
     annotation (Placement(transformation(extent={{-94,-28},{-74,-8}})));
-  Buildings.Controls.OBC.CDL.Reals.Greater gre
+  Buildings.Controls.OBC.CDL.Reals.Greater gre "Greater than"
     annotation (Placement(transformation(extent={{18,-68},{38,-48}})));
-  Buildings.Controls.OBC.CDL.Reals.Less les
+  Buildings.Controls.OBC.CDL.Reals.Less les "Less than"
     annotation (Placement(transformation(extent={{16,12},{36,32}})));
   Buildings.Controls.OBC.CDL.Logical.And and2
+    "Input u1 within input u2 plus or minus allowed deviation"
     annotation (Placement(transformation(extent={{66,-10},{86,10}})));
 equation
   connect(u2, add2.u1) annotation (Line(points={{-120,-60},{-66,-60},{-66,20},{
@@ -46,7 +49,20 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
-<p>This block compares 2 real input variables, and if these 2 real input variables are equal to each 
-other with a deviation less than <code>alwDev</code>, then the output is true. Otherwise, the output is false. </p>
+<p>This block checks whether the values of 2 real input variables are equal to each other. </p>
+<p>The 2 real input variables are <code>u1</code> and <code>u2</code>.
+The allowed deviation is represented by the parameter <code>alwDev</code>. 
+If <code>u1 &lt; u2 + alwDev</code> and <code>u1 &gt; 
+u2 - alwDev</code>, then the output <code>yEuqFla</code> is <code>true</code>. 
+Otherwise, the output <code>yEuqFla</code> is <code>false</code>. </p>
+</html>",
+        revisions="<html>
+<ul>
+<li>
+April 03, 2026, by Weiping Huang:<br/>
+First implementation.
+</li>
+
+</ul>
 </html>"));
-end ExactEqualReal;
+end RealNumberEqual;
