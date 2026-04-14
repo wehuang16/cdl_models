@@ -1,4 +1,5 @@
 TemperatureSetpointResolution
 SingleTemperatureSetpointBAS
 RealNumberEqual
+RealNumberEqualHysteresis
 Validation

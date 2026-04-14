@@ -1,6 +1,7 @@
 SelectSmallestValues
 SelectLargestValues
 SetpointSingleStepChange
+SingleStepSetpointChangeRealNumberEqual
 SetpointMultipleStepChange
 GeneralModeSelection
 GeneralModeSelectionBool

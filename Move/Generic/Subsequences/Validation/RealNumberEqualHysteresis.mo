@@ -1,22 +1,22 @@
 within cdl_models.Move.Generic.Subsequences.Validation;
-model RealNumberEqual "Exact equal block for real numbers"
+model RealNumberEqualHysteresis "Exact equal block for real numbers"
   extends Modelica.Icons.Example;
-  cdl_models.Move.Generic.Subsequences.RealNumberEqual realNumberEqualHysteresis(alwDev=1)
+  cdl_models.Move.Generic.Subsequences.RealNumberEqualHysteresis realNumberEqualHysteresis(alwDev=1)
     "Exact equal block"
     annotation (Placement(transformation(extent={{-6,-12},{14,8}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Sin sin(
     final freqHz=1/43200,
     final amplitude=3,
     final offset=6)           "Sine wave"
-    annotation (Placement(transformation(extent={{-76,16},{-56,36}})));
+    annotation (Placement(transformation(extent={{-72,0},{-52,20}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=5) "Sine wave"
-    annotation (Placement(transformation(extent={{-74,-32},{-54,-12}})));
+    annotation (Placement(transformation(extent={{-70,-48},{-50,-28}})));
 equation
+  connect(sin.y, realNumberEqualHysteresis.u1) annotation (Line(points={{-50,10},
+          {-30,10},{-30,4},{-8,4}}, color={0,0,127}));
+  connect(con.y, realNumberEqualHysteresis.u2) annotation (Line(points={{-48,-38},
+          {-28,-38},{-28,-8},{-8,-8}}, color={0,0,127}));
 
-  connect(sin.y, realNumberEqualHysteresis.u1) annotation (Line(points={{-54,26},
-          {-34,26},{-34,4},{-8,4}}, color={0,0,127}));
-  connect(con.y, realNumberEqualHysteresis.u2) annotation (Line(points={{-52,-22},
-          {-32,-22},{-32,-8},{-8,-8}}, color={0,0,127}));
     annotation (experiment(
       StopTime=86400,
       Interval=60,
@@ -35,4 +35,4 @@ First implementation.
 
 </ul>
 </html>"));
-end RealNumberEqual;
+end RealNumberEqualHysteresis;
