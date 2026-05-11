@@ -1,6 +1,9 @@
 within cdl_models.Move.ZoneSetpointControl.Validation;
 model SingleTemperatureSetpoint "Single temperature setpoint"
   extends Modelica.Icons.Example;
+  cdl_models.Move.ZoneSetpointControl.SingleTemperatureSetpoint
+    singleTemperatureSetpoint
+    annotation (Placement(transformation(extent={{-50,-6},{-10,26}})));
   annotation (Documentation(info="<html>
 <p>This example validates <a href=\"modelica://cdl_models.Move.ZoneSetpointControl.SingleTemperatureSetpoint\">
 Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.SingleTemperatureSetpoint</a>.</p>

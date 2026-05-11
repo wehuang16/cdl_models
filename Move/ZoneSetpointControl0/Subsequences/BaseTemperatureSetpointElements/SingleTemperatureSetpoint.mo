@@ -36,13 +36,13 @@ block SingleTemperatureSetpoint
         iconTransformation(extent={{-190,24},{-150,64}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetTarShe
     annotation (Placement(transformation(extent={{250,-20},{290,20}}),
-        iconTransformation(extent={{250,-20},{290,20}})));
+        iconTransformation(extent={{412,-10},{452,30}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetNom annotation
     (Placement(transformation(extent={{250,-170},{290,-130}}),
-        iconTransformation(extent={{250,-156},{290,-116}})));
+        iconTransformation(extent={{414,-146},{454,-106}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TSetCom "setpoint command"
     annotation (Placement(transformation(extent={{250,-90},{290,-50}}),
-        iconTransformation(extent={{250,-90},{290,-50}})));
+        iconTransformation(extent={{252,-54},{292,-14}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TSetTarPre
     "setpoint target for precool or preheat" annotation (Placement(
         transformation(extent={{-192,-106},{-152,-66}}), iconTransformation(
@@ -76,7 +76,7 @@ block SingleTemperatureSetpoint
     annotation (Placement(transformation(extent={{122,8},{142,28}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetTarPre
     annotation (Placement(transformation(extent={{250,44},{290,84}}),
-        iconTransformation(extent={{250,44},{290,84}})));
+        iconTransformation(extent={{404,44},{444,84}})));
 equation
   connect(have_pri, setPre.have_pri) annotation (Line(points={{-170,80},{28,80},
           {28,97.1852},{168.667,97.1852}},
@@ -165,7 +165,11 @@ equation
           214.261,-70.6667}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false,
         extent={{-150,-200},{250,120}},
-        grid={2,2})),                                            Diagram(
+        grid={2,2}), graphics={Rectangle(
+          extent={{-148,120},{252,-200}},
+          lineColor={0,0,0},
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid)}),                      Diagram(
         coordinateSystem(preserveAspectRatio=false,
         extent={{-150,-200},{250,120}},
         grid={2,2})),

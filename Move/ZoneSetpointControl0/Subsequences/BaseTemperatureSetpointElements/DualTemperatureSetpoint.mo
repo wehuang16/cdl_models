@@ -91,19 +91,19 @@ block DualTemperatureSetpoint
     annotation (Placement(transformation(extent={{-218,-276},{-178,-236}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetTarSheHea
     annotation (Placement(transformation(extent={{100,34},{140,74}}),
-        iconTransformation(extent={{100,34},{140,74}})));
+        iconTransformation(extent={{254,34},{294,74}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TSetComHea
     "setpoint command" annotation (Placement(transformation(extent={{100,0},{
             140,40}}), iconTransformation(extent={{100,0},{140,40}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetNomHea
     annotation (Placement(transformation(extent={{100,-40},{140,0}}),
-        iconTransformation(extent={{100,-40},{140,0}})));
+        iconTransformation(extent={{260,-24},{300,16}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetTarSheCoo
     annotation (Placement(transformation(extent={{100,-150},{140,-110}}),
-        iconTransformation(extent={{100,-150},{140,-110}})));
+        iconTransformation(extent={{270,-144},{310,-104}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetNomCoo
     annotation (Placement(transformation(extent={{100,-242},{140,-202}}),
-        iconTransformation(extent={{100,-244},{140,-204}})));
+        iconTransformation(extent={{264,-236},{304,-196}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TSetComCoo
     "setpoint command" annotation (Placement(transformation(extent={{100,-196},
             {140,-156}}), iconTransformation(extent={{100,-196},{140,-156}})));
@@ -125,31 +125,31 @@ block DualTemperatureSetpoint
             -32},{-178,8}}), iconTransformation(extent={{-218,-32},{-178,8}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetTarPreHea
     annotation (Placement(transformation(extent={{100,72},{140,112}}),
-        iconTransformation(extent={{100,76},{140,116}})));
+        iconTransformation(extent={{244,74},{284,114}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput reach_TSetTarPreCoo
     annotation (Placement(transformation(extent={{100,-96},{140,-56}}),
-        iconTransformation(extent={{100,-108},{140,-68}})));
+        iconTransformation(extent={{268,-102},{308,-62}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput have_priCoo
     "have priority" annotation (Placement(transformation(extent={{-218,64},{-178,
             104}}), iconTransformation(extent={{-220,64},{-180,104}})));
 equation
   connect(sinTemSetConHea.reach_TSetTarShe,reach_TSetTarSheHea)
-    annotation (Line(points={{47,68.5},{86,68.5},{86,54},{120,54}},
+    annotation (Line(points={{55.1,69.125},{86,69.125},{86,54},{120,54}},
                                                           color={255,0,255}));
-  connect(sinTemSetConHea.TSetCom,TSetComHea)  annotation (Line(points={{47,
-          64.125},{76,64.125},{76,20},{120,20}},
+  connect(sinTemSetConHea.TSetCom,TSetComHea)  annotation (Line(points={{47.1,
+          66.375},{76,66.375},{76,20},{120,20}},
                                      color={0,0,127}));
   connect(sinTemSetConHea.reach_TSetNom,reach_TSetNomHea)
-    annotation (Line(points={{47,60},{60,60},{60,-20},{120,-20}},
+    annotation (Line(points={{55.2,60.625},{60,60.625},{60,-20},{120,-20}},
                                                         color={255,0,255}));
   connect(sinTemSetConCoo.reach_TSetTarShe,reach_TSetTarSheCoo)  annotation (
-      Line(points={{45,-147.5},{45,-148},{90,-148},{90,-130},{120,-130}},
+      Line(points={{53.1,-146.875},{53.1,-148},{90,-148},{90,-130},{120,-130}},
                                                    color={255,0,255}));
-  connect(sinTemSetConCoo.TSetCom,TSetComCoo)  annotation (Line(points={{45,
-          -151.875},{90,-151.875},{90,-176},{120,-176}},
+  connect(sinTemSetConCoo.TSetCom,TSetComCoo)  annotation (Line(points={{45.1,
+          -149.625},{90,-149.625},{90,-176},{120,-176}},
                                         color={0,0,127}));
   connect(sinTemSetConCoo.reach_TSetNom,reach_TSetNomCoo)  annotation (Line(
-        points={{45,-156},{66,-156},{66,-222},{120,-222}},
+        points={{53.2,-155.375},{66,-155.375},{66,-222},{120,-222}},
                                                   color={255,0,255}));
   connect(uMod, sinTemSetConHea.uMod) annotation (Line(points={{-198,54},{-170,
           54},{-170,71.25},{25,71.25}},
@@ -195,10 +195,10 @@ equation
           -12},{-122,69},{25,69}},                                   color={0,0,
           127}));
   connect(sinTemSetConHea.reach_TSetTarPre, reach_TSetTarPreHea)
-    annotation (Line(points={{47,72.5},{47,72},{60,72},{60,92},{120,92}},
+    annotation (Line(points={{54.7,72.5},{54.7,72},{60,72},{60,92},{120,92}},
                                                           color={255,0,255}));
   connect(sinTemSetConCoo.reach_TSetTarPre, reach_TSetTarPreCoo) annotation (
-      Line(points={{45,-143.5},{45,-144},{66,-144},{66,-76},{120,-76}},
+      Line(points={{52.7,-143.5},{52.7,-144},{66,-144},{66,-76},{120,-76}},
                                                    color={255,0,255}));
   connect(have_priHea, logSwi.u1) annotation (Line(points={{-198,120},{-150,120},
           {-150,110},{-22,110}},
@@ -213,7 +213,11 @@ equation
   connect(TSetTarPreHea, sinTemSetConHea.TSetTarPre) annotation (Line(points={{
           -198,-76},{-94,-76},{-94,63.125},{24.9,63.125}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-180,
-            -280},{100,140}})),
+            -280},{100,140}}), graphics={Rectangle(
+          extent={{-180,140},{100,-280}},
+          lineColor={0,0,0},
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid)}),
                           Diagram(coordinateSystem(preserveAspectRatio=false,
           extent={{-180,-280},{100,140}})),
     Documentation(info="<html>

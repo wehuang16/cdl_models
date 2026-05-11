@@ -19,7 +19,12 @@ equation
           120,0}}, color={255,0,255}));
   connect(u, sort.u)
     annotation (Line(points={{-120,0},{-60,0}},color={0,0,127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+          Rectangle(
+          extent={{-100,100},{100,-100}},
+          lineColor={0,0,0},
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid)}),                      Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
 <p>This block selects the <code>nSel</code> smallest values out of a total of <code>nNum</code> values. The output is an array, 

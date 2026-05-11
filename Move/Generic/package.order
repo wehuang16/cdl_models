@@ -8,5 +8,8 @@ GeneralModeSelectionBool
 TemperatureSetpointResolution
 SingleTemperatureSetpointMock
 DualTemperatureSetpointMock
+SingleStepSetpointChange_20260428
+SingleStepSetpointIncrease_20260429
 Subsequences
 Validation
+Subsequences_20260429

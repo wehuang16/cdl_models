@@ -1,0 +1,137 @@
+within cdl_models.Move.Generic;
+block SingleStepSetpointIncrease_20260429 "Single-step setpoint increase"
+
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput uMaxSet
+    "Maximum setpoint input"
+    annotation (Placement(transformation(extent={{-200,-60},{-160,-20}}),
+        iconTransformation(extent={{-140,-38},{-100,2}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput uMinSet
+    "Minimum setpoint input"
+    annotation (Placement(transformation(extent={{-200,-140},{-160,-100}}),
+        iconTransformation(extent={{-140,-80},{-100,-40}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput uCurSet
+    "Current setpoint input; the setpoint that an external setpoint controller currently has"
+    annotation (Placement(transformation(extent={{-200,20},{-160,60}}),
+        iconTransformation(extent={{-140,0},{-100,40}})));
+  Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uEna
+    "The signal to enable setpoint increase"
+    annotation (Placement(transformation(extent={{-200,100},{-160,140}}),
+      iconTransformation(extent={{-140,40},{-100,80}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealOutput yComSet
+    "Commanded setpoint output; the setpoint that an external setpoint controller should change to"
+    annotation (Placement(transformation(extent={{160,-20},{200,20}}),
+        iconTransformation(extent={{100,-20},{140,20}})));
+  Buildings.Controls.OBC.CDL.Reals.Switch swiEna
+    "Switch for enabling the setpoint increase signal"
+    annotation (Placement(transformation(extent={{0,-80},{20,-60}})));
+  Buildings.Controls.OBC.CDL.Reals.Min uCurSetLimMin
+    "Current setpoint should be no smaller than the minimum setpoint input"
+    annotation (Placement(transformation(extent={{120,-10},{140,10}})));
+  Buildings.Controls.OBC.CDL.Reals.Max uCurSetLimMax
+    "Current setpoint should be no larger than the maximum setpoint input"
+    annotation (Placement(transformation(extent={{60,-10},{80,10}})));
+equation
+  connect(uEna, swiEna.u2) annotation (Line(points={{-180,120},{-100,120},
+          {-100,-70},{-2,-70}},
+                          color={255,0,255}));
+  connect(uCurSet, swiEna.u3) annotation (Line(points={{-180,40},{-80,40},{-80,-78},
+          {-2,-78}},      color={0,0,127}));
+  connect(uMaxSet, uCurSetLimMin.u1) annotation (Line(points={{-180,-40},{-140,-40},
+          {-140,80},{100,80},{100,6},{118,6}},
+                                            color={0,0,127}));
+  connect(uMinSet, uCurSetLimMax.u1) annotation (Line(points={{-180,-120},{-120,
+          -120},{-120,60},{40,60},{40,6},{58,6}}, color={0,0,127}));
+  connect(swiEna.y, uCurSetLimMax.u2) annotation (Line(points={{22,-70},{40,-70},
+          {40,-6},{58,-6}}, color={0,0,127}));
+  connect(uCurSetLimMax.y, uCurSetLimMin.u2)
+    annotation (Line(points={{82,0},{100,0},{100,-6},{118,-6}},
+                                                             color={0,0,127}));
+  connect(uCurSetLimMin.y, yComSet)
+    annotation (Line(points={{142,0},{180,0}}, color={0,0,127}));
+  connect(uMaxSet, swiEna.u1) annotation (Line(points={{-180,-40},{-40,-40},{-40,
+          -62},{-2,-62}}, color={0,0,127}));
+  annotation (defaultComponentName="sinSteSetInc",
+    Icon(coordinateSystem(preserveAspectRatio=false,
+    extent={{-100,-100},{100,100}},
+    grid={2,2}), graphics={Rectangle(
+      extent={{-100,-100},{100,100}},
+      lineColor={0,0,0},
+      radius=0,
+      fillColor={255,255,255},
+      fillPattern=FillPattern.Solid), Text(
+      extent={{-100,140},{100,100}},
+      textColor={0,0,255},
+      textString="%name")}), Diagram(
+    coordinateSystem(preserveAspectRatio=false,
+    extent={{-160,-140},{160,140}},
+    grid={2,2})),
+    Documentation(info="<html>
+<p>
+This block changes a setpoint to the maximum setpoint value
+in a single step when the signal to enable setpoint increase becomes <code>true</code>.
+</p>
+
+<p>
+All input and output variables are defined as follows: 
+</p>
+
+<ul>
+<li>
+<code>uEna</code>: a boolean input variable, which  
+specifies whether to enable the single-step setpoint increase operation or not.
+</li>
+<li>
+<code>uCurSet</code>: the current setpoint, which represents the current setpoint value from an 
+external setpoint controller.
+</li>
+<li>
+<code>uMinSet</code>: the minimum setpoint, which represents the lowest setpoint value
+that the commanded setpoint <code>yComSet</code> is allowed to have. The value of the 
+minimum setpoint can change dynamically.
+</li>
+<li>
+<code>uMaxSet</code>: the maximum setpoint, which represents the highest setpoint value
+that the commanded setpoint <code>yComSet</code> is allowed to have. The value of the 
+maximum setpoint can change dynamically.
+</li>
+<li>
+<code>yComSet</code>: the commanded setpoint, which represents the setpoint value 
+that an external setpoint controller should change to.
+</li>
+</ul>
+
+<p>
+If <code>uEna = true</code>, then <code>yComSet = uMaxSet</code>.
+</p>
+
+<p>
+If <code>uEna = false</code> and <code>uCurSet &gt; uMaxSet</code>,
+then <code>yComSet = uMaxSet</code>.
+</p>
+
+<p>
+If <code>uEna = false</code> and <code>uCurSet &lt; uMinSet</code>,
+then <code>yComSet = uMinSet</code>.
+</p>
+
+<p>
+If <code>uEna = false</code> and <code>uMinSet &lt;= uCurSet &lt;= uMaxSet</code>,
+then <code>yComSet = uCurSet</code>.
+</p>
+
+<p>
+The output variable <code>yComSet</code> is intended to be received by an external
+setpoint controller, which will execute the setpoint increase and pass the new setpoint
+back to the input variable <code>uCurSet</code> in this block, completing a full control loop.
+</p>
+
+</html>",
+        revisions="<html>
+<ul>
+<li>
+April 03, 2026, by Weiping Huang:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
+end SingleStepSetpointIncrease_20260429;
