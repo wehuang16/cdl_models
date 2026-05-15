@@ -37,7 +37,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     annotation (Placement(transformation(extent={{2,-54},{22,-34}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput totalElectricPowerBaseline
     annotation (Placement(transformation(extent={{140,-50},{160,-30}})));
-  ZoneSetpointControl.SingleZone singleZoneSetpointControl(
+  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.SingleZone
+    singleZoneSetpointControl(
     delChaSheHea=-0.5556,
     delChaRebHea=0.5556,
     delSheThoHea=0.2778,
@@ -52,7 +53,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-142,68},{-122,88}})));
-  ZoneSetpointControl.ZoneSetpointSource zoneSetpointSource(
+  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.ZoneSetpointSource
+    zoneSetpointSource(
     TSetNomHeaOcc=THeaSetOcc,
     TSetNomHeaUno=THeaSetUno,
     TSetNomCooOcc=TCooSetOcc,
@@ -60,7 +62,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     occStaHouSta=6,
     occStaHouEnd=19)
     annotation (Placement(transformation(extent={{-150,40},{-130,60}})));
-  ZoneSetpointControl.SingleZone singleZoneSetpointControl_baseline(
+  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.SingleZone
+    singleZoneSetpointControl_baseline(
     demFleHeaAct=false,
     demFleCooAct=false,
     delChaSheHea=-0.5556,
@@ -77,7 +80,8 @@ replaceable package MediumAir = Buildings.Media.Air;
     timeScale=3600,
     period=86400)
     annotation (Placement(transformation(extent={{-160,-76},{-140,-56}})));
-  ZoneSetpointControl.ZoneSetpointSource zoneSetpointSource_baseline(
+  Buildings.Controls.OBC.DemandFlexibility.ZoneSetpointControl.ZoneSetpointSource
+    zoneSetpointSource_baseline(
     TSetNomHeaOcc=THeaSetOcc,
     TSetNomHeaUno=THeaSetUno,
     TSetNomCooOcc=TCooSetOcc,
@@ -147,11 +151,11 @@ equation
   connect(intTimTab.y[1], singleZoneSetpointControl.uMod) annotation (Line(
         points={{-120,78},{-54,78},{-54,60.6},{-43.7391,60.6}},
                                                            color={255,127,0}));
-  connect(zoneSetpointSource.TSetTarPreHea, singleZoneSetpointControl.TSetTarPreHea)
+  connect(zoneSetpointSource.TTarPreHeaSet, singleZoneSetpointControl.TSetTarPreHea)
     annotation (Line(points={{-128,58},{-52,58},{-52,48.4},{-43.7391,48.4}},
                                                                         color={0,
           0,127}));
-  connect(zoneSetpointSource.TSetTarSheHea, singleZoneSetpointControl.TSetTarSheHea)
+  connect(zoneSetpointSource.TTarSheHeaSet, singleZoneSetpointControl.TSetTarSheHea)
     annotation (Line(points={{-128,54.6},{-128,50},{-52,50},{-52,44.8},{
           -43.7391,44.8}},
         color={0,0,127}));
@@ -159,10 +163,10 @@ equation
     annotation (Line(points={{-128,51.8},{-128,52},{-54,52},{-54,41.4},{
           -43.7391,41.4}},
         color={0,0,127}));
-  connect(zoneSetpointSource.TSetTarPreCoo, singleZoneSetpointControl.TSetTarPreCoo)
+  connect(zoneSetpointSource.TTarPreCooSet, singleZoneSetpointControl.TSetTarPreCoo)
     annotation (Line(points={{-128,48},{-128,37.8},{-43.7391,37.8}},
                                                             color={0,0,127}));
-  connect(zoneSetpointSource.TSetTarSheCoo, singleZoneSetpointControl.TSetTarSheCoo)
+  connect(zoneSetpointSource.TTarSheCooSet, singleZoneSetpointControl.TSetTarSheCoo)
     annotation (Line(points={{-128,45.4},{-128,46},{-52,46},{-52,33.8},{
           -43.7391,33.8}},
         color={0,0,127}));
@@ -195,20 +199,20 @@ equation
   connect(intTimTab_baseline.y[1], singleZoneSetpointControl_baseline.uMod)
     annotation (Line(points={{-138,-66},{-54,-66},{-54,-33.4},{-43.7391,-33.4}},
         color={255,127,0}));
-  connect(zoneSetpointSource_baseline.TSetTarPreHea,
+  connect(zoneSetpointSource_baseline.TTarPreHeaSet,
     singleZoneSetpointControl_baseline.TSetTarPreHea) annotation (Line(points={{-82,-38},
           {-52,-38},{-52,-45.6},{-43.7391,-45.6}},     color={0,0,127}));
-  connect(zoneSetpointSource_baseline.TSetTarSheHea,
+  connect(zoneSetpointSource_baseline.TTarSheHeaSet,
     singleZoneSetpointControl_baseline.TSetTarSheHea) annotation (Line(points={{-82,
           -41.4},{-52,-41.4},{-52,-49.2},{-43.7391,-49.2}},color={0,0,127}));
   connect(zoneSetpointSource_baseline.TSetOrgHea,
     singleZoneSetpointControl_baseline.TSetNomHea) annotation (Line(points={{-82,
           -44.2},{-50,-44.2},{-50,-52.6},{-43.7391,-52.6}},
                                                        color={0,0,127}));
-  connect(zoneSetpointSource_baseline.TSetTarPreCoo,
+  connect(zoneSetpointSource_baseline.TTarPreCooSet,
     singleZoneSetpointControl_baseline.TSetTarPreCoo) annotation (Line(points={{-82,-48},
           {-52,-48},{-52,-56.2},{-43.7391,-56.2}}, color={0,0,127}));
-  connect(zoneSetpointSource_baseline.TSetTarSheCoo,
+  connect(zoneSetpointSource_baseline.TTarSheCooSet,
     singleZoneSetpointControl_baseline.TSetTarSheCoo) annotation (Line(points={{-82,
           -50.6},{-58,-50.6},{-58,-60.2},{-43.7391,-60.2}},color={0,0,127}));
   connect(zoneSetpointSource_baseline.TSetOrgCoo,
