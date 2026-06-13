@@ -1,5 +1,5 @@
 within cdl_models.Move.Generic;
-block SelectSmallestValues
+block SelectSmallestValues_archived_20260525
 
   parameter Integer nNum=5;
   parameter Integer nSel=3;
@@ -30,4 +30,4 @@ equation
 <p>This block selects the <code>nSel</code> smallest values out of a total of <code>nNum</code> values. The output is an array, 
 where 1 means the value is one of the smallest values, and 0 means otherwise.</p>
 </html>"));
-end SelectSmallestValues;
+end SelectSmallestValues_archived_20260525;
