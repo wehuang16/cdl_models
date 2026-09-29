@@ -12,6 +12,8 @@ SingleTemperatureSetpointMock
 DualTemperatureSetpointMock
 SingleStepSetpointChange_20260428
 SingleStepSetpointIncrease_20260429
+BooleanPassThrough
 Subsequences
 Validation
 Subsequences_20260429
+ZoneSetpointSource

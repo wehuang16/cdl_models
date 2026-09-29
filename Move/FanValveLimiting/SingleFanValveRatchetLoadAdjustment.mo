@@ -75,8 +75,8 @@ equation
       Line(points={{183.333,-24},{192,-24},{192,-70},{214.261,-70},{214.261,
           -70.6667}},
         color={0,0,127}));
-  connect(con.y, setReb.have_pri) annotation (Line(points={{2,-180},{36,-180},{
-          36,-97.8462},{160.667,-97.8462}},
+  connect(con.y, setReb.have_pri) annotation (Line(points={{2,-180},{36,-180},
+          {36,-97.8462},{160.667,-97.8462}},
                                          color={255,0,255}));
   connect(PBui, gre.u1) annotation (Line(points={{-170,-130},{-98,-130},{-98,
           -132},{-98.2,-132},{-98.2,-131}},
