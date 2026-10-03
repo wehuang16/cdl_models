@@ -1,6 +1,18 @@
 within cdl_models.FanValveLimiting.Subsequences;
 block Qualification "Qualification"
 
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput V_flow[nZon]
+    "Volumetric air flow" annotation (Placement(transformation(extent={{-140,40},
+            {-100,80}}), iconTransformation(extent={{-140,20},{-100,60}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput TZon[nZon](
+    each final unit="K",
+    each displayUnit="degC",
+    each final quantity="ThermodynamicTemperature") "Zone temperature"
+    annotation (Placement(transformation(extent={{-140,-20},{-100,20}}),
+        iconTransformation(extent={{-140,20},{-100,60}})));
+  Buildings.Controls.OBC.CDL.Interfaces.RealInput fanSpe[nZon] "Fan speed"
+    annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
+        iconTransformation(extent={{-140,20},{-100,60}})));
   annotation (defaultComponentName="booPasThr",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}},
     grid={2,2}), graphics={Rectangle(

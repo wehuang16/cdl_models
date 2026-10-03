@@ -1,8 +1,5 @@
 within cdl_models.FanValveLimiting.Subsequences;
-block Adjustment "Adjustment"
-
-  parameter Integer nZon(min=1)
-    "Number of zones in the building";
+block ElectricityDemand "Electricity demand"
 
   annotation (defaultComponentName="booPasThr",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}},
@@ -28,4 +25,4 @@ First implementation.
 Passes a Boolean signal through without modification.
 </p>
 </html>"));
-end Adjustment;
+end ElectricityDemand;
