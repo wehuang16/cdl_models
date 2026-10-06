@@ -1,5 +1,5 @@
 within cdl_models;
-package FanValveLimiting
+package FanSpeedLimiting
   "Control sequences for limiting fan speed or cooling coil valve position for air handling units"
 
   annotation (
@@ -51,4 +51,4 @@ achieve demand flexibility.
     Diagram(
       coordinateSystem(
         extent={{-100,-100},{100,100}})));
-end FanValveLimiting;
+end FanSpeedLimiting;
