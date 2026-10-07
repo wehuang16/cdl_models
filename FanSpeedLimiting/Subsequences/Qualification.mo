@@ -40,7 +40,7 @@ block Qualification "Qualification"
     each final quantity="ThermodynamicTemperature")
     "Zone temperature for the zone served by the air handling unit"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
-        iconTransformation(extent={{-140,-86},{-100,-46}})));
+        iconTransformation(extent={{-140,-80},{-100,-40}})));
   Buildings.Controls.OBC.CDL.Reals.GreaterThreshold greThr[nAHU](final t=
         VMin_flow, final h=fill(VHys_flow, nAHU))
     annotation (Placement(transformation(extent={{-80,50},{-60,70}})));
