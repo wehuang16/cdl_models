@@ -21,8 +21,8 @@ block SelectLargestTemperatureDifference "temDifSelectionMin"
         iconTransformation(extent={{-140,-20},{-100,20}})));
   Buildings.Controls.OBC.CDL.Reals.Subtract sub[nZon]
     annotation (Placement(transformation(extent={{-52,-4},{-32,16}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.SelectLargestValues selectLargestValues(nNum=nZon,
-      nSel=nSel)
+  cdl_models.DemandFlexibility.Generic.SelectLargestValues selectLargestValues(
+      nNum=nZon, nSel=nSel)
     annotation (Placement(transformation(extent={{46,-10},{66,10}})));
 equation
   connect(uIgnFla, swi.u2) annotation (Line(points={{-120,-70},{-84,-70},{-84,

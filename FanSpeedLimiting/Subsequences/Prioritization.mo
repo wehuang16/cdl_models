@@ -19,8 +19,7 @@ block Prioritization "Prioritization"
     "Number of air handling unit fans to select for prioritization"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
       iconTransformation(extent={{-140,-80},{-100,-40}})));
-  Buildings.Controls.OBC.DemandFlexibility.Generic.SelectLargestValues selLarVal(final
-      nVal=nAHU)
+  DemandFlexibility.Generic.SelectLargestValues selLarVal(final nVal=nAHU)
     "Select the largest value, either the fan speed or the fan size"
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant conFanSiz[nAHU](

@@ -46,7 +46,7 @@ equation
     annotation (Line(points={{-38,0},{-2,0}},   color={0,0,127}));
   connect(greThr.y, need_PBuiShe)
     annotation (Line(points={{22,0},{120,0}}, color={255,0,255}));
-  annotation (defaultComponentName="booPasThr",
+  annotation (defaultComponentName="eleDem",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}},
     grid={2,2}), graphics={Rectangle(
       extent={{-100,100},{100,-100}},
@@ -61,7 +61,7 @@ equation
     Documentation(revisions="<html>
 <ul>
 <li>
-August 18, 2026, by Weiping Huang:<br/>
+October 21, 2026, by Weiping Huang:<br/>
 First implementation.
 </li>
 </ul>
